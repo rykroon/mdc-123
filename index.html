@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+  </head>
+
+  <body>
+
+    <div id='app'>
+      <p>{{ message }}</p>
+
+      <div>
+        <div>
+          <h2>Buttons</h2>
+        </div>
+
+        <btn id="mybtn" text="Button" v-bind:click="alert"></btn>
+        <btn id="mybtn" text="Raised" type="raised"></btn>
+        <btn id="mybtn" text="Unelevated" type="unelevated"></btn>
+        <btn id="mybtn" text="Outlined" type="outlined"></btn>
+        <btn id="mybtn" text="Dense" type="dense"></btn>
+      </div>
+
+      <div>
+        <div>
+          <h2>Disabled Buttons</h2>
+        </div>
+
+        <btn id="mybtn" text="Button"     disabled v-bind:click="alert"></btn>
+        <btn id="mybtn" text="Raised"     disabled type="raised"></btn>
+        <btn id="mybtn" text="Unelevated" disabled type="unelevated"></btn>
+        <btn id="mybtn" text="Outlined"   disabled type="outlined"></btn>
+        <btn id="mybtn" text="Dense"      disabled type="dense"></btn>
+      </div>
+
+      <div>
+        <div>
+          <h2>FABs</h2>
+        </div>
+        <fab text="Fab"></fab>
+        <fab text="Mini" type="mini"></fab>
+        <fab text="Extended" type="extended"></fab>
+      </div>
+
+      <div>
+        <div>
+          <h2>Cards</h2>
+        </div>
+
+        <card content="This is a card"></card>
+        <div>space</div>
+        <card content="This card has an outline" outlined></card>
+      </div>
+
+
+      <div>
+        <div>
+          <h2>Check Boxes</h2>
+        </div>
+
+        <checkbox id="chkbx" label="check here" ></checkbox>
+        <checkbox id="dsbldchkbx" label="Check box is disabled" disabled></checkbox>
+
+
+      </div>
+
+
+
+
+
+    </div>
+
+    <script src="vue-mdc.js"></script>
+  </body>
+</html>
