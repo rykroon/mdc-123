@@ -7,5 +7,10 @@ myapp = new Vue({
     alert: function() {
       alert("hello")
     }
+  },
+  methods: {
+    log: function() {
+      console.log("Hello World!")
+    }
   }
 })

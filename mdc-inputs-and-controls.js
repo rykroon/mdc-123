@@ -91,7 +91,6 @@ Vue.component('switcher', {
   props : ['id','label', 'checked', 'disabled'],
   data: function() {
     return {
-      isChecked: this.checked != undefined,
       isDisabled: this.disabled != undefined
     }
   },
@@ -102,22 +101,19 @@ Vue.component('switcher', {
     enable: function() {
       this.disabled = undefined
     },
-    toggle: function() {
-      if (this.isChecked) {
-        this.isChecked = false
-      } else {
-        this.isChecked = true
-      }
-    },
+  },
+  mounted: function() {
+    id = '#' + this.id
+    mdc.switch.MDCSwitch.attachTo(document.querySelector(id));
   },
   template: `
   <div
     class="mdc-form-field">
 
     <div
+      v-bind:id="id"
       class="mdc-switch"
-      v-bind:class="{'mdc-switch--checked': isChecked, 'mdc-switch--disabled': isDisabled}"
-      v-on:click="toggle">
+      v-bind:class="{'mdc-switch--disabled': isDisabled}">
 
       <div
         class="mdc-switch__track">
@@ -130,11 +126,10 @@ Vue.component('switcher', {
           class="mdc-switch__thumb">
 
           <input
-            type="checkbox"
             v-bind:id="id"
+            type="checkbox"
             class="mdc-switch__native-control"
             role="switch"
-            v-bind:checked="isChecked"
             v-bind:disabled="isDisabled">
         </div>
       </div>

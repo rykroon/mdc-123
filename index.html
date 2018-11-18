@@ -16,10 +16,10 @@
           <h2>Buttons</h2>
         </div>
 
-        <btn id="btn-1" text="Button" v-bind:click="alert"></btn>
-        <btn id="btn-2" text="Raised"     variant="raised" noripple></btn>
-        <btn id="btn-3" text="Unelevated" variant="unelevated"></btn>
-        <btn id="btn-4" text="Outlined"   variant="outlined" noripple></btn>
+        <btn id="btn-1" text="Button"     v-bind:click="log"></btn>
+        <btn id="btn-2" text="Raised"     v-bind:click="log" variant="raised" noripple></btn>
+        <btn id="btn-3" text="Unelevated" v-bind:click="log" variant="unelevated"></btn>
+        <btn id="btn-4" text="Outlined"   v-bind:click="log" variant="outlined" noripple></btn>
       </div>
 
       <div>
@@ -27,10 +27,10 @@
           <h2>Dense Buttons</h2>
         </div>
 
-        <btn id="btn-5" text="Button"     dense v-bind:click="alert"></btn>
-        <btn id="btn-6" text="Raised"     dense variant="raised"></btn>
-        <btn id="btn-7" text="Unelevated" dense variant="unelevated" noripple></btn>
-        <btn id="btn-8" text="Outlined"   dense variant="outlined"></btn>
+        <btn id="btn-5" text="Button"     dense v-bind:click="log"></btn>
+        <btn id="btn-6" text="Raised"     dense v-bind:click="log" variant="raised"></btn>
+        <btn id="btn-7" text="Unelevated" dense v-bind:click="log" variant="unelevated" noripple></btn>
+        <btn id="btn-8" text="Outlined"   dense v-bind:click="log" variant="outlined"></btn>
       </div>
 
       <div>
@@ -38,19 +38,19 @@
           <h2>Disabled Buttons</h2>
         </div>
 
-        <btn id="btn-9" text="Button"     disabled v-bind:click="alert"></btn>
-        <btn id="btn-10" text="Raised"     disabled variant="raised"></btn>
-        <btn id="btn-11" text="Unelevated" disabled variant="unelevated"></btn>
-        <btn id="btn-12" text="Outlined"   disabled variant="outlined"></btn>
+        <btn id="btn-9" text="Button"       disabled v-bind:click="log"></btn>
+        <btn id="btn-10" text="Raised"      disabled v-bind:click="log" variant="raised"></btn>
+        <btn id="btn-11" text="Unelevated"  disabled v-bind:click="log" variant="unelevated"></btn>
+        <btn id="btn-12" text="Outlined"    disabled v-bind:click="log" variant="outlined"></btn>
       </div>
 
       <div>
         <div>
           <h2>FABs</h2>
         </div>
-        <fab id="fab-1" text="Fab"></fab>
-        <fab id="fab-2" text="Mini" variant="mini"></fab>
-        <fab id="fab-3" text="Extended" variant="extended"></fab>
+        <fab id="fab-1" text="Fab" v-bind:click="log"></fab>
+        <fab id="fab-2" text="Mini" variant="mini" v-bind:click="log"></fab>
+        <fab id="fab-3" text="Extended" variant="extended" v-bind:click="log"></fab>
       </div>
 
       <div>
