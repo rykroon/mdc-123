@@ -151,8 +151,6 @@ Vue.component('text-field', {
   props: ['id', 'label','disabled', 'variant'],
   data: function() {
     return {
-      focused: false,
-      labelIsFloating: false,
       isDisabled: this.disabled != undefined,
 
       //variant
@@ -161,19 +159,9 @@ Vue.component('text-field', {
       outlined: this.variant === "outlined",
     }
   },
-  methods: {
-    focus: function() {
-      this.focused = true
-      this.labelIsFloating = true
-    },
-    unfocus: function() {
-      this.focused=false
-      this.labelIsFloating = this.hasValue()
-    },
-    hasValue: function() {
-      input = document.getElementById(this.id)
-      return input.value ? true : false;
-    }
+  mounted: function() {
+    id = '#' + this.id
+    mdc.textField.MDCTextField.attachTo(document.querySelector(id));
   },
   computed: {
     placeholder: function() {
@@ -182,9 +170,9 @@ Vue.component('text-field', {
   },
   template: `
   <div
+    v-bind:id="id"
     class="mdc-text-field"
     v-bind:class="{
-      'mdc-text-field--focused': focused,
       'mdc-text-field--disabled': isDisabled,
       'mdc-text-field--fullwidth': fullWidth,
       'mdc-text-field--outlined': outlined
@@ -192,9 +180,6 @@ Vue.component('text-field', {
 
     <input
       type="text"
-      v-bind:id="id"
-      v-on:focus="focus"
-      v-on:blur="unfocus"
       class="mdc-text-field__input"
       v-bind:placeholder="placeholder"
       v-bind:disabled="isDisabled">
@@ -202,7 +187,6 @@ Vue.component('text-field', {
     <label
       v-if="!fullWidth"
       class="mdc-floating-label"
-      v-bind:class="{'mdc-floating-label--float-above': labelIsFloating}"
       v-bind:for="id">
       {{label}}
     </label>
@@ -224,8 +208,7 @@ Vue.component('text-field', {
 
     <div
       v-if="!fullWidth && !outlined"
-      class="mdc-line-ripple"
-      v-bind:class="{'mdc-line-ripple--active':focused}">
+      class="mdc-line-ripple">
     </div>
 </div>`
 })
