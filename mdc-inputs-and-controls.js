@@ -1,63 +1,3 @@
-//buttons
-
-Vue.component('btn', {
-  props: ['id','text','type','disabled','click'],
-  methods: {
-    getTypeClass: function() {
-      if (this.type != undefined) {
-        return 'mdc-button--' + this.type
-      }
-    }
-  },
-  template: `
-    <button
-      v-bind:id="id"
-      v-bind:disabled="disabled"
-      class="mdc-button"
-      v-bind:class="getTypeClass()"
-      v-on:click="click">
-      {{text}}
-    </button>`
-})
-
-Vue.component('fab', {
-  props: ['id','text','type','click'],
-  methods: {
-    getTypeClass: function() {
-      if (this.type != undefined) {
-        return 'mdc-fab--' + this.type
-      }
-    }
-  },
-  template: `
-    <button
-      v-bind:id="id"
-      class="mdc-fab"
-      v-bind:class="getTypeClass()"
-      v-on:click="click">
-      {{text}}
-    </button>`
-})
-
-Vue.component('card', {
-  props: ['id','content','outlined'],
-  methods: {
-    getOutlineClass: function() {
-      console.log(this.outlined)
-      if (this.outlined) {
-        return 'mdc-card--outlined'
-      }
-    }
-  },
-  template: `
-    <div
-      v-bind:id="id"
-      class="mdc-card"
-      v-bind:class="getOutlineClass">
-      {{content}}
-    </div>`
-})
-
 Vue.component('checkbox', {
   props: ['id', 'label', 'disabled'],
   data: function() {
@@ -207,13 +147,85 @@ Vue.component('switcher', {
   </div>`
 })
 
+Vue.component('text-field', {
+  props: ['id', 'label','disabled', 'variant'],
+  data: function() {
+    return {
+      focused: false,
+      labelIsFloating: false,
+      isDisabled: this.disabled != undefined,
 
-myapp = new Vue({
-  el:'#app',
-  data: {
-    message: "Hello World!",
-    alert: function() {
-      alert("hello")
+      //variant
+      fullWidth: this.variant === "fullwidth",
+      textArea: this.variant === "textarea",
+      outlined: this.variant === "outlined",
     }
-  }
+  },
+  methods: {
+    focus: function() {
+      this.focused = true
+      this.labelIsFloating = true
+    },
+    unfocus: function() {
+      this.focused=false
+      this.labelIsFloating = this.hasValue()
+    },
+    hasValue: function() {
+      input = document.getElementById(this.id)
+      return input.value ? true : false;
+    }
+  },
+  computed: {
+    placeholder: function() {
+      return this.fullWidth ? this.label : "";
+    }
+  },
+  template: `
+  <div
+    class="mdc-text-field"
+    v-bind:class="{
+      'mdc-text-field--focused': focused,
+      'mdc-text-field--disabled': isDisabled,
+      'mdc-text-field--fullwidth': fullWidth,
+      'mdc-text-field--outlined': outlined
+    }">
+
+    <input
+      type="text"
+      v-bind:id="id"
+      v-on:focus="focus"
+      v-on:blur="unfocus"
+      class="mdc-text-field__input"
+      v-bind:placeholder="placeholder"
+      v-bind:disabled="isDisabled">
+
+    <label
+      v-if="!fullWidth"
+      class="mdc-floating-label"
+      v-bind:class="{'mdc-floating-label--float-above': labelIsFloating}"
+      v-bind:for="id">
+      {{label}}
+    </label>
+
+    <div
+      v-if="outlined"
+      class="mdc-notched-outline">
+
+      <svg>
+        <path
+          class="mdc-notched-outline__path"/>
+      </svg>
+    </div>
+
+    <div
+      v-if="outlined"
+      class="mdc-notched-outline__idle">
+    </div>
+
+    <div
+      v-if="!fullWidth && !outlined"
+      class="mdc-line-ripple"
+      v-bind:class="{'mdc-line-ripple--active':focused}">
+    </div>
+</div>`
 })
