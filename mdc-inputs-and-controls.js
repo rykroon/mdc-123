@@ -104,7 +104,7 @@ Vue.component('switcher', {
   },
   mounted: function() {
     id = '#' + this.id
-    mdc.switch.MDCSwitch.attachTo(document.querySelector(id));
+    //mdc.switch.MDCSwitch.attachTo(document.querySelector(id));
   },
   template: `
   <div
@@ -143,12 +143,15 @@ Vue.component('switcher', {
 })
 
 Vue.component('text-field', {
-  props: ['id', 'label','disabled', 'variant'],
+  props: {
+    id: String,
+    label: String,
+    variant: String,
+    disabled: Boolean,
+    dense: Boolean
+  },
   data: function() {
     return {
-      isDisabled: this.disabled != undefined,
-
-      //variant
       fullWidth: this.variant === "fullwidth",
       textArea: this.variant === "textarea",
       outlined: this.variant === "outlined",
@@ -168,16 +171,17 @@ Vue.component('text-field', {
     v-bind:id="id"
     class="mdc-text-field"
     v-bind:class="{
-      'mdc-text-field--disabled': isDisabled,
       'mdc-text-field--fullwidth': fullWidth,
-      'mdc-text-field--outlined': outlined
+      'mdc-text-field--outlined': outlined,
+      'mdc-text-field--disabled': disabled,
+      'mdc-text-field--dense': dense
     }">
 
     <input
       type="text"
       class="mdc-text-field__input"
       v-bind:placeholder="placeholder"
-      v-bind:disabled="isDisabled">
+      v-bind:disabled="disabled">
 
     <label
       v-if="!fullWidth"

@@ -16,10 +16,34 @@
           <h2>Buttons</h2>
         </div>
 
-        <btn id="btn-1" text="Button"     v-bind:click="log"></btn>
-        <btn id="btn-2" text="Raised"     v-bind:click="log" variant="raised" noripple></btn>
-        <btn id="btn-3" text="Unelevated" v-bind:click="log" variant="unelevated"></btn>
-        <btn id="btn-4" text="Outlined"   v-bind:click="log" variant="outlined" noripple></btn>
+        <btn
+          id="btn-1"
+          text="Button"
+          :click="log">
+        </btn>
+
+        <btn
+          id="btn-2"
+          text="Raised"
+          :click="log"
+          variant="raised">
+        </btn>
+
+        <btn
+          id="btn-3"
+          text="Unelevated"
+          :click="log"
+          variant="unelevated"
+          :ripple="false">
+        </btn>
+
+        <btn
+          id="btn-4"
+          text="Outlined"
+          :click="log"
+          variant="outlined"
+          :ripple="false">
+        </btn>
       </div>
 
       <div>
@@ -27,10 +51,38 @@
           <h2>Dense Buttons</h2>
         </div>
 
-        <btn id="btn-5" text="Button"     dense v-bind:click="log"></btn>
-        <btn id="btn-6" text="Raised"     dense v-bind:click="log" variant="raised"></btn>
-        <btn id="btn-7" text="Unelevated" dense v-bind:click="log" variant="unelevated" noripple></btn>
-        <btn id="btn-8" text="Outlined"   dense v-bind:click="log" variant="outlined"></btn>
+        <btn
+          id="btn-5"
+          text="Button"
+          :dense="true"
+          :click="log"
+          :ripple="false">
+        </btn>
+
+        <btn
+          id="btn-6"
+          text="Raised"
+          :dense="true"
+          :click="log"
+          variant="raised"
+          :ripple="false">
+        </btn>
+
+        <btn
+          id="btn-7"
+          text="Unelevated"
+          :dense="true"
+          :click="log"
+          variant="unelevated">
+        </btn>
+
+        <btn
+          id="btn-8"
+          text="Outlined"
+          :dense="true"
+          :click="log"
+          variant="outlined">
+        </btn>
       </div>
 
       <div>
@@ -104,10 +156,29 @@
         <div>
           <h2>Text Field</h2>
         </div>
-        <text-field id="text-1" label="text field"></text-field>
-        <text-field id="text-2" label="Full Width" variant="fullwidth"></text-field>
-        <text-field id="text-3" label="Outlined" variant="outlined"></text-field>
-        <text-field id="text-4" label="Disabled" disabled></text-field>
+        <text-field
+          id="text-1"
+          label="text field">
+        </text-field>
+
+        <text-field
+          id="text-2"
+          label="Full Width"
+          variant="fullwidth">
+        </text-field>
+
+        <text-field
+          id="text-3"
+          label="Outlined"
+          variant="outlined"
+          :dense="true">
+        </text-field>
+
+        <text-field
+          id="text-4"
+          label="Disabled"
+          :disabled="true">
+        </text-field>
       </div>
     </div>
 

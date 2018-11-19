@@ -1,18 +1,27 @@
 //buttons
 
 Vue.component('btn', {
-  props: ['id','text','variant', 'dense','disabled','noripple','click',],
+  props: {
+    'id': String,
+    'text': String,
+    'variant': String,
+    'dense': Boolean,
+    'disabled': Boolean,
+    'ripple': {
+      type: Boolean,
+      default: true
+    },
+    'click': Function
+  },
   data: function() {
     return {
       raised:     this.variant === "raised",
       unelevated: this.variant === "unelevated",
       outlined:   this.variant === "outlined",
-      isDense:    this.dense != undefined,
-      hasRipple:  this.noripple == undefined
     }
   },
   mounted: function() {
-    if (this.hasRipple) {
+    if (this.ripple) {
       id = '#' + this.id
       mdc.ripple.MDCRipple.attachTo(document.querySelector(id))
     }
@@ -26,7 +35,7 @@ Vue.component('btn', {
         'mdc-button--raised': raised,
         'mdc-button--unelevated': unelevated,
         'mdc-button--outlined': outlined,
-        'mdc-button--dense': isDense
+        'mdc-button--dense': dense
       }"
       v-on:click="click">
       {{text}}
