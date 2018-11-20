@@ -1,23 +1,82 @@
+var formField = {
+  props: ['id'],
+  template: `
+  <div
+    :id="id"
+    class='mdc-form-field'>
+    <slot></slot>
+  </div>`
+}
+
+var lineRipple = {
+  template: `<div class="mdc-line-ripple"></div>`
+}
+
+var floatingLabel = {
+  props: {
+    'id':String,
+    'inputId':String,
+  },
+  template: `
+  <label
+    :id="id"
+    class="mdc-floating-label"
+    :for="inputId">
+    <slot></slot>
+  </label>`
+}
+
+var notchedOutline = {
+  template: `
+  <div>
+    <div class="mdc-notched-outline">
+      <svg>
+        <path class="mdc-notched-outline__path"/>
+      </svg>
+    </div>
+    <div class="mdc-notched-outline__idle"></div>
+  </div>`
+}
+
+
+
 Vue.component('checkbox', {
-  props: ['id', 'label', 'disabled'],
+  props: {
+    'id': String,
+    'label': String,
+    'ripple': {
+      type: Boolean,
+      default: true
+    },
+    'disabled': Boolean
+  },
   data: function() {
     return {
-      isDisabled: this.disabled != undefined
+      inputId: this.id + "-input"
+    }
+  },
+  components: {
+    'form-field': formField
+  },
+  mounted: function() {
+    if (this.ripple) {
+      id = '#' + this.id
+      mdc.checkbox.MDCCheckbox.attachTo(document.querySelector(id));
     }
   },
   template: `
-  <div
-    class="mdc-form-field">
+  <form-field>
 
     <div
+      :id="id"
       class="mdc-checkbox"
-      v-bind:class="{'mdc-checkbox--disabled': isDisabled}">
+      v-bind:class="{'mdc-checkbox--disabled': disabled}">
 
       <input
+        :id="inputId"
         type="checkbox"
         class="mdc-checkbox__native-control"
-        v-bind:id="id"
-        v-bind:disabled="isDisabled"/>
+        :disabled="disabled"/>
 
       <div
         class="mdc-checkbox__background">
@@ -39,33 +98,51 @@ Vue.component('checkbox', {
     </div>
 
     <label
-      v-bind:for="id">
+      v-bind:for="inputId">
       {{label}}
     </label>
-  </div>`
+  </form-field>`
 })
 
 Vue.component('radio', {
-  props: ['id', 'name','label','disabled'],
+  props: {
+    'id':String,
+    'group':String,
+    'label': String,
+    'ripple': {
+      type: Boolean,
+      default: true
+    },
+    'disabled': Boolean
+  },
   data: function() {
     return {
-      isDisabled: this.disabled != undefined
+      inputId: this.id + '-input'
+    }
+  },
+  components: {
+    'form-field': formField
+  },
+  mounted: function() {
+    if (this.ripple) {
+      id = '#' + this.id
+      mdc.radio.MDCRadio.attachTo(document.querySelector(id));
     }
   },
   template: `
-  <div
-    class="mdc-form-field">
+  <form-field>
 
     <div
+      :id="id"
       class="mdc-radio"
-      v-bind:class="{'mdc-radio--disabled': isDisabled}">
+      :class="{'mdc-radio--disabled': disabled}">
 
       <input
+        :id="inputId"
         class="mdc-radio__native-control"
         type="radio"
-        v-bind:id="id"
-        v-bind:name="name"
-        v-bind:disabled="isDisabled">
+        :name="group"
+        :disabled="disabled">
 
       <div
         class="mdc-radio__background">
@@ -81,10 +158,10 @@ Vue.component('radio', {
     </div>
 
     <label
-      v-bind:for="id">
+      v-bind:for="inputId">
       {{label}}
     </label>
-  </div>`
+  </form-field>`
 })
 
 Vue.component('switcher', {
@@ -157,20 +234,25 @@ Vue.component('text-field', {
       outlined: this.variant === "outlined",
     }
   },
-  mounted: function() {
-    id = '#' + this.id
-    mdc.textField.MDCTextField.attachTo(document.querySelector(id));
-  },
   computed: {
     placeholder: function() {
       return this.fullWidth ? this.label : "";
     }
   },
+  components: {
+    'floating-label': floatingLabel,
+    'notched-outline': notchedOutline,
+    'line-ripple': lineRipple
+  },
+  mounted: function() {
+    id = '#' + this.id
+    mdc.textField.MDCTextField.attachTo(document.querySelector(id));
+  },
   template: `
   <div
-    v-bind:id="id"
+    :id="id"
     class="mdc-text-field"
-    v-bind:class="{
+    :class="{
       'mdc-text-field--fullwidth': fullWidth,
       'mdc-text-field--outlined': outlined,
       'mdc-text-field--disabled': disabled,
@@ -178,36 +260,24 @@ Vue.component('text-field', {
     }">
 
     <input
+      :id="id"
       type="text"
       class="mdc-text-field__input"
-      v-bind:placeholder="placeholder"
-      v-bind:disabled="disabled">
+      :placeholder="placeholder"
+      :disabled="disabled">
 
-    <label
+    <floating-label
       v-if="!fullWidth"
-      class="mdc-floating-label"
-      v-bind:for="id">
+      :inputId="id">
       {{label}}
-    </label>
+    </floating-label>
 
-    <div
-      v-if="outlined"
-      class="mdc-notched-outline">
+    <notched-outline
+      v-if="outlined">
+    </notched-outline>
 
-      <svg>
-        <path
-          class="mdc-notched-outline__path"/>
-      </svg>
-    </div>
-
-    <div
-      v-if="outlined"
-      class="mdc-notched-outline__idle">
-    </div>
-
-    <div
-      v-if="!fullWidth && !outlined"
-      class="mdc-line-ripple">
-    </div>
+    <line-ripple
+      v-if="!fullWidth && !outlined">
+    </line-ripple>
 </div>`
 })

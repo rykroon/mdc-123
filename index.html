@@ -16,34 +16,10 @@
           <h2>Buttons</h2>
         </div>
 
-        <btn
-          id="btn-1"
-          text="Button"
-          :click="log">
-        </btn>
-
-        <btn
-          id="btn-2"
-          text="Raised"
-          :click="log"
-          variant="raised">
-        </btn>
-
-        <btn
-          id="btn-3"
-          text="Unelevated"
-          :click="log"
-          variant="unelevated"
-          :ripple="false">
-        </btn>
-
-        <btn
-          id="btn-4"
-          text="Outlined"
-          :click="log"
-          variant="outlined"
-          :ripple="false">
-        </btn>
+        <btn id="btn-1" :click="log">Button</btn>
+        <btn id="btn-2" :click="log" variant="raised">Raised</btn>
+        <btn id="btn-3" :click="log" variant="unelevated" :ripple="false">Unelevated</btn>
+        <btn id="btn-4" :click="log" variant="outlined" :ripple="false">Outlined</btn>
       </div>
 
       <div>
@@ -51,38 +27,10 @@
           <h2>Dense Buttons</h2>
         </div>
 
-        <btn
-          id="btn-5"
-          text="Button"
-          :dense="true"
-          :click="log"
-          :ripple="false">
-        </btn>
-
-        <btn
-          id="btn-6"
-          text="Raised"
-          :dense="true"
-          :click="log"
-          variant="raised"
-          :ripple="false">
-        </btn>
-
-        <btn
-          id="btn-7"
-          text="Unelevated"
-          :dense="true"
-          :click="log"
-          variant="unelevated">
-        </btn>
-
-        <btn
-          id="btn-8"
-          text="Outlined"
-          :dense="true"
-          :click="log"
-          variant="outlined">
-        </btn>
+        <btn id="btn-5" :dense="true" :click="log" :ripple="false">Button</btn>
+        <btn id="btn-6" :dense="true" :click="log" variant="raised" :ripple="false">Raised</btn>
+        <btn id="btn-7" :dense="true" :click="log" variant="unelevated">Unelevated</btn>
+        <btn id="btn-8" :dense="true" :click="log" variant="outlined">Outlined</btn>
       </div>
 
       <div>
@@ -90,19 +38,19 @@
           <h2>Disabled Buttons</h2>
         </div>
 
-        <btn id="btn-9" text="Button"       disabled v-bind:click="log"></btn>
-        <btn id="btn-10" text="Raised"      disabled v-bind:click="log" variant="raised"></btn>
-        <btn id="btn-11" text="Unelevated"  disabled v-bind:click="log" variant="unelevated"></btn>
-        <btn id="btn-12" text="Outlined"    disabled v-bind:click="log" variant="outlined"></btn>
+        <btn id="btn-9" disabled v-bind:click="log">Button</btn>
+        <btn id="btn-10" disabled v-bind:click="log" variant="raised">Raised</btn>
+        <btn id="btn-11" disabled v-bind:click="log" variant="unelevated">Unelevated</btn>
+        <btn id="btn-12" disabled v-bind:click="log" variant="outlined">Outlined</btn>
       </div>
 
       <div>
         <div>
           <h2>FABs</h2>
         </div>
-        <fab id="fab-1" text="Fab" v-bind:click="log"></fab>
-        <fab id="fab-2" text="Mini" variant="mini" v-bind:click="log"></fab>
-        <fab id="fab-3" text="Extended" variant="extended" v-bind:click="log"></fab>
+        <fab id="fab-1" v-bind:click="log">Fab</fab>
+        <fab id="fab-2" variant="mini" :click="log">Mini</fab>
+        <fab id="fab-3" variant="extended" :click="log" :ripple="false">Extended</fab>
       </div>
 
       <div>
@@ -128,8 +76,8 @@
         <div>
           <h2>Radio</h2>
         </div>
-        <radio id="radio-1" label="option 1" name="radios"></radio>
-        <radio id="radio-2" label="option 2" name="radios"></radio>
+        <radio id="radio-1" label="option 1" group="radios"></radio>
+        <radio id="radio-2" label="option 2" group="radios" :ripple="false"></radio>
         <radio id="my-disabled-radio" label="Radio is disabled" disabled></radio>
       </div>
 
