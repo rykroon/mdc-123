@@ -1,22 +1,27 @@
 //buttons
 
-Vue.component('btn', {
+Vue.component('md-button', {
   props: {
-    'id': String,
-    'variant': String,
-    'dense': Boolean,
-    'disabled': Boolean,
-    'ripple': {
+    id: String,
+    raised: Boolean,
+    unelevated: Boolean,
+    outlined: Boolean,
+    dense: Boolean,
+    ripple: {
       type: Boolean,
       default: true
     },
-    'click': Function
+    disabled: Boolean,
+    click: Function
   },
   data: function() {
     return {
-      raised:     this.variant === "raised",
-      unelevated: this.variant === "unelevated",
-      outlined:   this.variant === "outlined",
+      classes: {
+        'mdc-button--raised': this.raised,
+        'mdc-button--unelevated': this.unelevated,
+        'mdc-button--outlined': this.outlined,
+        'mdc-button--dense': this.dense
+      }
     }
   },
   mounted: function() {
@@ -30,31 +35,29 @@ Vue.component('btn', {
       :id="id"
       :disabled="disabled"
       class="mdc-button"
-      :class="{
-        'mdc-button--raised': raised,
-        'mdc-button--unelevated': unelevated,
-        'mdc-button--outlined': outlined,
-        'mdc-button--dense': dense
-      }"
+      :class="classes"
       v-on:click="click">
       <slot></slot>
     </button>`
 })
 
-Vue.component('fab', {
+Vue.component('md-fab', {
   props: {
-    'id':String,
-    'variant':String,
-    'ripple': {
+    id: String,
+    extended: Boolean,
+    mini: Boolean,
+    ripple: {
       type: Boolean,
-      default:true
+      default: true
     },
-    'click': Function
+    click: Function
   },
   data: function() {
     return {
-      extended : this.variant === "extended",
-      mini: this.variant === "mini",
+      classes: {
+        'mdc-fab--extended': this.extended,
+        'mdc-fab--mini': this.mini
+      }
     }
   },
   mounted: function() {
@@ -65,12 +68,9 @@ Vue.component('fab', {
   },
   template: `
     <button
-      v-bind:id="id"
+      :id="id"
       class="mdc-fab"
-      v-bind:class="{
-        'mdc-fab--extended':extended,
-        'mdc-fab--mini':mini
-      }"
+      :class="classes"
       v-on:click="click">
 
       <span
@@ -83,6 +83,5 @@ Vue.component('fab', {
         v-else>
         <slot></slot>
       </template>
-
     </button>`
 })

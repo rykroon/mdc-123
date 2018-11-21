@@ -16,10 +16,10 @@
           <h2>Buttons</h2>
         </div>
 
-        <btn id="btn-1" :click="log">Button</btn>
-        <btn id="btn-2" :click="log" variant="raised">Raised</btn>
-        <btn id="btn-3" :click="log" variant="unelevated" :ripple="false">Unelevated</btn>
-        <btn id="btn-4" :click="log" variant="outlined" :ripple="false">Outlined</btn>
+        <md-button id="btn-1" :click="log">Button</md-button>
+        <md-button id="btn-2" :click="log" raised>Raised</md-button>
+        <md-button id="btn-3" :click="log" unelevated :ripple="false">Unelevated</md-button>
+        <md-button id="btn-4" :click="log" outlined :ripple="false">Outlined</md-button>
       </div>
 
       <div>
@@ -27,10 +27,10 @@
           <h2>Dense Buttons</h2>
         </div>
 
-        <btn id="btn-5" :dense="true" :click="log" :ripple="false">Button</btn>
-        <btn id="btn-6" :dense="true" :click="log" variant="raised" :ripple="false">Raised</btn>
-        <btn id="btn-7" :dense="true" :click="log" variant="unelevated">Unelevated</btn>
-        <btn id="btn-8" :dense="true" :click="log" variant="outlined">Outlined</btn>
+        <md-button id="btn-5" dense :click="log" :ripple="false">Button</md-button>
+        <md-button id="btn-6" dense :click="log" raised :ripple="false">Raised</md-button>
+        <md-button id="btn-7" dense :click="log" unelevated>Unelevated</md-button>
+        <md-button id="btn-8" dense :click="log" outlined>Outlined</md-button>
       </div>
 
       <div>
@@ -38,19 +38,19 @@
           <h2>Disabled Buttons</h2>
         </div>
 
-        <btn id="btn-9" disabled v-bind:click="log">Button</btn>
-        <btn id="btn-10" disabled v-bind:click="log" variant="raised">Raised</btn>
-        <btn id="btn-11" disabled v-bind:click="log" variant="unelevated">Unelevated</btn>
-        <btn id="btn-12" disabled v-bind:click="log" variant="outlined">Outlined</btn>
+        <md-button id="btn-9" disabled :click="log">Button</md-button>
+        <md-button id="btn-10" disabled :click="log" raised>Raised</md-button>
+        <md-button id="btn-11" disabled :click="log" unelevated>Unelevated</md-button>
+        <md-button id="btn-12" disabled :click="log" outlined>Outlined</md-button>
       </div>
 
       <div>
         <div>
           <h2>FABs</h2>
         </div>
-        <fab id="fab-1" v-bind:click="log">Fab</fab>
-        <fab id="fab-2" variant="mini" :click="log">Mini</fab>
-        <fab id="fab-3" variant="extended" :click="log" :ripple="false">Extended</fab>
+        <md-fab id="fab-1" :ripple="false" :click="log">Fab</md-fab>
+        <md-fab id="fab-2" mini :click="log">Mini</md-fab>
+        <md-fab id="fab-3" extended :click="log">Extended</md-fab>
       </div>
 
       <div>
