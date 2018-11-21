@@ -1,29 +1,35 @@
-var formField = {
-  props: ['id'],
-  template: `
-  <div
-    :id="id"
-    class='mdc-form-field'>
-    <slot></slot>
-  </div>`
-}
-
-var lineRipple = {
-  template: `<div class="mdc-line-ripple"></div>`
-}
-
 var floatingLabel = {
   props: {
-    'id':String,
-    'inputId':String,
+    id: String,
   },
   template: `
   <label
-    :id="id"
     class="mdc-floating-label"
-    :for="inputId">
+    :for="id">
     <slot></slot>
   </label>`
+}
+
+Vue.component('md-form-field', {
+  props: {
+    id: String,
+    alignEnd: Boolean
+  },
+  data: function() {
+    return {
+      alignEndClass: {'mdc-form-field--align-end': this.alignEnd}
+    }
+  },
+  template: `
+  <div
+    class='mdc-form-field'
+    :class="alignEndClass">
+    <slot></slot>
+  </div>`
+})
+
+var lineRipple = {
+  template: `<div class="mdc-line-ripple"></div>`
 }
 
 var notchedOutline = {
@@ -39,183 +45,101 @@ var notchedOutline = {
 }
 
 
-
 Vue.component('checkbox', {
   props: {
-    'id': String,
-    'label': String,
-    'ripple': {
+    id: String,
+    label: String,
+    ripple: {
       type: Boolean,
       default: true
     },
-    'disabled': Boolean
+    disabled: Boolean
   },
   data: function() {
     return {
-      inputId: this.id + "-input"
+      rootId: this.id + "-root",
+      disabledClass: {
+          'mdc-checkbox--disabled': this.disabled
+      }
     }
-  },
-  components: {
-    'form-field': formField
   },
   mounted: function() {
     if (this.ripple) {
-      id = '#' + this.id
+      id = '#' + this.rootId
       mdc.checkbox.MDCCheckbox.attachTo(document.querySelector(id));
     }
   },
   template: `
-  <form-field>
+  <div
+    :id="rootId"
+    class="mdc-checkbox"
+    v-bind:class="disabledClass">
 
-    <div
+    <input
       :id="id"
-      class="mdc-checkbox"
-      v-bind:class="{'mdc-checkbox--disabled': disabled}">
+      type="checkbox"
+      class="mdc-checkbox__native-control"
+      :disabled="disabled"/>
 
-      <input
-        :id="inputId"
-        type="checkbox"
-        class="mdc-checkbox__native-control"
-        :disabled="disabled"/>
+    <div class="mdc-checkbox__background">
 
-      <div
-        class="mdc-checkbox__background">
+      <svg
+        class="mdc-checkbox__checkmark"
+        viewBox="0 0 24 24">
 
-        <svg
-          class="mdc-checkbox__checkmark"
-          viewBox="0 0 24 24">
+        <path
+          class="mdc-checkbox__checkmark-path"
+          fill="none"
+          d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+      </svg>
 
-          <path
-            class="mdc-checkbox__checkmark-path"
-            fill="none"
-            d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-        </svg>
-
-        <div
-          class="mdc-checkbox__mixedmark">
-        </div>
-      </div>
+      <div class="mdc-checkbox__mixedmark"></div>
     </div>
-
-    <label
-      v-bind:for="inputId">
-      {{label}}
-    </label>
-  </form-field>`
+  </div>`
 })
 
 Vue.component('radio', {
   props: {
-    'id':String,
-    'group':String,
-    'label': String,
-    'ripple': {
+    id: String,
+    group: String,
+    label: String,
+    ripple: {
       type: Boolean,
       default: true
     },
-    'disabled': Boolean
+    disabled: Boolean
   },
   data: function() {
     return {
-      inputId: this.id + '-input'
+      rootId: this.id + "-root",
+      disabledClass: {
+        'mdc-radio--disabled': this.disabled
+      }
     }
-  },
-  components: {
-    'form-field': formField
   },
   mounted: function() {
     if (this.ripple) {
-      id = '#' + this.id
+      id = '#' + this.rootId
       mdc.radio.MDCRadio.attachTo(document.querySelector(id));
     }
   },
   template: `
-  <form-field>
-
-    <div
-      :id="id"
-      class="mdc-radio"
-      :class="{'mdc-radio--disabled': disabled}">
-
-      <input
-        :id="inputId"
-        class="mdc-radio__native-control"
-        type="radio"
-        :name="group"
-        :disabled="disabled">
-
-      <div
-        class="mdc-radio__background">
-
-        <div
-          class="mdc-radio__outer-circle">
-        </div>
-
-        <div
-          class="mdc-radio__inner-circle">
-        </div>
-      </div>
-    </div>
-
-    <label
-      v-bind:for="inputId">
-      {{label}}
-    </label>
-  </form-field>`
-})
-
-Vue.component('switcher', {
-  props : ['id','label', 'checked', 'disabled'],
-  data: function() {
-    return {
-      isDisabled: this.disabled != undefined
-    }
-  },
-  methods: {
-    disable: function() {
-      this.disabled = ""
-    },
-    enable: function() {
-      this.disabled = undefined
-    },
-  },
-  mounted: function() {
-    id = '#' + this.id
-    //mdc.switch.MDCSwitch.attachTo(document.querySelector(id));
-  },
-  template: `
   <div
-    class="mdc-form-field">
+    :id="rootId"
+    class="mdc-radio"
+    :class="disabledClass">
 
-    <div
-      v-bind:id="id"
-      class="mdc-switch"
-      v-bind:class="{'mdc-switch--disabled': isDisabled}">
+    <input
+      :id="id"
+      class="mdc-radio__native-control"
+      type="radio"
+      :name="group"
+      :disabled="disabled">
 
-      <div
-        class="mdc-switch__track">
-        </div>
-
-        <div
-        class="mdc-switch__thumb-underlay">
-
-        <div
-          class="mdc-switch__thumb">
-
-          <input
-            v-bind:id="id"
-            type="checkbox"
-            class="mdc-switch__native-control"
-            role="switch"
-            v-bind:disabled="isDisabled">
-        </div>
-      </div>
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
     </div>
-
-    <label
-      v-bind:for="id">
-      {{label}}
-    </label>
   </div>`
 })
 
@@ -223,15 +147,20 @@ Vue.component('text-field', {
   props: {
     id: String,
     label: String,
-    variant: String,
+    fullWidth: Boolean,
+    outlined: Boolean,
     disabled: Boolean,
     dense: Boolean
   },
   data: function() {
     return {
-      fullWidth: this.variant === "fullwidth",
-      textArea: this.variant === "textarea",
-      outlined: this.variant === "outlined",
+      rootId: this.id + '-root',
+      classes: {
+        'mdc-text-field--fullwidth': this.fullWidth,
+        'mdc-text-field--outlined': this.outlined,
+        'mdc-text-field--disabled': this.disabled,
+        'mdc-text-field--dense': this.dense
+      }
     }
   },
   computed: {
@@ -245,19 +174,14 @@ Vue.component('text-field', {
     'line-ripple': lineRipple
   },
   mounted: function() {
-    id = '#' + this.id
+    id = '#' + this.rootId
     mdc.textField.MDCTextField.attachTo(document.querySelector(id));
   },
   template: `
   <div
-    :id="id"
+    :id="rootId"
     class="mdc-text-field"
-    :class="{
-      'mdc-text-field--fullwidth': fullWidth,
-      'mdc-text-field--outlined': outlined,
-      'mdc-text-field--disabled': disabled,
-      'mdc-text-field--dense': dense
-    }">
+    :class="classes">
 
     <input
       :id="id"
@@ -268,7 +192,7 @@ Vue.component('text-field', {
 
     <floating-label
       v-if="!fullWidth"
-      :inputId="id">
+      :id="id">
       {{label}}
     </floating-label>
 
@@ -279,5 +203,44 @@ Vue.component('text-field', {
     <line-ripple
       v-if="!fullWidth && !outlined">
     </line-ripple>
-</div>`
+  </div>`
+})
+
+Vue.component('md-select', {
+  props: {
+    id: String,
+    label: String,
+    options: Array
+  },
+  data: function() {
+    return {
+      rootId: this.id + '-root'
+    }
+  },
+  components: {
+    'md-floating-label': floatingLabel,
+    'md-line-ripple': lineRipple
+  },
+  mounted: function() {
+    id = '#' + this.rootId
+    mdc.select.MDCSelect.attachTo(document.querySelector(id))
+  },
+  template:`
+  <div
+    :id="rootId"
+    class="mdc-select">
+
+    <i class="mdc-select__dropdown-icon"></i>
+    <select class="mdc-select__native-control">
+
+      <option
+        v-for="option in options"
+        :value="option.value">
+        {{option.text}}
+      </option>
+    </select>
+
+    <md-floating-label>{{label}}</md-floating-label>
+    <md-line-ripple></md-line-ripple>
+  </div>`
 })

@@ -68,36 +68,38 @@
         <div>
           <h2>Check Boxes</h2>
         </div>
-        <checkbox id="chkbx" label="check here" ></checkbox>
-        <checkbox id="dsbldchkbx" label="Check box is disabled" disabled></checkbox>
+
+        <md-form-field>
+          <checkbox id="chkbx"></checkbox>
+          <label for="chkbx">Click Here</label>
+        </md-form-field>
+
+        <md-form-field>
+          <checkbox id="dsbldchkbx" disabled></checkbox>
+          <label for="dsbldchkbx">Check box is disabled</label>
+        </md-form-field>
+
       </div>
 
       <div>
         <div>
           <h2>Radio</h2>
         </div>
-        <radio id="radio-1" label="option 1" group="radios"></radio>
-        <radio id="radio-2" label="option 2" group="radios" :ripple="false"></radio>
-        <radio id="my-disabled-radio" label="Radio is disabled" disabled></radio>
-      </div>
 
-      <div>
-        <div>
-          <h2>Switches</h2>
-        </div>
-        <div>
-          <switcher id="switch1" label="initially off"> </switcher>
-        </div>
-        <div>
-          <switcher id="switch2" label="initially on" checked> </switcher>
-        </div>
+        <md-form-field>
+          <radio id="radio-1" group="radios"></radio>
+          <label for='radio-1'>Option 1</label>
+        </md-form-field>
 
-        <div>
-          <switcher id="switch3" label="initially off and disabled" disabled> </switcher>
-        </div>
-        <div>
-          <switcher id="switch4" label="initially on and disabled" checked disabled> </switcher>
-        </div>
+        <md-form-field>
+          <radio id="radio-2" group="radios" :ripple="false"></radio>
+          <label for="radio-2">Option 2</label>
+        </md-form-field>
+
+        <md-form-field>
+          <radio id="my-disabled-radio" label="Radio is disabled" disabled></radio>
+          <label for="my-disabled-radio">Radio is disabled</label>
+        </md-form-field>
       </div>
 
       <div>
@@ -112,22 +114,35 @@
         <text-field
           id="text-2"
           label="Full Width"
-          variant="fullwidth">
+          full-width>
         </text-field>
 
         <text-field
           id="text-3"
           label="Outlined"
-          variant="outlined"
-          :dense="true">
+          outlined
+          dense>
         </text-field>
 
         <text-field
           id="text-4"
           label="Disabled"
-          :disabled="true">
+          disabled>
         </text-field>
       </div>
+
+
+      <div>
+        <div>
+          <h2>Select</h2>
+        </div>
+
+        <md-select
+          :options="options">
+        </md-select>
+      </div>
+
+
     </div>
 
     <script src="mdc-inputs-and-controls.js"></script>

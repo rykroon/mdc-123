@@ -6,7 +6,12 @@ myapp = new Vue({
     message: "Hello World!",
     alert: function() {
       alert("hello")
-    }
+    },
+    options: [
+      {value: 1,text: "apple"},
+      {value: 2, text: "orange"},
+      {value: 3, text: "bananas"}
+    ]
   },
   methods: {
     log: function() {
