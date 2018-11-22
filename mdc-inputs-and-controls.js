@@ -6,25 +6,25 @@ var floatingLabel = {
   <label
     class="mdc-floating-label"
     :for="id">
-    <slot></slot>
+    <slot/>
   </label>`
 }
 
 Vue.component('md-form-field', {
   props: {
-    id: String,
     alignEnd: Boolean
   },
   data: function() {
     return {
-      alignEndClass: {'mdc-form-field--align-end': this.alignEnd}
+      classes: {
+        'mdc-form-field': true,
+        'mdc-form-field--align-end': this.alignEnd
+      }
     }
   },
   template: `
-  <div
-    class='mdc-form-field'
-    :class="alignEndClass">
-    <slot></slot>
+  <div :class="classes">
+    <slot/>
   </div>`
 })
 
@@ -48,7 +48,6 @@ var notchedOutline = {
 Vue.component('checkbox', {
   props: {
     id: String,
-    label: String,
     ripple: {
       type: Boolean,
       default: true
@@ -57,28 +56,24 @@ Vue.component('checkbox', {
   },
   data: function() {
     return {
-      rootId: this.id + "-root",
-      disabledClass: {
+      classes: {
+          'mdc-checkbox': true,
           'mdc-checkbox--disabled': this.disabled
       }
     }
   },
   mounted: function() {
     if (this.ripple) {
-      id = '#' + this.rootId
-      mdc.checkbox.MDCCheckbox.attachTo(document.querySelector(id));
+      mdc.checkbox.MDCCheckbox.attachTo(this.$el);
     }
   },
   template: `
-  <div
-    :id="rootId"
-    class="mdc-checkbox"
-    v-bind:class="disabledClass">
+  <div :class="classes">
 
     <input
-      :id="id"
       type="checkbox"
       class="mdc-checkbox__native-control"
+      :id="id"
       :disabled="disabled"/>
 
     <div class="mdc-checkbox__background">
@@ -101,8 +96,7 @@ Vue.component('checkbox', {
 Vue.component('radio', {
   props: {
     id: String,
-    group: String,
-    label: String,
+    name: String,
     ripple: {
       type: Boolean,
       default: true
@@ -111,29 +105,25 @@ Vue.component('radio', {
   },
   data: function() {
     return {
-      rootId: this.id + "-root",
-      disabledClass: {
+      classes: {
+        'mdc-radio': true,
         'mdc-radio--disabled': this.disabled
       }
     }
   },
   mounted: function() {
     if (this.ripple) {
-      id = '#' + this.rootId
-      mdc.radio.MDCRadio.attachTo(document.querySelector(id));
+      mdc.radio.MDCRadio.attachTo(this.$el);
     }
   },
   template: `
-  <div
-    :id="rootId"
-    class="mdc-radio"
-    :class="disabledClass">
+  <div :class="classes">
 
     <input
-      :id="id"
       class="mdc-radio__native-control"
       type="radio"
-      :name="group"
+      :id="id"
+      :name="name"
       :disabled="disabled">
 
     <div class="mdc-radio__background">
@@ -146,26 +136,24 @@ Vue.component('radio', {
 Vue.component('text-field', {
   props: {
     id: String,
-    label: String,
     fullWidth: Boolean,
+    textArea: Boolean,
     outlined: Boolean,
-    disabled: Boolean,
-    dense: Boolean
+    leadingIcon: String,
+    trailingIcon: String,
+    dense: Boolean,
   },
   data: function() {
     return {
-      rootId: this.id + '-root',
       classes: {
+        'mdc-text-field': true,
         'mdc-text-field--fullwidth': this.fullWidth,
         'mdc-text-field--outlined': this.outlined,
-        'mdc-text-field--disabled': this.disabled,
-        'mdc-text-field--dense': this.dense
+        'mdc-text-field--disabled': this.$attrs.disabled !== undefined,
+        'mdc-text-field--dense': this.dense,
+        'mdc-text-field--with-leading-icon': this.leadingIcon !== undefined,
+        'mdc-text-field--with-trailing-icon': this.trailingIcon !== undefined
       }
-    }
-  },
-  computed: {
-    placeholder: function() {
-      return this.fullWidth ? this.label : "";
     }
   },
   components: {
@@ -174,35 +162,36 @@ Vue.component('text-field', {
     'line-ripple': lineRipple
   },
   mounted: function() {
-    id = '#' + this.rootId
-    mdc.textField.MDCTextField.attachTo(document.querySelector(id));
+    mdc.textField.MDCTextField.attachTo(this.$el);
   },
   template: `
-  <div
-    :id="rootId"
-    class="mdc-text-field"
-    :class="classes">
+  <div :class="classes">
+
+    <md-icon
+      v-if="leadingIcon"
+      extraClass="mdc-text-field__icon">
+      {{leadingIcon}}
+    </md-icon>
 
     <input
+      v-bind="$attrs"
       :id="id"
-      type="text"
-      class="mdc-text-field__input"
-      :placeholder="placeholder"
-      :disabled="disabled">
+      class="mdc-text-field__input">
 
     <floating-label
       v-if="!fullWidth"
       :id="id">
-      {{label}}
+      <slot/>
     </floating-label>
 
-    <notched-outline
-      v-if="outlined">
-    </notched-outline>
+    <md-icon
+      v-if="trailingIcon"
+      extraClass="mdc-text-field__icon">
+      {{trailingIcon}}
+    </md-icon>
 
-    <line-ripple
-      v-if="!fullWidth && !outlined">
-    </line-ripple>
+    <notched-outline v-if="outlined"/>
+    <line-ripple v-if="!fullWidth && !outlined"/>
   </div>`
 })
 

@@ -19,7 +19,7 @@
 
         <div>
           <p class='mdc-typography--subtitle1'>Text Buttons</p>
-          <md-button id="btn-1" >default</md-button>
+          <md-button id="btn-1">default</md-button>
           <md-button id="btn-2" dense>dense</md-button>
           <md-button id="btn-3" icon="favorite">icon</md-button>
         </div>
@@ -107,7 +107,7 @@
 
       <div>
         <div>
-          <h2>Check Boxes</h2>
+          <h2 class='mdc-typography--headline4'>Checkboxes</h2>
         </div>
 
         <md-form-field>
@@ -124,39 +124,176 @@
 
       <div>
         <div>
-          <h2>Radio</h2>
+          <h2 class='mdc-typography--headline4'>Radios</h2>
         </div>
 
         <md-form-field>
-          <radio id="radio-1" group="radios"></radio>
+          <radio id="radio-1" name="radios"></radio>
           <label for='radio-1'>Option 1</label>
         </md-form-field>
 
         <md-form-field>
-          <radio id="radio-2" group="radios" :ripple="false"></radio>
+          <radio id="radio-2" name="radios"></radio>
           <label for="radio-2">Option 2</label>
         </md-form-field>
 
         <md-form-field>
-          <radio id="my-disabled-radio" label="Radio is disabled" disabled></radio>
+          <radio id="my-disabled-radio" disabled></radio>
           <label for="my-disabled-radio">Radio is disabled</label>
         </md-form-field>
       </div>
 
       <div>
         <div>
-          <h2>Text Field</h2>
+          <h2 class='mdc-typography--headline4'>Text Fields</h2>
         </div>
-        <text-field
-          id="text-1"
-          label="text field">
-        </text-field>
+
+        <div>
+          <p class='mdc-typography--subtitle1'>Filled</p>
+          <text-field
+            id="filled-1"
+            password>
+            Standard
+          </text-field>
+
+          <text-field
+            id="filled-2"
+            dense>
+            Dense
+          </text-field>
+
+          <text-field
+            id="filled-3">
+            Standard
+          </text-field>
+        </div>
+
+        <div>
+          <p class='mdc-typography--subtitle1'>Filled With Leading Icon</p>
+          <text-field
+            id="filled-4"
+            type="password"
+            leading-icon="event">
+            Standard
+          </text-field>
+
+          <text-field
+            id="filled-5"
+            dense
+            leading-icon="event">
+            Dense
+          </text-field>
+
+          <text-field
+            id="filled-6"
+            leading-icon="event">
+            Standard
+          </text-field>
+        </div>
+
+        <div>
+          <p class='mdc-typography--subtitle1'>Filled With Trailing Icon</p>
+          <text-field
+            id="filled-7"
+            type="password"
+            trailing-icon="delete">
+            Standard
+          </text-field>
+
+          <text-field
+            id="filled-8"
+            dense
+            trailing-icon="delete">
+            Dense
+          </text-field>
+
+          <text-field
+            id="filled-9"
+            trailing-icon="delete">
+            Standard
+          </text-field>
+        </div>
+
+        <div>
+          <p class='mdc-typography--subtitle1'>Outlined</p>
+          <text-field
+            id="outlined-1"
+            outlined
+            type="password">
+            Standard
+          </text-field>
+
+          <text-field
+            id="outlined-2"
+            outlined
+            dense>
+            Dense
+          </text-field>
+
+          <text-field
+            id="outlined-3"
+            outlined>
+            Standard
+          </text-field>
+        </div>
+
+        <div>
+          <p class='mdc-typography--subtitle1'>Outlined With Leading Icon</p>
+          <text-field
+            id="outlined-4"
+            outlined
+            leading-icon="event"
+            type="password">
+            Standard
+          </text-field>
+
+          <text-field
+            id="outlined-5"
+            outlined
+            leading-icon="event"
+            dense>
+            Dense
+          </text-field>
+
+          <text-field
+            id="outlined-6"
+            leading-icon="event"
+            outlined>
+            Standard
+          </text-field>
+        </div>
+
+        <div>
+          <p class='mdc-typography--subtitle1'>Outlined With Trailing Icon</p>
+          <text-field
+            id="outlined-7"
+            outlined
+            trailing-icon="delete"
+            type="password">
+            Standard
+          </text-field>
+
+          <text-field
+            id="outlined-8"
+            outlined
+            trailing-icon="delete"
+            dense>
+            Dense
+          </text-field>
+
+          <text-field
+            id="outlined-9"
+            trailing-icon="delete"
+            outlined>
+            Standard
+          </text-field>
+        </div>
+
 
         <text-field
           id="text-2"
-          label="Full Width"
-          full-width>
-        </text-field>
+          placeholder="Standard"
+          full-width/>
 
         <text-field
           id="text-3"
@@ -186,6 +323,7 @@
 
     </div>
 
+    <script src="icons.js"></script>
     <script src="mdc-inputs-and-controls.js"></script>
     <script src="mdc-cards.js"></script>
     <script src="mdc-button.js"></script>

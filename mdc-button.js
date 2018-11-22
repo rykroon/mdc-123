@@ -13,17 +13,11 @@ Vue.component('md-button', {
       type: Boolean,
       default: true
     },
-    disabled: Boolean,
-    click: {
-      type: Function,
-      default: function() {
-        return
-      }
-    }
   },
   data: function() {
     return {
       classes: {
+        'mdc-button': true,
         'mdc-button--raised': this.raised,
         'mdc-button--unelevated': this.unelevated,
         'mdc-button--outlined': this.outlined,
@@ -33,24 +27,23 @@ Vue.component('md-button', {
   },
   mounted: function() {
     if (this.ripple) {
-      mdc.ripple.MDCRipple.attachTo(document.getElementById(this.id))
+      mdc.ripple.MDCRipple.attachTo(this.$el)
     }
   },
   template: `
     <a
       v-if="href"
       :id="id"
-      class="mdc-button"
       :class="classes"
       :href="href"
-      :disabled="disabled"
-      v-on:click="click">
+      v-bind="$attrs"
+      v-on="$listeners">
 
-      <span
+      <md-icon
         v-if="icon"
-        class="material-icons mdc-button__icon">
+        extraClass="mdc-button__icon">
         {{icon}}
-      </span>
+      </md-icon>
 
       <slot/>
     </a>
@@ -58,16 +51,15 @@ Vue.component('md-button', {
     <button
       v-else
       :id="id"
-      class="mdc-button"
       :class="classes"
-      :disabled="disabled"
-      v-on:click="click">
+      v-bind="$attrs"
+      v-on="$listeners">
 
-      <span
+      <md-icon
         v-if="icon"
-        class="material-icons mdc-button__icon">
+        extraClass="mdc-button__icon">
         {{icon}}
-      </span>
+      </md-icon>
 
       <slot/>
     </button>`
@@ -83,17 +75,12 @@ Vue.component('md-fab', {
     ripple: {
       type: Boolean,
       default: true
-    },
-    click: {
-      type: Function,
-      default: function() {
-        return
-      }
     }
   },
   data: function() {
     return {
       classes: {
+        'mdc-fab': true,
         'mdc-fab--extended': this.extended,
         'mdc-fab--mini': this.mini
       }
@@ -101,42 +88,42 @@ Vue.component('md-fab', {
   },
   mounted: function() {
     if (this.ripple) {
-      mdc.ripple.MDCRipple.attachTo(document.getElementById(this.id))
+      mdc.ripple.MDCRipple.attachTo(this.$el)
     }
   },
   template: `
     <button
       :id="id"
-      class="mdc-fab"
       :class="classes"
-      v-on:click="click">
+      v-bind="$attrs"
+      v-on="$listeners">
 
       <template
         v-if="extended">
 
-        <span
+        <md-icon
           v-if="icon"
-          class="material-icons mdc-fab__icon">
+          extraClass="mdc-fab__icon">
           {{icon}}
-        </span>
+        </md-icon>
 
         <span
           class="mdc-fab__label">
           <slot/>
         </span>
 
-        <span
+        <md-icon
           v-if="trailingIcon"
-          class="material-icons mdc-fab__icon">
+          extraClass="mdc-fab__icon">
           {{trailingIcon}}
-        </span>
+        </md-icon>
       </template>
 
-      <span
+      <md-icon
         v-else
-        class="material-icons mdc-fab__icon">
+        extraClass="mdc-fab__icon">
         {{icon}}
-      </span>
+      </md-icon>
 
     </button>`
 })
