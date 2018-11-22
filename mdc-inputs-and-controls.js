@@ -7,7 +7,7 @@ var floatingLabel = {
   </label>`
 }
 
-Vue.component('md-form-field', {
+var formField = {
   props: {
     alignEnd: Boolean
   },
@@ -20,22 +20,12 @@ Vue.component('md-form-field', {
       }
     }
   },
-  mounted: function() {
-    this.mdcFormField = mdc.formField.MDCFormField.attachTo(this.$el)
-
-    if (this.$children.length === 1) {
-      if (this.$children[0]._data.mdcRadio) {
-        this.mdcFormField.input = this.$children[0]._data.mdcRadio
-      } else if (this.$children[0]._data.mdcCheckbox) {
-        this.mdcFormField.input = this.$children[0]._data.mdcCheckbox
-      }
-    }
-  },
   template: `
-  <div :class="classes">
+  <div
+    :class="classes">
     <slot/>
   </div>`
-})
+}
 
 var lineRipple = {
   template: `<div class="mdc-line-ripple"></div>`
@@ -54,8 +44,13 @@ var notchedOutline = {
 }
 
 
-Vue.component('checkbox', {
+Vue.component('md-checkbox', {
   props: {
+    id: {
+      type: String,
+      required: true
+    },
+    checked: Boolean,
     ripple: {
       type: Boolean,
       default: true
@@ -64,6 +59,7 @@ Vue.component('checkbox', {
   },
   data: function() {
     return {
+      mdcFormField: undefined,
       mdcCheckbox: undefined,
       classes: {
           'mdc-checkbox': true,
@@ -71,39 +67,64 @@ Vue.component('checkbox', {
       }
     }
   },
-  mounted: function() {
-    if (this.ripple) {
-      this.mdcCheckbox = mdc.checkbox.MDCCheckbox.attachTo(this.$el);
+  computed: {
+    alignEnd: function() {
+      return this.$attrs['align-end'] !== undefined
     }
   },
+  mounted: function() {
+    if (this.ripple) {
+      this.mdcFormField = mdc.formField.MDCFormField.attachTo(this.$el)
+      this.mdcCheckbox = mdc.checkbox.MDCCheckbox.attachTo(this.$el.children[0])
+      this.mdcFormField.input = this.mdcCheckbox
+    }
+  },
+  components: {
+    'md-form-field': formField
+  },
   template: `
-  <div :class="classes">
+  <md-form-field
+    :alignEnd="alignEnd">
 
-    <input
-      type="checkbox"
-      class="mdc-checkbox__native-control"
-      v-bind="$attrs"
-      :disabled="disabled"/>
+    <div :class="classes">
 
-    <div class="mdc-checkbox__background">
+      <input
+        :id="id"
+        type="checkbox"
+        class="mdc-checkbox__native-control"
+        v-bind="$attrs"
+        :checked="checked"
+        :disabled="disabled"/>
 
-      <svg
-        class="mdc-checkbox__checkmark"
-        viewBox="0 0 24 24">
+      <div class="mdc-checkbox__background">
 
-        <path
-          class="mdc-checkbox__checkmark-path"
-          fill="none"
-          d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-      </svg>
+        <svg
+          class="mdc-checkbox__checkmark"
+          viewBox="0 0 24 24">
 
-      <div class="mdc-checkbox__mixedmark"></div>
+          <path
+            class="mdc-checkbox__checkmark-path"
+            fill="none"
+            d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+        </svg>
+
+        <div class="mdc-checkbox__mixedmark"></div>
+      </div>
     </div>
-  </div>`
+
+    <label :for="id">
+      <slot/>
+    </label>
+  </md-form-field>`
 })
 
-Vue.component('radio', {
+Vue.component('md-radio', {
   props: {
+    id: {
+      type: String,
+      required: true
+    },
+    checked: Boolean,
     ripple: {
       type: Boolean,
       default: true
@@ -112,6 +133,7 @@ Vue.component('radio', {
   },
   data: function() {
     return {
+      mdcFormField: undefined,
       mdcRadio: undefined,
       classes: {
         'mdc-radio': true,
@@ -119,25 +141,47 @@ Vue.component('radio', {
       }
     }
   },
-  mounted: function() {
-    if (this.ripple) {
-      this.mdcRadio = mdc.radio.MDCRadio.attachTo(this.$el);
+  computed: {
+    alignEnd: function() {
+      return this.$attrs['align-end'] !== undefined
     }
   },
+  mounted: function() {
+    if (this.ripple) {
+      this.mdcFormField = mdc.formField.MDCFormField.attachTo(this.$el)
+      this.mdcRadio = mdc.radio.MDCRadio.attachTo(this.$el.children[0])
+      this.mdcFormField.input = this.mdcRadio
+    }
+  },
+  components: {
+    'md-form-field': formField
+  },
   template: `
-  <div :class="classes">
+  <md-form-field
+    :alignEnd="alignEnd">
 
-    <input
-      class="mdc-radio__native-control"
-      type="radio"
-      v-bind="$attrs"
-      :disabled="disabled">
+    <div :class="classes">
 
-    <div class="mdc-radio__background">
-      <div class="mdc-radio__outer-circle"></div>
-      <div class="mdc-radio__inner-circle"></div>
+      <input
+        :id="id"
+        class="mdc-radio__native-control"
+        type="radio"
+        v-bind="$attrs"
+        :checked="checked"
+        :disabled="disabled">
+
+      <div class="mdc-radio__background">
+        <div class="mdc-radio__outer-circle"></div>
+        <div class="mdc-radio__inner-circle"></div>
+      </div>
     </div>
-  </div>`
+
+    <label
+      :for="this.id">
+      <slot/>
+    </label>
+
+  </md-form-field>`
 })
 
 Vue.component('text-field', {
