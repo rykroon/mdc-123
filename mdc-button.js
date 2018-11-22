@@ -7,12 +7,19 @@ Vue.component('md-button', {
     unelevated: Boolean,
     outlined: Boolean,
     dense: Boolean,
+    icon: String,
+    href: String,
     ripple: {
       type: Boolean,
       default: true
     },
     disabled: Boolean,
-    click: Function
+    click: {
+      type: Function,
+      default: function() {
+        return
+      }
+    }
   },
   data: function() {
     return {
@@ -21,36 +28,68 @@ Vue.component('md-button', {
         'mdc-button--unelevated': this.unelevated,
         'mdc-button--outlined': this.outlined,
         'mdc-button--dense': this.dense
-      }
+      },
     }
   },
   mounted: function() {
     if (this.ripple) {
-      id = '#' + this.id
-      mdc.ripple.MDCRipple.attachTo(document.querySelector(id))
+      mdc.ripple.MDCRipple.attachTo(document.getElementById(this.id))
     }
   },
   template: `
-    <button
+    <a
+      v-if="href"
       :id="id"
-      :disabled="disabled"
       class="mdc-button"
       :class="classes"
+      :href="href"
+      :disabled="disabled"
       v-on:click="click">
-      <slot></slot>
+
+      <span
+        v-if="icon"
+        class="material-icons mdc-button__icon">
+        {{icon}}
+      </span>
+
+      <slot/>
+    </a>
+
+    <button
+      v-else
+      :id="id"
+      class="mdc-button"
+      :class="classes"
+      :disabled="disabled"
+      v-on:click="click">
+
+      <span
+        v-if="icon"
+        class="material-icons mdc-button__icon">
+        {{icon}}
+      </span>
+
+      <slot/>
     </button>`
 })
 
 Vue.component('md-fab', {
   props: {
     id: String,
+    icon: String,
     extended: Boolean,
+    trailingIcon: String,
     mini: Boolean,
     ripple: {
       type: Boolean,
       default: true
     },
-    click: Function
+    click: {
+      type: Function,
+      default: function() {
+        return
+      }
+    }
   },
   data: function() {
     return {
@@ -62,8 +101,7 @@ Vue.component('md-fab', {
   },
   mounted: function() {
     if (this.ripple) {
-      id = '#' + this.id
-      mdc.ripple.MDCRipple.attachTo(document.querySelector(id))
+      mdc.ripple.MDCRipple.attachTo(document.getElementById(this.id))
     }
   },
   template: `
@@ -73,15 +111,32 @@ Vue.component('md-fab', {
       :class="classes"
       v-on:click="click">
 
+      <template
+        v-if="extended">
+
+        <span
+          v-if="icon"
+          class="material-icons mdc-fab__icon">
+          {{icon}}
+        </span>
+
+        <span
+          class="mdc-fab__label">
+          <slot/>
+        </span>
+
+        <span
+          v-if="trailingIcon"
+          class="material-icons mdc-fab__icon">
+          {{trailingIcon}}
+        </span>
+      </template>
+
       <span
-        v-if="extended"
-        class="mdc-fab__label">
-        <slot></slot>
+        v-else
+        class="material-icons mdc-fab__icon">
+        {{icon}}
       </span>
 
-      <template
-        v-else>
-        <slot></slot>
-      </template>
     </button>`
 })
