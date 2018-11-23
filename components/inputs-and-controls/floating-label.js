@@ -1,4 +1,4 @@
-const floatingLabel = {
+export default {
   template: `
   <label
     class="mdc-floating-label"

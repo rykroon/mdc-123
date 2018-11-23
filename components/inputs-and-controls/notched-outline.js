@@ -1,4 +1,4 @@
-const notchedOutline = {
+export default {
   template: `
   <div>
     <div class="mdc-notched-outline">

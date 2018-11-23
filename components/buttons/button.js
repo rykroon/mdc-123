@@ -1,6 +1,8 @@
 //buttons
 
-Vue.component('md-button', {
+import { MDCRipple } from '@material/ripple'
+
+export default {
   props: {
     id: String,
     raised: Boolean,
@@ -16,6 +18,7 @@ Vue.component('md-button', {
   },
   data: function() {
     return {
+      mdcRipple: undefined,
       classes: {
         'mdc-button': true,
         'mdc-button--raised': this.raised,
@@ -27,7 +30,9 @@ Vue.component('md-button', {
   },
   mounted: function() {
     if (this.ripple) {
-      mdc.ripple.MDCRipple.attachTo(this.$el)
+      //this.mdcRipple = mdc.ripple.MDCRipple.attachTo(this.$el)
+      this.mdcRipple = MDCRipple.attachTo(this.$el)
+
     }
   },
   template: `

@@ -1,4 +1,4 @@
-const textFieldHelperText = {
+export default {
   props: {
     persistent: Boolean,
     validationMsg: Boolean

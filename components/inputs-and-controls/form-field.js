@@ -1,4 +1,4 @@
-const formField = {
+export default {
   props: {
     alignEnd: Boolean
   },

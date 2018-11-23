@@ -1,0 +1,30 @@
+{
+  "name": "mdc-123",
+  "version": "0.1.0",
+  "description": "Vue components made from Google's Material Design Components",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rykroon/mdc-123.git"
+  },
+  "keywords": [
+    "vue",
+    "mdc",
+    "material",
+    "design",
+    "components",
+    "material-design-components"
+  ],
+  "author": "Ryan Kroon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rykroon/mdc-123/issues"
+  },
+  "homepage": "https://github.com/rykroon/mdc-123#readme",
+  "dependencies": {
+    "material-components-web": "^0.41.1"
+  }
+}
