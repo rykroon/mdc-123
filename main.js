@@ -8,6 +8,7 @@ myapp = new Vue({
       alert("hello")
     },
     options: [
+      {value: "", text:"",disabled:true, selected:true},
       {value: 1,text: "apple"},
       {value: 2, text: "orange"},
       {value: 3, text: "bananas"}
