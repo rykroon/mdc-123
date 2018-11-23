@@ -18,5 +18,8 @@ myapp = new Vue({
     log: function() {
       console.log("Hello World!")
     }
+  },
+  components: {
+    'md-form-field': formField
   }
 })
