@@ -1,6 +1,5 @@
-Vue.component('md-fab', {
+module.exports = {
   props: {
-    id: String,
     icon: String,
     extended: Boolean,
     trailingIcon: String,
@@ -26,7 +25,6 @@ Vue.component('md-fab', {
   },
   template: `
     <button
-      :id="id"
       :class="classes"
       v-bind="$attrs"
       v-on="$listeners">

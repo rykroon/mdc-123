@@ -1,4 +1,4 @@
-Vue.component('md-radio', {
+module.exports =  {
   props: {
     ripple: {
       type: Boolean,

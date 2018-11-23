@@ -1,4 +1,4 @@
-export default {
+module.exports =  {
   props: {
     persistent: Boolean,
     validationMsg: Boolean

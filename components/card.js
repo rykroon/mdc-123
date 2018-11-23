@@ -1,4 +1,4 @@
-Vue.component('card', {
+module.exports = {
   props: ['id','content','outlined'],
   methods: {
     getOutlineClass: function() {

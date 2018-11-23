@@ -1,4 +1,4 @@
-Vue.component('md-text-field', {
+module.exports = {
   props: {
     fullWidth: Boolean,
     textArea: Boolean,

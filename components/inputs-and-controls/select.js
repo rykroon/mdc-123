@@ -1,4 +1,4 @@
-Vue.component('md-select', {
+module.exports = {
   props: {
     outlined: Boolean,
     options: Array,

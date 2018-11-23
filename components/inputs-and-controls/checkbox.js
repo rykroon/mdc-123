@@ -1,4 +1,4 @@
-Vue.component('md-checkbox', {
+module.exports = {
   props: {
     ripple: {
       type: Boolean,

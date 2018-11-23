@@ -1,4 +1,4 @@
-export default {
+module.exports =  {
   template: `
   <div>
     <div class="mdc-notched-outline">

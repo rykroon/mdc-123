@@ -1,4 +1,4 @@
-Vue.component("md-icon", {
+module.exports = {
   props: {
     extraClass: String
   },

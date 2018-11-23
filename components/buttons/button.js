@@ -1,10 +1,7 @@
 //buttons
 
-//import { MDCRipple } from '@material/ripple'
-
 module.exports = {
   props: {
-    id: String,
     raised: Boolean,
     unelevated: Boolean,
     outlined: Boolean,
@@ -31,14 +28,11 @@ module.exports = {
   mounted: function() {
     if (this.ripple) {
       this.mdcRipple = mdc.ripple.MDCRipple.attachTo(this.$el)
-      //this.mdcRipple = MDCRipple.attachTo(this.$el)
-
     }
   },
   template: `
     <a
       v-if="href"
-      :id="id"
       :class="classes"
       :href="href"
       v-bind="$attrs"
@@ -55,7 +49,6 @@ module.exports = {
 
     <button
       v-else
-      :id="id"
       :class="classes"
       v-bind="$attrs"
       v-on="$listeners">

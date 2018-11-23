@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   props: {
     alignEnd: Boolean
   },

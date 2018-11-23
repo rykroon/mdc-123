@@ -2,8 +2,6 @@
 
 var button = require('./components/buttons/button.js')
 
-console.log(button)
-
 
 const myapp = new Vue({
   el:'#myapp',
