@@ -1,8 +1,8 @@
 //buttons
 
-import { MDCRipple } from '@material/ripple'
+//import { MDCRipple } from '@material/ripple'
 
-export default {
+module.exports = {
   props: {
     id: String,
     raised: Boolean,
@@ -30,8 +30,8 @@ export default {
   },
   mounted: function() {
     if (this.ripple) {
-      //this.mdcRipple = mdc.ripple.MDCRipple.attachTo(this.$el)
-      this.mdcRipple = MDCRipple.attachTo(this.$el)
+      this.mdcRipple = mdc.ripple.MDCRipple.attachTo(this.$el)
+      //this.mdcRipple = MDCRipple.attachTo(this.$el)
 
     }
   },
@@ -68,4 +68,4 @@ export default {
 
       <slot/>
     </button>`
-})
+}
