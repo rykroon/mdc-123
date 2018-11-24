@@ -1,11 +1,6 @@
 module.exports = {
-  props: {
-    extraClass: String
-  },
   template: `
-    <span
-      class="material-icons"
-      :class="extraClass">
+    <span class="material-icons">
       <slot/>
     </span>`
-})
+}

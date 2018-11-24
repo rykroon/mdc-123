@@ -1,6 +1,8 @@
 //import Button from './compnonents/buttons/button.js'
 
-var button = require('./components/buttons/button.js')
+const button = require('./components/buttons/button.js');
+const icon = require('./components/icon.js');
+const fab = require('./components/buttons/fab.js');
 
 
 const myapp = new Vue({
@@ -9,7 +11,9 @@ const myapp = new Vue({
 
   },
   components: {
-    'md-button': button
+    'md-button': button,
+    'md-fab': fab,
+    'md-icon': icon
   }
 })
 

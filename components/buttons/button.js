@@ -28,6 +28,9 @@ module.exports = {
     if (this.ripple) {
       this.mdcRipple = mdc.ripple.MDCRipple.attachTo(this.$el)
     }
+    if (this.$slots.icon) {
+      this.$slots.icon[0].elm.classList.add('mdc-button__icon')
+    }
   },
   template: `
     <a

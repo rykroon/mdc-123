@@ -11,9 +11,11 @@ module.exports = {
       }
     }
   },
+  mounted: {
+    this.mdcFormField = mdc.formField.MDCFormField.attachTo(this.$el);
+  },
   template: `
-  <div
-    :class="classes">
+  <div :class="classes">
     <slot/>
   </div>`
 }

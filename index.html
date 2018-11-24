@@ -9,7 +9,75 @@
 
   <body>
     <div id="myapp">
-      <md-button>button</md-button>
+
+      <div>
+        <p class='mdc-typography--subtitle1'>Text Buttons</p>
+        <md-button>default</md-button>
+        <md-button dense>dense</md-button>
+        <md-button>
+          icon
+          <md-icon slot="icon">favorite<md-icon/>
+        </md-button>
+      </div>
+
+      <div>
+        <p class='mdc-typography--subtitle1'>Raised Buttons</p>
+        <md-button raised>default</md-button>
+        <md-button raised dense>dense</md-button>
+        <md-button raised>
+          icon
+          <md-icon slot="icon">favorite<md-icon/>
+        </md-button>
+      </div>
+
+      <div>
+        <p class='mdc-typography--subtitle1'>Unelevated Buttons</p>
+        <md-button unelevated>default</md-button>
+        <md-button unelevated dense>dense</md-button>
+        <md-button unelevated>
+          icon
+          <md-icon slot="icon">favorite<md-icon/>
+        </md-button>
+      </div>
+
+      <div>
+        <p class='mdc-typography--subtitle1'>Standard Floating Action Button</p>
+        <md-fab>
+          <md-icon slot="icon">favorite</md-icon>
+        </md-fab>
+      </div>
+
+      <div>
+        <p class='mdc-typography--subtitle1'>Mini Floating Action Button</p>
+        <md-fab mini>
+          <md-icon slot="icon">favorite</md-icon>
+        </md-fab>
+      </div>
+
+      <div>
+        <p class='mdc-typography--subtitle1'>Extended FAB</p>
+        <md-fab extended>
+          <md-icon slot="leadingIcon">add</md-icon>
+          Extended
+        </md-fab>
+      </div>
+
+      <div>
+        <p class='mdc-typography--subtitle1'>Extended FAB (Text label followed by icon)</p>
+        <md-fab extended>
+          <md-icon slot="trailingIcon">add</md-icon>
+          Extended
+        </md-fab>
+      </div>
+
+      <div>
+        <p class='mdc-typography--subtitle1'>Extended FAB (without Icon)</p>
+        <md-fab extended>
+          Extended
+        </md-fab>
+      </div>
+
+
 
     </div>
     <script src="./bundle.js"></script>
