@@ -6,7 +6,6 @@ module.exports = {
     unelevated: Boolean,
     outlined: Boolean,
     dense: Boolean,
-    icon: String,
     href: String,
     ripple: {
       type: Boolean,
@@ -38,11 +37,7 @@ module.exports = {
       v-bind="$attrs"
       v-on="$listeners">
 
-      <md-icon
-        v-if="icon"
-        extraClass="mdc-button__icon">
-        {{icon}}
-      </md-icon>
+      <slot name="icon"/>
 
       <slot/>
     </a>
@@ -53,11 +48,7 @@ module.exports = {
       v-bind="$attrs"
       v-on="$listeners">
 
-      <md-icon
-        v-if="icon"
-        extraClass="mdc-button__icon">
-        {{icon}}
-      </md-icon>
+      <slot name="icon"/>
 
       <slot/>
     </button>`

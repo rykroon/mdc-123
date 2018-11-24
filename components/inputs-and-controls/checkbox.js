@@ -4,13 +4,11 @@ module.exports = {
       type: Boolean,
       default: true
     },
-    disabled: Boolean,
-    alignEnd: Boolean
+    disabled: Boolean
   },
   inheritAttrs: false,
   data: function() {
     return {
-      mdcFormField: undefined,
       mdcCheckbox: undefined,
       classes: {
           'mdc-checkbox': true,
@@ -20,16 +18,10 @@ module.exports = {
   },
   mounted: function() {
     if (this.ripple) {
-      this.mdcFormField = mdc.formField.MDCFormField.attachTo(this.$el)
-      this.mdcCheckbox = mdc.checkbox.MDCCheckbox.attachTo(this.$el.children[0])
-      this.mdcFormField.input = this.mdcCheckbox
+      this.mdcCheckbox = mdc.checkbox.MDCCheckbox.attachTo(this.$el)
     }
   },
-  components: {
-    'md-form-field': formField
-  },
   template: `
-  <md-form-field :alignEnd="alignEnd">
     <div :class="classes">
 
       <input
@@ -52,10 +44,5 @@ module.exports = {
 
         <div class="mdc-checkbox__mixedmark"></div>
       </div>
-    </div>
-
-    <label :for="$attrs['id']">
-      <slot/>
-    </label>
-  </md-form-field>`
-})
+    </div>`
+}

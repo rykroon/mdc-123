@@ -4,9 +4,6 @@ module.exports = {
     textArea: Boolean,
     outlined: Boolean,
     dense: Boolean,
-    leadingIcon: String,
-    trailingIcon: String,
-    helperText: [String, Object],
     disabled: Boolean
   },
   inheritAttrs: false,
@@ -20,8 +17,8 @@ module.exports = {
         'mdc-text-field--outlined': this.outlined,
         'mdc-text-field--disabled': this.disabled,
         'mdc-text-field--dense': this.dense,
-        'mdc-text-field--with-leading-icon': !!this.leadingIcon,
-        'mdc-text-field--with-trailing-icon': !!this.trailingIcon
+        'mdc-text-field--with-leading-icon': this.$slots.leadingIcon,
+        'mdc-text-field--with-trailing-icon': this.$slots.trailingIcon
       }
     }
   },
@@ -29,11 +26,6 @@ module.exports = {
     //line ripple only used with default text-field
     useLineRipple: function() {
       return !this.fullWidth && !this.outlined && !this.textArea
-    },
-    helperTextId: function() {
-      if (this.$attrs.id) {
-        return this.$attrs.id + '-helper-text'
-      }
     }
   },
   components: {
@@ -43,52 +35,35 @@ module.exports = {
     'md-helper-text': textFieldHelperText
   },
   mounted: function() {
-    this.mdcTextField = mdc.textField.MDCTextField.attachTo(this.$el.children[0]);
+    this.mdcTextField = mdc.textField.MDCTextField.attachTo(this.$el);
   },
   template: `
-    <span>
-      <div :class="classes">
+    <div :class="classes">
 
-        <md-icon
-          v-if="leadingIcon"
-          extraClass="mdc-text-field__icon">
-          {{leadingIcon}}
-        </md-icon>
+      <slot name="leadingIcon"/>
 
-        <textarea
-          v-if="textArea"
-          v-bind="$attrs"
-          class="mdc-text-field__input"
-          :disabled="disabled">
-        </textarea>
+      <input
+        v-if="!textArea"
+        v-bind="$attrs"
+        class="mdc-text-field__input"
+        :disabled="disabled">
 
-        <input
-          v-else
-          v-bind="$attrs"
-          class="mdc-text-field__input"
-          :aria-controls="helperTextId"
-          :disabled="disabled">
+      <textarea
+        v-else
+        v-bind="$attrs"
+        class="mdc-text-field__input"
+        :disabled="disabled">
+      </textarea>
 
-        <md-floating-label
-          v-if="!fullWidth"
-          :for="$attrs.id">
-          <slot/>
-        </md-floating-label>
+      <md-floating-label
+        v-if="!fullWidth"
+        :for="$attrs.id">
+        <slot/>
+      </md-floating-label>
 
-        <md-icon
-          v-if="trailingIcon"
-          extraClass="mdc-text-field__icon">
-          {{trailingIcon}}
-        </md-icon>
+      <slot name="trailingIcon"/>
 
-        <md-notched-outline v-if="outlined"/>
-        <md-line-ripple v-if="useLineRipple"/>
-      </div>
-      <md-helper-text
-        v-if="helperText"
-        :id="helperTextId"
-        persistent>
-        {{helperText}}
-      </md-helper-text>
-    </span>`
-})
+      <md-notched-outline v-if="outlined"/>
+      <md-line-ripple v-if="useLineRipple"/>
+    </div>`
+}

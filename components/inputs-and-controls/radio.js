@@ -4,13 +4,11 @@ module.exports =  {
       type: Boolean,
       default: true
     },
-    disabled: Boolean,
-    alignEnd: Boolean
+    disabled: Boolean
   },
   inheritAttrs: false,
   data: function() {
     return {
-      mdcFormField: undefined,
       mdcRadio: undefined,
       classes: {
         'mdc-radio': true,
@@ -20,17 +18,10 @@ module.exports =  {
   },
   mounted: function() {
     if (this.ripple) {
-      this.mdcFormField = mdc.formField.MDCFormField.attachTo(this.$el)
-      this.mdcRadio = mdc.radio.MDCRadio.attachTo(this.$el.children[0])
-      this.mdcFormField.input = this.mdcRadio
+      this.mdcRadio = mdc.radio.MDCRadio.attachTo(this.$el;
     }
   },
-  components: {
-    'md-form-field': formField
-  },
   template: `
-  <md-form-field :alignEnd="alignEnd">
-
     <div :class="classes">
 
       <input
@@ -43,12 +34,5 @@ module.exports =  {
         <div class="mdc-radio__outer-circle"></div>
         <div class="mdc-radio__inner-circle"></div>
       </div>
-    </div>
-
-    <label
-      :for="$attrs['id']">
-      <slot/>
-    </label>
-
-  </md-form-field>`
-})
+    </div>`
+}

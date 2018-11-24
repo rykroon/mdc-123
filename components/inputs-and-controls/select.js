@@ -2,7 +2,7 @@ module.exports = {
   props: {
     outlined: Boolean,
     options: Array,
-    disabled:Boolean
+    disabled: Boolean
   },
   inheritAttrs: false,
   data: function() {
@@ -48,4 +48,4 @@ module.exports = {
     <md-line-ripple v-if="!outlined"/>
     <md-notched-outline v-else/>
   </div>`
-})
+}

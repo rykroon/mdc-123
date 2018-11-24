@@ -1,8 +1,6 @@
 module.exports = {
   props: {
-    icon: String,
     extended: Boolean,
-    trailingIcon: String,
     mini: Boolean,
     ripple: {
       type: Boolean,
@@ -29,32 +27,18 @@ module.exports = {
       v-bind="$attrs"
       v-on="$listeners">
 
-      <template
-        v-if="extended">
+      <template v-if="extended">
 
-        <md-icon
-          v-if="icon"
-          extraClass="mdc-fab__icon">
-          {{icon}}
-        </md-icon>
+        <slot name="leadingIcon"/>
 
-        <span
-          class="mdc-fab__label">
+        <span class="mdc-fab__label">
           <slot/>
         </span>
 
-        <md-icon
-          v-if="trailingIcon"
-          extraClass="mdc-fab__icon">
-          {{trailingIcon}}
-        </md-icon>
+        <slot name="trailingIcon"/>
       </template>
 
-      <md-icon
-        v-else
-        extraClass="mdc-fab__icon">
-        {{icon}}
-      </md-icon>
+      <slot name="icon"/>
 
     </button>`
 })
