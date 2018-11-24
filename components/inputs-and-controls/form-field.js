@@ -11,7 +11,7 @@ module.exports = {
       }
     }
   },
-  mounted: {
+  mounted: function() {
     this.mdcFormField = mdc.formField.MDCFormField.attachTo(this.$el);
   },
   template: `

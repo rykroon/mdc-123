@@ -122,47 +122,142 @@ module.exports = {
 }
 
 },{}],4:[function(require,module,exports){
+module.exports = {
+  props: {
+    ripple: {
+      type: Boolean,
+      default: true
+    },
+    disabled: Boolean
+  },
+  inheritAttrs: false,
+  data: function() {
+    return {
+      mdcCheckbox: undefined,
+      classes: {
+          'mdc-checkbox': true,
+          'mdc-checkbox--disabled': this.disabled
+      }
+    }
+  },
+  mounted: function() {
+    if (this.ripple) {
+      this.mdcCheckbox = mdc.checkbox.MDCCheckbox.attachTo(this.$el)
+    }
+  },
+  template: `
+    <div :class="classes">
+
+      <input
+        type="checkbox"
+        class="mdc-checkbox__native-control"
+        v-bind="$attrs"
+        :disabled="disabled"/>
+
+      <div class="mdc-checkbox__background">
+
+        <svg
+          class="mdc-checkbox__checkmark"
+          viewBox="0 0 24 24">
+
+          <path
+            class="mdc-checkbox__checkmark-path"
+            fill="none"
+            d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+        </svg>
+
+        <div class="mdc-checkbox__mixedmark"></div>
+      </div>
+    </div>`
+}
+
+},{}],5:[function(require,module,exports){
+module.exports = {
+  props: {
+    alignEnd: Boolean
+  },
+  data: function() {
+    return {
+      mdcFormField: undefined,
+      classes: {
+        'mdc-form-field': true,
+        'mdc-form-field--align-end': this.alignEnd
+      }
+    }
+  },
+  mounted: function() {
+    this.mdcFormField = mdc.formField.MDCFormField.attachTo(this.$el);
+  },
+  template: `
+  <div :class="classes">
+    <slot/>
+  </div>`
+}
+
+},{}],6:[function(require,module,exports){
+module.exports =  {
+  props: {
+    ripple: {
+      type: Boolean,
+      default: true
+    },
+    disabled: Boolean
+  },
+  inheritAttrs: false,
+  data: function() {
+    return {
+      mdcRadio: undefined,
+      classes: {
+        'mdc-radio': true,
+        'mdc-radio--disabled': this.disabled
+      }
+    }
+  },
+  mounted: function() {
+    if (this.ripple) {
+      this.mdcRadio = mdc.radio.MDCRadio.attachTo(this.$el);
+    }
+  },
+  template: `
+    <div :class="classes">
+
+      <input
+        class="mdc-radio__native-control"
+        type="radio"
+        v-bind="$attrs"
+        :disabled="disabled">
+
+      <div class="mdc-radio__background">
+        <div class="mdc-radio__outer-circle"></div>
+        <div class="mdc-radio__inner-circle"></div>
+      </div>
+    </div>`
+}
+
+},{}],7:[function(require,module,exports){
 //import Button from './compnonents/buttons/button.js'
 
 const button = require('./components/buttons/button.js');
 const icon = require('./components/icon.js');
 const fab = require('./components/buttons/fab.js');
+const formField = require('./components/inputs-and-controls/form-field.js');
+const checkbox = require('./components/inputs-and-controls/checkbox.js');
+const radio = require('./components/inputs-and-controls/radio.js');
+//const textField = require('./components/text-field.js');
+
+const components = {
+  'md-button': button,
+  'md-icon': icon,
+  'md-fab': fab,
+  'md-form-field': formField,
+  'md-checkbox': checkbox,
+  'md-radio': radio
+}
 
 
 const myapp = new Vue({
   el:'#myapp',
-  data: {
-
-  },
-  components: {
-    'md-button': button,
-    'md-fab': fab,
-    'md-icon': icon
-  }
+  components: components
 })
 
-// const myapp = new Vue({
-//   el:'#app',
-//   data: {
-//     message: "Hello World!",
-//     alert: function() {
-//       alert("hello")
-//     },
-//     options: [
-//       {value: "", text:"",disabled:true, selected:true},
-//       {value: 1,text: "apple"},
-//       {value: 2, text: "orange"},
-//       {value: 3, text: "bananas"}
-//     ]
-//   },
-//   methods: {
-//     log: function() {
-//       console.log("Hello World!")
-//     }
-//   },
-//   components: {
-//     'md-form-field': formField
-//   }
-// })
-
-},{"./components/buttons/button.js":1,"./components/buttons/fab.js":2,"./components/icon.js":3}]},{},[4]);
+},{"./components/buttons/button.js":1,"./components/buttons/fab.js":2,"./components/icon.js":3,"./components/inputs-and-controls/checkbox.js":4,"./components/inputs-and-controls/form-field.js":5,"./components/inputs-and-controls/radio.js":6}]},{},[7]);

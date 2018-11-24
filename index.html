@@ -41,6 +41,16 @@
       </div>
 
       <div>
+        <p class='mdc-typography--subtitle1'>Outlined Buttons</p>
+        <md-button outlined>default</md-button>
+        <md-button outlined dense>dense</md-button>
+        <md-button outlined>
+          icon
+          <md-icon slot="icon">favorite<md-icon/>
+        </md-button>
+      </div>
+
+      <div>
         <p class='mdc-typography--subtitle1'>Standard Floating Action Button</p>
         <md-fab>
           <md-icon slot="icon">favorite</md-icon>
@@ -75,6 +85,34 @@
         <md-fab extended>
           Extended
         </md-fab>
+      </div>
+
+      <div>
+        <p class='mdc-typography--subtitle1'>Checkbox</p>
+
+        <div>
+          <md-form-field>
+            <md-checkbox id='check-1'></md-checkbox>
+            <label for="check-1">Option 1</label>
+          </md-form-field>
+
+          <md-form-field>
+            <md-checkbox id='check-2'></md-checkbox>
+            <label for="check-2">Option 2</label>
+          </md-form-field>
+        </div>
+
+        <div>
+          <md-form-field align-end>
+            <md-checkbox id="check-3" :checked="true"></md-checkbox>
+            <label for="check-3">Option 3</label>
+          </md-form-field>
+
+          <md-form-field align-end>
+            <md-checkbox id='check-4' disabled></md-checkbox>
+            <label for="check-4">Option 4</label>
+          </md-form-field>
+        </div>
       </div>
 
 

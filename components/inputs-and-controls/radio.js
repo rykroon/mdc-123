@@ -18,7 +18,7 @@ module.exports =  {
   },
   mounted: function() {
     if (this.ripple) {
-      this.mdcRadio = mdc.radio.MDCRadio.attachTo(this.$el;
+      this.mdcRadio = mdc.radio.MDCRadio.attachTo(this.$el);
     }
   },
   template: `

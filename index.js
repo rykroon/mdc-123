@@ -3,40 +3,22 @@
 const button = require('./components/buttons/button.js');
 const icon = require('./components/icon.js');
 const fab = require('./components/buttons/fab.js');
+const formField = require('./components/inputs-and-controls/form-field.js');
+const checkbox = require('./components/inputs-and-controls/checkbox.js');
+const radio = require('./components/inputs-and-controls/radio.js');
+//const textField = require('./components/text-field.js');
+
+const components = {
+  'md-button': button,
+  'md-icon': icon,
+  'md-fab': fab,
+  'md-form-field': formField,
+  'md-checkbox': checkbox,
+  'md-radio': radio
+}
 
 
 const myapp = new Vue({
   el:'#myapp',
-  data: {
-
-  },
-  components: {
-    'md-button': button,
-    'md-fab': fab,
-    'md-icon': icon
-  }
+  components: components
 })
-
-// const myapp = new Vue({
-//   el:'#app',
-//   data: {
-//     message: "Hello World!",
-//     alert: function() {
-//       alert("hello")
-//     },
-//     options: [
-//       {value: "", text:"",disabled:true, selected:true},
-//       {value: 1,text: "apple"},
-//       {value: 2, text: "orange"},
-//       {value: 3, text: "bananas"}
-//     ]
-//   },
-//   methods: {
-//     log: function() {
-//       console.log("Hello World!")
-//     }
-//   },
-//   components: {
-//     'md-form-field': formField
-//   }
-// })

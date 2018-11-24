@@ -31,8 +31,7 @@ module.exports = {
   components: {
     'md-floating-label': floatingLabel,
     'md-notched-outline': notchedOutline,
-    'md-line-ripple': lineRipple,
-    'md-helper-text': textFieldHelperText
+    'md-line-ripple': lineRipple
   },
   mounted: function() {
     this.mdcTextField = mdc.textField.MDCTextField.attachTo(this.$el);
