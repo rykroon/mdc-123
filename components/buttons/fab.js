@@ -1,3 +1,5 @@
+const ripple = require('@material/ripple')
+
 module.exports = {
   props: {
     extended: Boolean,
@@ -10,6 +12,7 @@ module.exports = {
   },
   data: function() {
     return {
+      mdcRipple: undefined,
       classes: {
         'mdc-fab': true,
         'mdc-fab--extended': this.extended,
@@ -20,7 +23,7 @@ module.exports = {
   },
   mounted: function() {
     if (this.ripple) {
-      mdc.ripple.MDCRipple.attachTo(this.$el);
+      this.mdcRipple = new ripple.MDCRipple(this.$el)
     }
     if (this.$slots.icon) {
       this.$slots.icon[0].elm.classList.add('mdc-fab__icon');

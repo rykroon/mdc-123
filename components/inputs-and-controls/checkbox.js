@@ -1,3 +1,5 @@
+const checkbox = require('@material/checkbox')
+
 module.exports = {
   props: {
     ripple: {
@@ -18,7 +20,7 @@ module.exports = {
   },
   mounted: function() {
     if (this.ripple) {
-      this.mdcCheckbox = mdc.checkbox.MDCCheckbox.attachTo(this.$el)
+      this.mdcCheckbox = new checkbox.MDCCheckbox(this.$el);
     }
   },
   template: `

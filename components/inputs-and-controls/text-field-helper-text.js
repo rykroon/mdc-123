@@ -1,3 +1,5 @@
+//const helperText = require('@material/textfield/helper-text');
+
 module.exports =  {
   props: {
     persistent: Boolean,
@@ -15,6 +17,7 @@ module.exports =  {
   },
   mounted: function() {
     this.mdcHelperText = mdc.textField.MDCTextFieldHelperText.attachTo(this.$el);
+    //this.mdcHelperText = new helperText.MDCTextFieldHelperText(this.$el);
   },
   template: `
     <p :class="classes">

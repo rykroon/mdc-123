@@ -1,3 +1,5 @@
+const radio = require('@material/radio');
+
 module.exports =  {
   props: {
     ripple: {
@@ -18,7 +20,7 @@ module.exports =  {
   },
   mounted: function() {
     if (this.ripple) {
-      this.mdcRadio = mdc.radio.MDCRadio.attachTo(this.$el);
+      this .mdcRadio = new radio.MDCRadio(this.$el);
     }
   },
   template: `

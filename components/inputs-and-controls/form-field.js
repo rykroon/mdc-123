@@ -1,3 +1,5 @@
+const formField = require('@material/form-field');
+
 module.exports = {
   props: {
     alignEnd: Boolean
@@ -12,7 +14,7 @@ module.exports = {
     }
   },
   mounted: function() {
-    this.mdcFormField = mdc.formField.MDCFormField.attachTo(this.$el);
+    this.mdcFormField = new formField.MDCFormField(this.$el);
   },
   template: `
   <div :class="classes">
