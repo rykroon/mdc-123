@@ -11,7 +11,8 @@
     <div id="myapp" class="mdc-layout-grid">
 
       <div>
-        <p class='mdc-typography--subtitle1'>Text Buttons</p>
+        <md-text :subtitle="1">Text Buttons</md-text>
+
         <md-button>default</md-button>
         <md-button dense>dense</md-button>
         <md-button>
@@ -21,7 +22,8 @@
       </div>
 
       <div>
-        <p class='mdc-typography--subtitle1'>Raised Buttons</p>
+        <md-text :subtitle="1">Raised Buttons</md-text>
+
         <md-button raised>default</md-button>
         <md-button raised dense>dense</md-button>
         <md-button raised>
@@ -31,7 +33,8 @@
       </div>
 
       <div>
-        <p class='mdc-typography--subtitle1'>Unelevated Buttons</p>
+        <md-text :subtitle="1">Unelevated Buttons</md-text>
+
         <md-button unelevated>default</md-button>
         <md-button unelevated dense>dense</md-button>
         <md-button unelevated>
@@ -41,7 +44,8 @@
       </div>
 
       <div>
-        <p class='mdc-typography--subtitle1'>Outlined Buttons</p>
+        <md-text :subtitle="1">Outlined Buttons</md-text>
+
         <md-button outlined>default</md-button>
         <md-button outlined dense>dense</md-button>
         <md-button outlined>
@@ -51,21 +55,24 @@
       </div>
 
       <div>
-        <p class='mdc-typography--subtitle1'>Standard Floating Action Button</p>
+        <md-text :subtitle="1">Standard Floating Action Button</md-text>
+
         <md-fab>
           <md-icon slot="icon">favorite</md-icon>
         </md-fab>
       </div>
 
       <div>
-        <p class='mdc-typography--subtitle1'>Mini Floating Action Button</p>
+        <md-text :subtitle="1">Mini Floating Action Button</md-text>
+
         <md-fab mini>
           <md-icon slot="icon">favorite</md-icon>
         </md-fab>
       </div>
 
       <div>
-        <p class='mdc-typography--subtitle1'>Extended FAB</p>
+        <md-text :subtitle="1">Extended FAB</md-text>
+
         <md-fab extended>
           <md-icon slot="leadingIcon">add</md-icon>
           Extended
@@ -73,7 +80,8 @@
       </div>
 
       <div>
-        <p class='mdc-typography--subtitle1'>Extended FAB (Text label followed by icon)</p>
+        <md-text :subtitle="1">Extended FAB (Text label followed by icon)</md-text>
+
         <md-fab extended>
           <md-icon slot="trailingIcon">add</md-icon>
           Extended
@@ -81,14 +89,14 @@
       </div>
 
       <div>
-        <p class='mdc-typography--subtitle1'>Extended FAB (without Icon)</p>
+        <md-text :subtitle="1">Extended FAB (without Icon)</md-text>
         <md-fab extended>
           Extended
         </md-fab>
       </div>
 
       <div>
-        <p class='mdc-typography--subtitle1'>Checkbox</p>
+        <md-text :subtitle="1">Checkbox</md-text>
 
         <div>
           <md-form-field>
@@ -117,7 +125,7 @@
 
 
       <div>
-        <p class='mdc-typography--subtitle1'>Radios</p>
+        <md-text :subtitle="1">Radios</md-text>
 
         <div>
           <md-form-field>
@@ -145,7 +153,7 @@
       </div>
 
       <div>
-        <p class='mdc-typography--subtitle1'>Filled</p>
+        <md-text :subtitle="1">Filled</md-text>
 
         <div class="mdc-layout-grid__inner">
           <div class="mdc-layout-grid__cell--span-2">
@@ -164,7 +172,7 @@
       </div>
 
       <div>
-        <p class='mdc-typography--subtitle1'>Filled with Leading Icon</p>
+        <md-text :subtitle="1">Filled with Leading Icon</md-text>
 
         <div class="mdc-layout-grid__inner">
           <div class="mdc-layout-grid__cell--span-2">
@@ -192,8 +200,8 @@
       </div>
 
       <div>
-        <p class='mdc-typography--subtitle1'>Filled with Trailing Icon</p>
-        
+        <md-text :subtitle="1">Filled with Trailing Icon</md-text>
+
         <md-text-field id="filled-7">
           <md-icon slot="trailingIcon">delete</md-icon>
           Standard
@@ -214,7 +222,7 @@
 
 
       <div>
-        <p class='mdc-typography--subtitle1'>Outlined</p>
+          <md-text :subtitle="1">Outlined</md-text>
         <md-text-field id="outlined-1" outlined>Standard</md-text-field>
         <md-text-field id="outlined-2" outlined dense>Dense</md-text-field>
         <md-text-field id="outlined-3" outlined>Standard</md-text-field>
@@ -222,7 +230,7 @@
       </div>
 
       <div>
-        <p class='mdc-typography--subtitle1'>Outlined with Leading Icon</p>
+        <md-text :subtitle="1">Outlined with Leading Icon</md-text>
         <md-text-field id="outlined-4" outlined>
           <md-icon slot="leadingIcon">event</md-icon>
           Standard
@@ -241,7 +249,7 @@
       </div>
 
       <div>
-        <p class='mdc-typography--subtitle1'>Outlined with Trailing Icon</p>
+        <md-text :subtitle="1">Outlined with Trailing Icon</md-text>
         <md-text-field id="outlined-7" outlined>
           <md-icon slot="trailingIcon">delete</md-icon>
           Standard
@@ -257,6 +265,24 @@
           Standard
         </md-text-field>
         <md-text-field-helper-text persistent>Helper Text</md-text-field-helper-text>
+      </div>
+
+
+      <div>
+        <md-text :headline="1">Headline 1</md-text>
+        <md-text :headline="2">Headline 2</md-text>
+        <md-text :headline="3">Headline 3</md-text>
+        <md-text :headline="4">Headline 4</md-text>
+        <md-text :headline="5">Headline 5</md-text>
+        <md-text :headline="6">Headline 6</md-text>
+        <md-text :subtitle="1">Subtitle 1</md-text>
+        <md-text :subtitle="2">Subtitle 2</md-text>
+        <md-text :body="1">
+          Body 1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
+        </md-text>
+        <md-text :body="2">
+          Body 2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate aliquid ad quas sunt voluptatum officia dolorum cumque, possimus nihil molestias sapiente necessitatibus dolor saepe inventore, soluta id accusantium voluptas beatae.
+        </md-text>
       </div>
 
 

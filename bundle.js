@@ -367,6 +367,39 @@ module.exports = {
 }
 
 },{"./floating-label.js":5,"./line-ripple.js":7,"./notched-outline.js":8}],12:[function(require,module,exports){
+module.exports = {
+  props: {
+    headline: Number,
+    subtitle: Number,
+    body: Number,
+    roboto: {
+      type: Boolean,
+      default: true
+    }
+  },
+  data: function() {
+    return {
+      classes: {
+        'mdc-typography': this.roboto,
+        'mdc-typography--headline1': this.headline === 1,
+        'mdc-typography--headline2': this.headline === 2,
+        'mdc-typography--headline3': this.headline === 3,
+        'mdc-typography--headline4': this.headline === 4,
+        'mdc-typography--headline5': this.headline === 5,
+        'mdc-typography--headline6': this.headline === 6,
+        'mdc-typography--subtitle1': this.subtitle === 1,
+        'mdc-typography--subtitle2': this.subtitle === 2,
+        'mdc-typography--body1': this.body === 1,
+        'mdc-typography--body2': this.body === 2
+      }
+    }
+  },
+  template: `
+    <h1 :class="classes"><slot/></h1>
+  `
+}
+
+},{}],13:[function(require,module,exports){
 //import Button from './compnonents/buttons/button.js'
 
 const button = require('./components/buttons/button.js');
@@ -377,6 +410,7 @@ const checkbox = require('./components/inputs-and-controls/checkbox.js');
 const radio = require('./components/inputs-and-controls/radio.js');
 const textField = require('./components/inputs-and-controls/text-field.js');
 const textFieldHelperText = require('./components/inputs-and-controls/text-field-helper-text.js');
+const typography = require('./components/typography/typography.js');
 
 const components = {
   'md-button': button,
@@ -386,7 +420,8 @@ const components = {
   'md-checkbox': checkbox,
   'md-radio': radio,
   'md-text-field': textField,
-  'md-text-field-helper-text': textFieldHelperText
+  'md-text-field-helper-text': textFieldHelperText,
+  'md-text': typography
 }
 
 
@@ -395,4 +430,4 @@ const myapp = new Vue({
   components: components
 })
 
-},{"./components/buttons/button.js":1,"./components/buttons/fab.js":2,"./components/icon.js":3,"./components/inputs-and-controls/checkbox.js":4,"./components/inputs-and-controls/form-field.js":6,"./components/inputs-and-controls/radio.js":9,"./components/inputs-and-controls/text-field-helper-text.js":10,"./components/inputs-and-controls/text-field.js":11}]},{},[12]);
+},{"./components/buttons/button.js":1,"./components/buttons/fab.js":2,"./components/icon.js":3,"./components/inputs-and-controls/checkbox.js":4,"./components/inputs-and-controls/form-field.js":6,"./components/inputs-and-controls/radio.js":9,"./components/inputs-and-controls/text-field-helper-text.js":10,"./components/inputs-and-controls/text-field.js":11,"./components/typography/typography.js":12}]},{},[13]);

@@ -8,6 +8,7 @@ const checkbox = require('./components/inputs-and-controls/checkbox.js');
 const radio = require('./components/inputs-and-controls/radio.js');
 const textField = require('./components/inputs-and-controls/text-field.js');
 const textFieldHelperText = require('./components/inputs-and-controls/text-field-helper-text.js');
+const typography = require('./components/typography/typography.js');
 
 const components = {
   'md-button': button,
@@ -17,7 +18,8 @@ const components = {
   'md-checkbox': checkbox,
   'md-radio': radio,
   'md-text-field': textField,
-  'md-text-field-helper-text': textFieldHelperText
+  'md-text-field-helper-text': textFieldHelperText,
+  'md-text': typography
 }
 
 
