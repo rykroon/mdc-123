@@ -173,6 +173,16 @@ module.exports = {
 
 },{}],5:[function(require,module,exports){
 module.exports = {
+  template: `
+  <label
+    class="mdc-floating-label"
+    v-bind="$attrs">
+    <slot/>
+  </label>`
+}
+
+},{}],6:[function(require,module,exports){
+module.exports = {
   props: {
     alignEnd: Boolean
   },
@@ -194,7 +204,25 @@ module.exports = {
   </div>`
 }
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
+module.exports = {
+  template: `<div class="mdc-line-ripple"></div>`
+}
+
+},{}],8:[function(require,module,exports){
+module.exports =  {
+  template: `
+  <div>
+    <div class="mdc-notched-outline">
+      <svg>
+        <path class="mdc-notched-outline__path"/>
+      </svg>
+    </div>
+    <div class="mdc-notched-outline__idle"></div>
+  </div>`
+}
+
+},{}],9:[function(require,module,exports){
 module.exports =  {
   props: {
     ripple: {
@@ -234,7 +262,111 @@ module.exports =  {
     </div>`
 }
 
-},{}],7:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
+module.exports =  {
+  props: {
+    persistent: Boolean,
+    validationMsg: Boolean
+  },
+  data: function() {
+    return {
+      mdcHelperText: undefined,
+      classes: {
+        'mdc-text-field-helper-text': true,
+        'mdc-text-field-helper-text--persistent': this.persistent,
+        'mdc-text-field-helper-text--validation-msg': this.validationMsg
+      }
+    }
+  },
+  mounted: function() {
+    this.mdcHelperText = mdc.textField.MDCTextFieldHelperText.attachTo(this.$el);
+  },
+  template: `
+    <p :class="classes">
+      <slot/>
+    </p>`
+}
+
+},{}],11:[function(require,module,exports){
+const floatingLabel = require('./floating-label.js');
+const notchedOutline = require('./notched-outline.js');
+const lineRipple = require('./line-ripple.js');
+
+module.exports = {
+  props: {
+    fullWidth: Boolean,
+    textArea: Boolean,
+    outlined: Boolean,
+    dense: Boolean,
+    disabled: Boolean
+  },
+  inheritAttrs: false,
+  data: function() {
+    return {
+      mdcTextField: undefined,
+      classes: {
+        'mdc-text-field': true,
+        'mdc-text-field--fullwidth': this.fullWidth,
+        'mdc-text-field--textarea': this.textArea,
+        'mdc-text-field--outlined': this.outlined,
+        'mdc-text-field--disabled': this.disabled,
+        'mdc-text-field--dense': this.dense,
+        'mdc-text-field--with-leading-icon': this.$slots.leadingIcon,
+        'mdc-text-field--with-trailing-icon': this.$slots.trailingIcon
+      }
+    }
+  },
+  computed: {
+    //line ripple only used with default text-field
+    useLineRipple: function() {
+      return !this.fullWidth && !this.outlined && !this.textArea
+    }
+  },
+  components: {
+    'md-floating-label': floatingLabel,
+    'md-notched-outline': notchedOutline,
+    'md-line-ripple': lineRipple
+  },
+  mounted: function() {
+    this.mdcTextField = mdc.textField.MDCTextField.attachTo(this.$el);
+    if (this.$slots.leadingIcon) {
+      this.$slots.leadingIcon[0].elm.classList.add('mdc-text-field__icon');
+    }
+    if (this.$slots.trailingIcon) {
+      this.$slots.trailingIcon[0].elm.classList.add('mdc-text-field__icon');
+    }
+  },
+  template: `
+    <div :class="classes">
+      <slot name="leadingIcon"/>
+
+      <input
+        v-if="!textArea"
+        v-bind="$attrs"
+        class="mdc-text-field__input"
+        :disabled="disabled">
+
+      <textarea
+        v-else
+        v-bind="$attrs"
+        class="mdc-text-field__input"
+        :disabled="disabled">
+      </textarea>
+
+      <md-floating-label
+        v-if="!fullWidth"
+        :for="$attrs.id">
+        <slot/>
+      </md-floating-label>
+
+      <slot name="trailingIcon"/>
+
+      <md-notched-outline v-if="outlined"/>
+      <md-line-ripple v-if="useLineRipple"/>
+    </div>`
+}
+
+},{"./floating-label.js":5,"./line-ripple.js":7,"./notched-outline.js":8}],12:[function(require,module,exports){
 //import Button from './compnonents/buttons/button.js'
 
 const button = require('./components/buttons/button.js');
@@ -243,7 +375,8 @@ const fab = require('./components/buttons/fab.js');
 const formField = require('./components/inputs-and-controls/form-field.js');
 const checkbox = require('./components/inputs-and-controls/checkbox.js');
 const radio = require('./components/inputs-and-controls/radio.js');
-//const textField = require('./components/text-field.js');
+const textField = require('./components/inputs-and-controls/text-field.js');
+const textFieldHelperText = require('./components/inputs-and-controls/text-field-helper-text.js');
 
 const components = {
   'md-button': button,
@@ -251,7 +384,9 @@ const components = {
   'md-fab': fab,
   'md-form-field': formField,
   'md-checkbox': checkbox,
-  'md-radio': radio
+  'md-radio': radio,
+  'md-text-field': textField,
+  'md-text-field-helper-text': textFieldHelperText
 }
 
 
@@ -260,4 +395,4 @@ const myapp = new Vue({
   components: components
 })
 
-},{"./components/buttons/button.js":1,"./components/buttons/fab.js":2,"./components/icon.js":3,"./components/inputs-and-controls/checkbox.js":4,"./components/inputs-and-controls/form-field.js":5,"./components/inputs-and-controls/radio.js":6}]},{},[7]);
+},{"./components/buttons/button.js":1,"./components/buttons/fab.js":2,"./components/icon.js":3,"./components/inputs-and-controls/checkbox.js":4,"./components/inputs-and-controls/form-field.js":6,"./components/inputs-and-controls/radio.js":9,"./components/inputs-and-controls/text-field-helper-text.js":10,"./components/inputs-and-controls/text-field.js":11}]},{},[12]);

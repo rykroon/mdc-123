@@ -8,7 +8,7 @@
   </head>
 
   <body>
-    <div id="myapp">
+    <div id="myapp" class="mdc-layout-grid">
 
       <div>
         <p class='mdc-typography--subtitle1'>Text Buttons</p>
@@ -113,6 +113,150 @@
             <label for="check-4">Option 4</label>
           </md-form-field>
         </div>
+      </div>
+
+
+      <div>
+        <p class='mdc-typography--subtitle1'>Radios</p>
+
+        <div>
+          <md-form-field>
+            <md-radio id='radio-1' name='group-1'></md-radio>
+            <label for="radio-1">Option 1</label>
+          </md-form-field>
+
+          <md-form-field>
+            <md-radio id='radio-2' name='group-1'></md-radio>
+            <label for="radio-2">Option 2</label>
+          </md-form-field>
+        </div>
+
+        <div>
+          <md-form-field align-end>
+            <md-radio id="radio-3" :checked="true" name='group-2'></md-radio>
+            <label for="radio-3">Option 3</label>
+          </md-form-field>
+
+          <md-form-field align-end>
+            <md-radio id='radio-4' disabled name='group-2'></md-radio>
+            <label for="radio-4">Option 4</label>
+          </md-form-field>
+        </div>
+      </div>
+
+      <div>
+        <p class='mdc-typography--subtitle1'>Filled</p>
+
+        <div class="mdc-layout-grid__inner">
+          <div class="mdc-layout-grid__cell--span-2">
+            <md-text-field id="filled-1">Standard</md-text-field>
+          </div>
+
+          <div class="mdc-layout-grid__cell--span-2">
+            <md-text-field id="filled-2" dense>Dense</md-text-field>
+          </div>
+
+          <div class="mdc-layout-grid__cell--span-2">
+            <md-text-field id="filled-3">Standard</md-text-field>
+            <md-text-field-helper-text persistent>Helper Text</md-text-field-helper-text>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class='mdc-typography--subtitle1'>Filled with Leading Icon</p>
+
+        <div class="mdc-layout-grid__inner">
+          <div class="mdc-layout-grid__cell--span-2">
+            <md-text-field id="filled-4">
+              <md-icon slot="leadingIcon">event</md-icon>
+              Standard
+            </md-text-field>
+          </div>
+
+          <div class="mdc-layout-grid__cell--span-2">
+            <md-text-field id="filled-5" dense>
+              <md-icon slot="leadingIcon">event</md-icon>
+              Dense
+            </md-text-field>
+          </div>
+
+          <div class="mdc-layout-grid__cell--span-2">
+            <md-text-field id="filled-6">
+              <md-icon slot="leadingIcon">event</md-icon>
+              Standard
+            </md-text-field>
+            <md-text-field-helper-text persistent>Helper Text</md-text-field-helper-text>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class='mdc-typography--subtitle1'>Filled with Trailing Icon</p>
+        
+        <md-text-field id="filled-7">
+          <md-icon slot="trailingIcon">delete</md-icon>
+          Standard
+        </md-text-field>
+
+        <md-text-field id="filled-8" dense>
+          <md-icon slot="trailingIcon">delete</md-icon>
+          Dense
+        </md-text-field>
+
+        <md-text-field id="filled-9">
+          <md-icon slot="trailingIcon">delete</md-icon>
+          Standard
+        </md-text-field>
+        <md-text-field-helper-text persistent>Helper Text</md-text-field-helper-text>
+      </div>
+
+
+
+      <div>
+        <p class='mdc-typography--subtitle1'>Outlined</p>
+        <md-text-field id="outlined-1" outlined>Standard</md-text-field>
+        <md-text-field id="outlined-2" outlined dense>Dense</md-text-field>
+        <md-text-field id="outlined-3" outlined>Standard</md-text-field>
+        <md-text-field-helper-text persistent>Helper Text</md-text-field-helper-text>
+      </div>
+
+      <div>
+        <p class='mdc-typography--subtitle1'>Outlined with Leading Icon</p>
+        <md-text-field id="outlined-4" outlined>
+          <md-icon slot="leadingIcon">event</md-icon>
+          Standard
+        </md-text-field>
+
+        <md-text-field id="outlined-5" outlined dense>
+          <md-icon slot="leadingIcon">event</md-icon>
+          Dense
+        </md-text-field>
+
+        <md-text-field id="outlined-6" outlined>
+          <md-icon slot="leadingIcon">event</md-icon>
+          Standard
+        </md-text-field>
+        <md-text-field-helper-text persistent>Helper Text</md-text-field-helper-text>
+      </div>
+
+      <div>
+        <p class='mdc-typography--subtitle1'>Outlined with Trailing Icon</p>
+        <md-text-field id="outlined-7" outlined>
+          <md-icon slot="trailingIcon">delete</md-icon>
+          Standard
+        </md-text-field>
+
+        <md-text-field id="outlined-8" outlined dense>
+          <md-icon slot="trailingIcon">delete</md-icon>
+          Dense
+        </md-text-field>
+
+        <md-text-field id="outlined-9" outlined>
+          <md-icon slot="trailingIcon">delete</md-icon>
+          Standard
+        </md-text-field>
+        <md-text-field-helper-text persistent>Helper Text</md-text-field-helper-text>
       </div>
 
 

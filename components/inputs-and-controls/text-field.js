@@ -1,3 +1,7 @@
+const floatingLabel = require('./floating-label.js');
+const notchedOutline = require('./notched-outline.js');
+const lineRipple = require('./line-ripple.js');
+
 module.exports = {
   props: {
     fullWidth: Boolean,
@@ -35,10 +39,15 @@ module.exports = {
   },
   mounted: function() {
     this.mdcTextField = mdc.textField.MDCTextField.attachTo(this.$el);
+    if (this.$slots.leadingIcon) {
+      this.$slots.leadingIcon[0].elm.classList.add('mdc-text-field__icon');
+    }
+    if (this.$slots.trailingIcon) {
+      this.$slots.trailingIcon[0].elm.classList.add('mdc-text-field__icon');
+    }
   },
   template: `
     <div :class="classes">
-
       <slot name="leadingIcon"/>
 
       <input

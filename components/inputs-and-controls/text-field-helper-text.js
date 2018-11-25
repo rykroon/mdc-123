@@ -14,7 +14,7 @@ module.exports =  {
     }
   },
   mounted: function() {
-    //this.mdcHelperText = mdc.textField.MDCTextFieldHelperText.attachTo(this.$el);
+    this.mdcHelperText = mdc.textField.MDCTextFieldHelperText.attachTo(this.$el);
   },
   template: `
     <p :class="classes">
