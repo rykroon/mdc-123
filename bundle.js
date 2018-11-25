@@ -60,7 +60,7 @@ module.exports = {
     </button>`
 }
 
-},{"@material/ripple":17}],2:[function(require,module,exports){
+},{"@material/ripple":20}],2:[function(require,module,exports){
 const ripple = require('@material/ripple')
 
 module.exports = {
@@ -118,7 +118,7 @@ module.exports = {
     </button>`
 }
 
-},{"@material/ripple":17}],3:[function(require,module,exports){
+},{"@material/ripple":20}],3:[function(require,module,exports){
 module.exports = {
   template: `
     <span class="material-icons">
@@ -178,7 +178,7 @@ module.exports = {
     </div>`
 }
 
-},{"@material/checkbox":14}],5:[function(require,module,exports){
+},{"@material/checkbox":17}],5:[function(require,module,exports){
 module.exports = {
   template: `
   <label
@@ -213,7 +213,7 @@ module.exports = {
   </div>`
 }
 
-},{"@material/form-field":15}],7:[function(require,module,exports){
+},{"@material/form-field":18}],7:[function(require,module,exports){
 module.exports = {
   template: `<div class="mdc-line-ripple"></div>`
 }
@@ -273,7 +273,7 @@ module.exports =  {
     </div>`
 }
 
-},{"@material/radio":16}],10:[function(require,module,exports){
+},{"@material/radio":19}],10:[function(require,module,exports){
 //const helperText = require('@material/textfield/helper-text');
 
 module.exports =  {
@@ -381,7 +381,68 @@ module.exports = {
     </div>`
 }
 
-},{"./floating-label.js":5,"./line-ripple.js":7,"./notched-outline.js":8,"@material/textfield":18}],12:[function(require,module,exports){
+},{"./floating-label.js":5,"./line-ripple.js":7,"./notched-outline.js":8,"@material/textfield":21}],12:[function(require,module,exports){
+module.exports = {
+  props: {
+    columns: {
+      type: Number,
+      validator: (value) => value >= 1 && value <= 12
+    },
+    device: {
+      type: String,
+      validator: (value) => ['desktop','tablet','phone'].indexOf(value) > -1
+    }
+  },
+  computed: {
+    classes: function() {
+      result = {}
+      result['mdc-layout-grid__cell'] = true
+
+      let spanKey = `mdc-layout-grid__cell--span-${this.columns}`;
+      spanKey = (this.device ? `${spanKey}-${this.device}` : spanKey);
+      const spanValue = !!this.columns
+      result[spanKey] = spanValue
+      
+      return result
+    }
+  },
+  template: `
+    <div :class='classes'><slot/></div>
+  `
+}
+
+},{}],13:[function(require,module,exports){
+module.exports = {
+  template: `
+    <div class="mdc-layout-grid__inner"><slot/></div>
+  `
+}
+
+},{}],14:[function(require,module,exports){
+module.exports = {
+  props: {
+    fixedColumnWidth: Boolean,
+    align: {
+      type: String,
+      validator: value => ['left','right'].indexOf(value) > -1
+    }
+  },
+  data: function() {
+    return {
+      classes: {
+        'mdc-layout-grid': true,
+        'mdc-layout-grid--fixed-column-width': this.fixedColumnWidth,
+        'mdc-layout-grid--align-left': this.align === 'left',
+        'mdc-layout-grid--align-right': this.align === 'right'
+      }
+    }
+  },
+  template: `
+    <div :class="classes"><slot/></div>
+  `
+}
+
+},{}],15:[function(require,module,exports){
 module.exports = {
   props: {
     headline: Number,
@@ -414,7 +475,7 @@ module.exports = {
   `
 }
 
-},{}],13:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 //import Button from './compnonents/buttons/button.js'
 
 const button = require('./components/buttons/button.js');
@@ -425,6 +486,9 @@ const checkbox = require('./components/inputs-and-controls/checkbox.js');
 const radio = require('./components/inputs-and-controls/radio.js');
 const textField = require('./components/inputs-and-controls/text-field.js');
 const textFieldHelperText = require('./components/inputs-and-controls/text-field-helper-text.js');
+const layoutGrid = require('./components/layout-grid/layout-grid.js');
+const layoutGridInner = require('./components/layout-grid/layout-grid-inner.js');
+const layoutGridCell = require('./components/layout-grid/layout-grid-cell.js')
 const typography = require('./components/typography/typography.js');
 
 const components = {
@@ -436,6 +500,9 @@ const components = {
   'md-radio': radio,
   'md-text-field': textField,
   'md-text-field-helper-text': textFieldHelperText,
+  'md-grid': layoutGrid,
+  'md-grid-inner': layoutGridInner,
+  'md-grid-cell': layoutGridCell,
   'md-text': typography
 }
 
@@ -445,7 +512,7 @@ const myapp = new Vue({
   components: components
 })
 
-},{"./components/buttons/button.js":1,"./components/buttons/fab.js":2,"./components/icon.js":3,"./components/inputs-and-controls/checkbox.js":4,"./components/inputs-and-controls/form-field.js":6,"./components/inputs-and-controls/radio.js":9,"./components/inputs-and-controls/text-field-helper-text.js":10,"./components/inputs-and-controls/text-field.js":11,"./components/typography/typography.js":12}],14:[function(require,module,exports){
+},{"./components/buttons/button.js":1,"./components/buttons/fab.js":2,"./components/icon.js":3,"./components/inputs-and-controls/checkbox.js":4,"./components/inputs-and-controls/form-field.js":6,"./components/inputs-and-controls/radio.js":9,"./components/inputs-and-controls/text-field-helper-text.js":10,"./components/inputs-and-controls/text-field.js":11,"./components/layout-grid/layout-grid-cell.js":12,"./components/layout-grid/layout-grid-inner.js":13,"./components/layout-grid/layout-grid.js":14,"./components/typography/typography.js":15}],17:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -3373,7 +3440,7 @@ var numbers = {
 /******/ });
 });
 
-},{}],15:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -5689,7 +5756,7 @@ var MDCSelectionControl = function () {
 /******/ });
 });
 
-},{}],16:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -8064,7 +8131,7 @@ var MDCSelectionControl = function () {
 /******/ });
 });
 
-},{}],17:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -9906,7 +9973,7 @@ var numbers = {
 /******/ ]);
 });
 
-},{}],18:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -15816,4 +15883,4 @@ var MDCTextFieldIconAdapter = function () {
 /******/ });
 });
 
-},{}]},{},[13]);
+},{}]},{},[16]);

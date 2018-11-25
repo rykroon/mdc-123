@@ -1,3 +1,8 @@
+const floatingLabel = require('./floating-label.js');
+const notchedOutline = require('./notched-outline.js');
+const lineRipple = require('./line-ripple.js');
+const select = require('@material/select');
+
 module.exports = {
   props: {
     outlined: Boolean,
@@ -21,7 +26,7 @@ module.exports = {
     'md-notched-outline': notchedOutline
   },
   mounted: function() {
-    this.mdcSelect = mdc.select.MDCSelect.attachTo(this.$el)
+    this.mdcSelect = new select.MDCSelect(this.$el);
   },
   template:`
   <div :class="classes">
