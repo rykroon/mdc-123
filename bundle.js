@@ -391,6 +391,14 @@ module.exports = {
     device: {
       type: String,
       validator: (value) => ['desktop','tablet','phone'].indexOf(value) > -1
+    },
+    index: {
+      type: Number,
+      validator: (value) => value >= 1 && value <= 12
+    },
+    position: {
+      type: String,
+      validator: (value) => ['top','middle','bottom'].indexOf(value) > -1
     }
   },
   computed: {
@@ -400,9 +408,14 @@ module.exports = {
 
       let spanKey = `mdc-layout-grid__cell--span-${this.columns}`;
       spanKey = (this.device ? `${spanKey}-${this.device}` : spanKey);
-      const spanValue = !!this.columns
-      result[spanKey] = spanValue
-      
+      result[spanKey] = !!this.columns;
+
+      let orderKey = `mdc-layout-grid--order-${this.order}`;
+      result[orderKey] = !!this.index;
+
+      let alignKey = `mdc-layout-grid__cell--align-${this.position}`;
+      result[alignKey] = !!this.position
+
       return result
     }
   },
@@ -445,9 +458,21 @@ module.exports = {
 },{}],15:[function(require,module,exports){
 module.exports = {
   props: {
-    headline: Number,
-    subtitle: Number,
-    body: Number,
+    headline: {
+      type: Number,
+      validator: (value) => value >= 1 && value <= 6
+    },
+    subtitle: {
+      type: Number,
+      validator: (value) => value >= 1 && value <= 2
+    },
+    body: {
+      type: Number,
+      validator: (value) => value >= 1 && value <= 2
+    },
+    caption: Boolean,
+    button: Boolean,
+    overline: Boolean,
     roboto: {
       type: Boolean,
       default: true
@@ -466,12 +491,15 @@ module.exports = {
         'mdc-typography--subtitle1': this.subtitle === 1,
         'mdc-typography--subtitle2': this.subtitle === 2,
         'mdc-typography--body1': this.body === 1,
-        'mdc-typography--body2': this.body === 2
+        'mdc-typography--body2': this.body === 2,
+        'mdc-typography--caption': this.caption,
+        'mdc-typography--button': this.button,
+        'mdc-typography--overline': this.overline
       }
     }
   },
   template: `
-    <h1 :class="classes"><slot/></h1>
+    <p :class="classes"><slot/></p>
   `
 }
 

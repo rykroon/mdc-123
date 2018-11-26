@@ -1,8 +1,20 @@
 module.exports = {
   props: {
-    headline: Number,
-    subtitle: Number,
-    body: Number,
+    headline: {
+      type: Number,
+      validator: (value) => value >= 1 && value <= 6
+    },
+    subtitle: {
+      type: Number,
+      validator: (value) => value >= 1 && value <= 2
+    },
+    body: {
+      type: Number,
+      validator: (value) => value >= 1 && value <= 2
+    },
+    caption: Boolean,
+    button: Boolean,
+    overline: Boolean,
     roboto: {
       type: Boolean,
       default: true
@@ -21,11 +33,14 @@ module.exports = {
         'mdc-typography--subtitle1': this.subtitle === 1,
         'mdc-typography--subtitle2': this.subtitle === 2,
         'mdc-typography--body1': this.body === 1,
-        'mdc-typography--body2': this.body === 2
+        'mdc-typography--body2': this.body === 2,
+        'mdc-typography--caption': this.caption,
+        'mdc-typography--button': this.button,
+        'mdc-typography--overline': this.overline
       }
     }
   },
   template: `
-    <h1 :class="classes"><slot/></h1>
+    <p :class="classes"><slot/></p>
   `
 }
