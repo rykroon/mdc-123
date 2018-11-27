@@ -3,7 +3,7 @@
   <head>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
-    <!-- <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script> -->
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
 
@@ -11,7 +11,7 @@
     <div id="myapp" class="mdc-layout-grid">
 
       <div>
-        <md-text :subtitle="1">Text Buttons</md-text>
+        <md-p :subtitle="1">Text Buttons</md-p>
 
         <md-button>default</md-button>
         <md-button dense>dense</md-button>
@@ -22,7 +22,7 @@
       </div>
 
       <div>
-        <md-text :subtitle="1">Raised Buttons</md-text>
+        <md-p :subtitle="1">Raised Buttons</md-p>
 
         <md-button raised>default</md-button>
         <md-button raised dense>dense</md-button>
@@ -33,7 +33,7 @@
       </div>
 
       <div>
-        <md-text :subtitle="1">Unelevated Buttons</md-text>
+        <md-p :subtitle="1">Unelevated Buttons</md-p>
 
         <md-button unelevated>default</md-button>
         <md-button unelevated dense>dense</md-button>
@@ -44,7 +44,7 @@
       </div>
 
       <div>
-        <md-text :subtitle="1">Outlined Buttons</md-text>
+        <md-p :subtitle="1">Outlined Buttons</md-p>
 
         <md-button outlined>default</md-button>
         <md-button outlined dense>dense</md-button>
@@ -55,7 +55,7 @@
       </div>
 
       <div>
-        <md-text :subtitle="1">Standard Floating Action Button</md-text>
+        <md-p :subtitle="1">Standard Floating Action Button</md-p>
 
         <md-fab>
           <md-icon slot="icon">favorite</md-icon>
@@ -63,7 +63,7 @@
       </div>
 
       <div>
-        <md-text :subtitle="1">Mini Floating Action Button</md-text>
+        <md-p :subtitle="1">Mini Floating Action Button</md-p>
 
         <md-fab mini>
           <md-icon slot="icon">favorite</md-icon>
@@ -71,7 +71,7 @@
       </div>
 
       <div>
-        <md-text :subtitle="1">Extended FAB</md-text>
+        <md-p :subtitle="1">Extended FAB</md-p>
 
         <md-fab extended>
           <md-icon slot="leadingIcon">add</md-icon>
@@ -80,7 +80,7 @@
       </div>
 
       <div>
-        <md-text :subtitle="1">Extended FAB (Text label followed by icon)</md-text>
+        <md-p :subtitle="1">Extended FAB (Text label followed by icon)</md-p>
 
         <md-fab extended>
           <md-icon slot="trailingIcon">add</md-icon>
@@ -89,14 +89,14 @@
       </div>
 
       <div>
-        <md-text :subtitle="1">Extended FAB (without Icon)</md-text>
+        <md-p :subtitle="1">Extended FAB (without Icon)</md-p>
         <md-fab extended>
           Extended
         </md-fab>
       </div>
 
       <div>
-        <md-text :subtitle="1">Checkbox</md-text>
+        <md-p :subtitle="1">Checkbox</md-p>
 
         <div>
           <md-form-field>
@@ -125,7 +125,7 @@
 
 
       <div>
-        <md-text :subtitle="1">Radios</md-text>
+        <md-p :subtitle="1">Radios</md-p>
 
         <div>
           <md-form-field>
@@ -153,7 +153,7 @@
       </div>
 
       <div>
-        <md-text :subtitle="1">Filled</md-text>
+        <md-p :subtitle="1">Filled</md-p>
 
         <div class="mdc-layout-grid__inner">
           <div class="mdc-layout-grid__cell--span-2">
@@ -172,7 +172,7 @@
       </div>
 
       <div>
-        <md-text :subtitle="1">Filled with Leading Icon</md-text>
+        <md-p :subtitle="1">Filled with Leading Icon</md-p>
 
         <div class="mdc-layout-grid__inner">
           <div class="mdc-layout-grid__cell--span-2">
@@ -200,7 +200,7 @@
       </div>
 
       <div>
-        <md-text :subtitle="1">Filled with Trailing Icon</md-text>
+        <md-p :subtitle="1">Filled with Trailing Icon</md-p>
 
         <md-text-field id="filled-7">
           <md-icon slot="trailingIcon">delete</md-icon>
@@ -222,7 +222,7 @@
 
 
       <div>
-          <md-text :subtitle="1">Outlined</md-text>
+          <md-p :subtitle="1">Outlined</md-p>
         <md-text-field id="outlined-1" outlined>Standard</md-text-field>
         <md-text-field id="outlined-2" outlined dense>Dense</md-text-field>
         <md-text-field id="outlined-3" outlined>Standard</md-text-field>
@@ -230,7 +230,7 @@
       </div>
 
       <div>
-        <md-text :subtitle="1">Outlined with Leading Icon</md-text>
+        <md-p :subtitle="1">Outlined with Leading Icon</md-p>
         <md-text-field id="outlined-4" outlined>
           <md-icon slot="leadingIcon">event</md-icon>
           Standard
@@ -249,7 +249,7 @@
       </div>
 
       <div>
-        <md-text :subtitle="1">Outlined with Trailing Icon</md-text>
+        <md-p :subtitle="1">Outlined with Trailing Icon</md-p>
         <md-text-field id="outlined-7" outlined>
           <md-icon slot="trailingIcon">delete</md-icon>
           Standard
@@ -298,20 +298,20 @@
 
 
       <div>
-        <md-text :headline="1" :roboto="false">Headline 1</md-text>
-        <md-text :headline="2">Headline 2</md-text>
-        <md-text :headline="3">Headline 3</md-text>
-        <md-text :headline="4">Headline 4</md-text>
-        <md-text :headline="5">Headline 5</md-text>
-        <md-text :headline="6">Headline 6</md-text>
-        <md-text :subtitle="1">Subtitle 1</md-text>
-        <md-text :subtitle="2">Subtitle 2</md-text>
-        <md-text :body="1">
+        <md-h :level="1">Headline 1</md-h>
+        <md-h :level="2">Headline 2</md-h>
+        <md-h :level="3">Headline 3</md-h>
+        <md-h level="4">Headline 4</md-h>
+        <md-h level="5">Headline 5</md-h>
+        <md-h level="6">Headline 6</md-h>
+        <md-p :subtitle="1">Subtitle 1</md-p>
+        <md-p :subtitle="2">Subtitle 2</md-p>
+        <md-p :body="1">
           Body 1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
-        </md-text>
-        <md-text :body="2">
+        </md-p>
+        <md-p :body="2">
           Body 2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate aliquid ad quas sunt voluptatum officia dolorum cumque, possimus nihil molestias sapiente necessitatibus dolor saepe inventore, soluta id accusantium voluptas beatae.
-        </md-text>
+        </md-p>
       </div>
 
 

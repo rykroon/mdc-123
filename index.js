@@ -1,17 +1,14 @@
-//import Button from './compnonents/buttons/button.js'
-
 const button = require('./components/buttons/button.js');
-const icon = require('./components/icon.js');
 const fab = require('./components/buttons/fab.js');
-const formField = require('./components/inputs-and-controls/form-field.js');
 const checkbox = require('./components/inputs-and-controls/checkbox.js');
+const formField = require('./components/inputs-and-controls/form-field.js');
 const radio = require('./components/inputs-and-controls/radio.js');
 const textField = require('./components/inputs-and-controls/text-field.js');
 const textFieldHelperText = require('./components/inputs-and-controls/text-field-helper-text.js');
-const layoutGrid = require('./components/layout-grid/layout-grid.js');
-const layoutGridInner = require('./components/layout-grid/layout-grid-inner.js');
-const layoutGridCell = require('./components/layout-grid/layout-grid-cell.js')
-const typography = require('./components/typography/typography.js');
+const layout = require('./components/layout-grid/index.js')
+const headline = require('./components/typography/headline.js');
+const paragraph = require('./components/typography/paragraph.js');
+const icon = require('./components/icon.js');
 
 const components = {
   'md-button': button,
@@ -22,10 +19,11 @@ const components = {
   'md-radio': radio,
   'md-text-field': textField,
   'md-text-field-helper-text': textFieldHelperText,
-  'md-grid': layoutGrid,
-  'md-grid-inner': layoutGridInner,
-  'md-grid-cell': layoutGridCell,
-  'md-text': typography
+  'md-grid': layout.grid,
+  'md-grid-inner': layout.gridInner,
+  'md-grid-cell': layout.gridCell,
+  'md-h': headline,
+  'md-p': paragraph
 }
 
 

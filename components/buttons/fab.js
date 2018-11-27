@@ -25,14 +25,11 @@ module.exports = {
     if (this.ripple) {
       this.mdcRipple = new ripple.MDCRipple(this.$el)
     }
-    if (this.$slots.icon) {
-      this.$slots.icon[0].elm.classList.add('mdc-fab__icon');
-    }
-    if (this.$slots.leadingIcon) {
-      this.$slots.leadingIcon[0].elm.classList.add('mdc-fab__icon');
-    }
-    if (this.$slots.trailingIcon) {
-      this.$slots.trailingIcon[0].elm.classList.add('mdc-fab__icon');
+
+    for (const entry of Object.entries(this.$slots)) {
+      if (entry[0] !== "default") {
+        entry[1][0].elm.classList.add('mdc-fab__icon');
+      }
     }
   },
   template: `

@@ -60,7 +60,7 @@ module.exports = {
     </button>`
 }
 
-},{"@material/ripple":20}],2:[function(require,module,exports){
+},{"@material/ripple":22}],2:[function(require,module,exports){
 const ripple = require('@material/ripple')
 
 module.exports = {
@@ -88,14 +88,11 @@ module.exports = {
     if (this.ripple) {
       this.mdcRipple = new ripple.MDCRipple(this.$el)
     }
-    if (this.$slots.icon) {
-      this.$slots.icon[0].elm.classList.add('mdc-fab__icon');
-    }
-    if (this.$slots.leadingIcon) {
-      this.$slots.leadingIcon[0].elm.classList.add('mdc-fab__icon');
-    }
-    if (this.$slots.trailingIcon) {
-      this.$slots.trailingIcon[0].elm.classList.add('mdc-fab__icon');
+
+    for (const entry of Object.entries(this.$slots)) {
+      if (entry[0] !== "default") {
+        entry[1][0].elm.classList.add('mdc-fab__icon');
+      }
     }
   },
   template: `
@@ -118,7 +115,7 @@ module.exports = {
     </button>`
 }
 
-},{"@material/ripple":20}],3:[function(require,module,exports){
+},{"@material/ripple":22}],3:[function(require,module,exports){
 module.exports = {
   template: `
     <span class="material-icons">
@@ -178,7 +175,7 @@ module.exports = {
     </div>`
 }
 
-},{"@material/checkbox":17}],5:[function(require,module,exports){
+},{"@material/checkbox":19}],5:[function(require,module,exports){
 module.exports = {
   template: `
   <label
@@ -213,7 +210,7 @@ module.exports = {
   </div>`
 }
 
-},{"@material/form-field":18}],7:[function(require,module,exports){
+},{"@material/form-field":20}],7:[function(require,module,exports){
 module.exports = {
   template: `<div class="mdc-line-ripple"></div>`
 }
@@ -273,7 +270,7 @@ module.exports =  {
     </div>`
 }
 
-},{"@material/radio":19}],10:[function(require,module,exports){
+},{"@material/radio":21}],10:[function(require,module,exports){
 //const helperText = require('@material/textfield/helper-text');
 
 module.exports =  {
@@ -381,7 +378,18 @@ module.exports = {
     </div>`
 }
 
-},{"./floating-label.js":5,"./line-ripple.js":7,"./notched-outline.js":8,"@material/textfield":21}],12:[function(require,module,exports){
+},{"./floating-label.js":5,"./line-ripple.js":7,"./notched-outline.js":8,"@material/textfield":23}],12:[function(require,module,exports){
+const layoutGrid = require('./layout-grid.js');
+const layoutGridInner = require('./layout-grid-inner.js');
+const layoutGridCell = require('./layout-grid-cell.js');
+
+module.exports = {
+  grid: layoutGrid,
+  gridInner: layoutGridInner,
+  gridCell: layoutGridCell
+}
+
+},{"./layout-grid-cell.js":13,"./layout-grid-inner.js":14,"./layout-grid.js":15}],13:[function(require,module,exports){
 module.exports = {
   props: {
     columns: {
@@ -424,14 +432,14 @@ module.exports = {
   `
 }
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 module.exports = {
   template: `
     <div class="mdc-layout-grid__inner"><slot/></div>
   `
 }
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 module.exports = {
   props: {
     fixedColumnWidth: Boolean,
@@ -455,19 +463,46 @@ module.exports = {
   `
 }
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 module.exports = {
   props: {
-    headline: {
-      type: Number,
+    level: {
+      type: [Number, String],
+      default: 1,
       validator: (value) => value >= 1 && value <= 6
     },
+    roboto: {
+      type: Boolean,
+      default: true
+    }
+  },
+  data: function() {
+    return {
+      classes: {
+        'mdc-typography': this.roboto,
+        'mdc-typography--headline1': this.level == 1,
+        'mdc-typography--headline2': this.level == 2,
+        'mdc-typography--headline3': this.level == 3,
+        'mdc-typography--headline4': this.level == 4,
+        'mdc-typography--headline5': this.level == 5,
+        'mdc-typography--headline6': this.level == 6
+      }
+    }
+  },
+  template: `
+    <h1 :class="classes"><slot/></h1>
+  `
+}
+
+},{}],17:[function(require,module,exports){
+module.exports = {
+  props: {
     subtitle: {
-      type: Number,
+      type: [Number, String],
       validator: (value) => value >= 1 && value <= 2
     },
     body: {
-      type: Number,
+      type: [Number, String],
       validator: (value) => value >= 1 && value <= 2
     },
     caption: Boolean,
@@ -482,16 +517,10 @@ module.exports = {
     return {
       classes: {
         'mdc-typography': this.roboto,
-        'mdc-typography--headline1': this.headline === 1,
-        'mdc-typography--headline2': this.headline === 2,
-        'mdc-typography--headline3': this.headline === 3,
-        'mdc-typography--headline4': this.headline === 4,
-        'mdc-typography--headline5': this.headline === 5,
-        'mdc-typography--headline6': this.headline === 6,
-        'mdc-typography--subtitle1': this.subtitle === 1,
-        'mdc-typography--subtitle2': this.subtitle === 2,
-        'mdc-typography--body1': this.body === 1,
-        'mdc-typography--body2': this.body === 2,
+        'mdc-typography--subtitle1': this.subtitle == 1,
+        'mdc-typography--subtitle2': this.subtitle == 2,
+        'mdc-typography--body1': this.body == 1,
+        'mdc-typography--body2': this.body == 2,
         'mdc-typography--caption': this.caption,
         'mdc-typography--button': this.button,
         'mdc-typography--overline': this.overline
@@ -503,21 +532,18 @@ module.exports = {
   `
 }
 
-},{}],16:[function(require,module,exports){
-//import Button from './compnonents/buttons/button.js'
-
+},{}],18:[function(require,module,exports){
 const button = require('./components/buttons/button.js');
-const icon = require('./components/icon.js');
 const fab = require('./components/buttons/fab.js');
-const formField = require('./components/inputs-and-controls/form-field.js');
 const checkbox = require('./components/inputs-and-controls/checkbox.js');
+const formField = require('./components/inputs-and-controls/form-field.js');
 const radio = require('./components/inputs-and-controls/radio.js');
 const textField = require('./components/inputs-and-controls/text-field.js');
 const textFieldHelperText = require('./components/inputs-and-controls/text-field-helper-text.js');
-const layoutGrid = require('./components/layout-grid/layout-grid.js');
-const layoutGridInner = require('./components/layout-grid/layout-grid-inner.js');
-const layoutGridCell = require('./components/layout-grid/layout-grid-cell.js')
-const typography = require('./components/typography/typography.js');
+const layout = require('./components/layout-grid/index.js')
+const headline = require('./components/typography/headline.js');
+const paragraph = require('./components/typography/paragraph.js');
+const icon = require('./components/icon.js');
 
 const components = {
   'md-button': button,
@@ -528,10 +554,11 @@ const components = {
   'md-radio': radio,
   'md-text-field': textField,
   'md-text-field-helper-text': textFieldHelperText,
-  'md-grid': layoutGrid,
-  'md-grid-inner': layoutGridInner,
-  'md-grid-cell': layoutGridCell,
-  'md-text': typography
+  'md-grid': layout.grid,
+  'md-grid-inner': layout.gridInner,
+  'md-grid-cell': layout.gridCell,
+  'md-h': headline,
+  'md-p': paragraph
 }
 
 
@@ -540,7 +567,7 @@ const myapp = new Vue({
   components: components
 })
 
-},{"./components/buttons/button.js":1,"./components/buttons/fab.js":2,"./components/icon.js":3,"./components/inputs-and-controls/checkbox.js":4,"./components/inputs-and-controls/form-field.js":6,"./components/inputs-and-controls/radio.js":9,"./components/inputs-and-controls/text-field-helper-text.js":10,"./components/inputs-and-controls/text-field.js":11,"./components/layout-grid/layout-grid-cell.js":12,"./components/layout-grid/layout-grid-inner.js":13,"./components/layout-grid/layout-grid.js":14,"./components/typography/typography.js":15}],17:[function(require,module,exports){
+},{"./components/buttons/button.js":1,"./components/buttons/fab.js":2,"./components/icon.js":3,"./components/inputs-and-controls/checkbox.js":4,"./components/inputs-and-controls/form-field.js":6,"./components/inputs-and-controls/radio.js":9,"./components/inputs-and-controls/text-field-helper-text.js":10,"./components/inputs-and-controls/text-field.js":11,"./components/layout-grid/index.js":12,"./components/typography/headline.js":16,"./components/typography/paragraph.js":17}],19:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -3468,7 +3495,7 @@ var numbers = {
 /******/ });
 });
 
-},{}],18:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -5784,7 +5811,7 @@ var MDCSelectionControl = function () {
 /******/ });
 });
 
-},{}],19:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -8159,7 +8186,7 @@ var MDCSelectionControl = function () {
 /******/ });
 });
 
-},{}],20:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -10001,7 +10028,7 @@ var numbers = {
 /******/ ]);
 });
 
-},{}],21:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -15911,4 +15938,4 @@ var MDCTextFieldIconAdapter = function () {
 /******/ });
 });
 
-},{}]},{},[16]);
+},{}]},{},[18]);
