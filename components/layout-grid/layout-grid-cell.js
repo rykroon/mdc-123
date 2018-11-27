@@ -1,7 +1,7 @@
 module.exports = {
   props: {
     columns: {
-      type: Number,
+      type: [Number, String],
       validator: (value) => value >= 1 && value <= 12
     },
     device: {
@@ -9,7 +9,7 @@ module.exports = {
       validator: (value) => ['desktop','tablet','phone'].indexOf(value) > -1
     },
     index: {
-      type: Number,
+      type: [Number, String],
       validator: (value) => value >= 1 && value <= 12
     },
     position: {

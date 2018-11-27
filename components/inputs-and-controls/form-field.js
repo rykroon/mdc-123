@@ -15,6 +15,7 @@ module.exports = {
   },
   mounted: function() {
     this.mdcFormField = new formField.MDCFormField(this.$el);
+    //check if there is a checkbox or radio in the formField
   },
   template: `
   <div :class="classes">

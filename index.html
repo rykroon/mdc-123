@@ -155,82 +155,103 @@
       <div>
         <md-p :subtitle="1">Filled</md-p>
 
-        <div class="mdc-layout-grid__inner">
-          <div class="mdc-layout-grid__cell--span-2">
+        <md-grid-inner>
+          <md-grid-cell columns="3">
             <md-text-field id="filled-1">Standard</md-text-field>
-          </div>
+          </md-grid-cell>
 
-          <div class="mdc-layout-grid__cell--span-2">
+          <md-grid-cell columns="3">
             <md-text-field id="filled-2" dense>Dense</md-text-field>
-          </div>
+          </md-grid-cell>
 
-          <div class="mdc-layout-grid__cell--span-2">
+          <md-grid-cell columns="3">
             <md-text-field id="filled-3">Standard</md-text-field>
             <md-text-field-helper-text persistent>Helper Text</md-text-field-helper-text>
-          </div>
-        </div>
+          </md-grid-cell>
+        </md-grid-inner>
       </div>
 
       <div>
         <md-p :subtitle="1">Filled with Leading Icon</md-p>
 
-        <div class="mdc-layout-grid__inner">
-          <div class="mdc-layout-grid__cell--span-2">
+        <md-grid-inner>
+          <md-grid-cell columns="3">
             <md-text-field id="filled-4">
               <md-icon slot="leadingIcon">event</md-icon>
               Standard
             </md-text-field>
-          </div>
+          </md-grid-cell>
 
-          <div class="mdc-layout-grid__cell--span-2">
-            <md-text-field id="filled-5" dense>
-              <md-icon slot="leadingIcon">event</md-icon>
-              Dense
-            </md-text-field>
-          </div>
+          <md-grid-cell columns="3">
+            <div class="mdc-layout-grid__cell--span-2">
+              <md-text-field id="filled-5" dense>
+                <md-icon slot="leadingIcon">event</md-icon>
+                Dense
+              </md-text-field>
+            </div>
+          </md-grid-cell>
 
-          <div class="mdc-layout-grid__cell--span-2">
+          <md-grid-cell columns="3">
             <md-text-field id="filled-6">
               <md-icon slot="leadingIcon">event</md-icon>
               Standard
             </md-text-field>
             <md-text-field-helper-text persistent>Helper Text</md-text-field-helper-text>
-          </div>
-        </div>
+          </md-grid-cell>
+        </md-grid-inner>
       </div>
 
       <div>
         <md-p :subtitle="1">Filled with Trailing Icon</md-p>
 
-        <md-text-field id="filled-7">
-          <md-icon slot="trailingIcon">delete</md-icon>
-          Standard
-        </md-text-field>
+        <md-grid-inner>
+          <md-grid-cell columns="3">
+            <md-text-field id="filled-7">
+              <md-icon slot="trailingIcon">delete</md-icon>
+              Standard
+            </md-text-field>
+          </md-grid-cell>
 
-        <md-text-field id="filled-8" dense>
-          <md-icon slot="trailingIcon">delete</md-icon>
-          Dense
-        </md-text-field>
+          <md-grid-cell columns="3">
+            <md-text-field id="filled-8" dense>
+              <md-icon slot="trailingIcon">delete</md-icon>
+              Dense
+            </md-text-field>
+          </md-grid-cell>
 
-        <md-text-field id="filled-9">
-          <md-icon slot="trailingIcon">delete</md-icon>
-          Standard
-        </md-text-field>
-        <md-text-field-helper-text persistent>Helper Text</md-text-field-helper-text>
+          <md-grid-cell columns="3">
+            <md-text-field id="filled-9">
+              <md-icon slot="trailingIcon">delete</md-icon>
+              Standard
+            </md-text-field>
+            <md-text-field-helper-text persistent>Helper Text</md-text-field-helper-text>
+          </md-grid-cell>
+        </md-grid-inner>
       </div>
 
 
 
       <div>
-          <md-p :subtitle="1">Outlined</md-p>
-        <md-text-field id="outlined-1" outlined>Standard</md-text-field>
-        <md-text-field id="outlined-2" outlined dense>Dense</md-text-field>
-        <md-text-field id="outlined-3" outlined>Standard</md-text-field>
-        <md-text-field-helper-text persistent>Helper Text</md-text-field-helper-text>
+        <md-p subtitle="1">Outlined</md-p>
+
+        <md-grid-inner>
+          <md-grid-cell columns="3">
+            <md-text-field id="outlined-1" outlined>Standard</md-text-field>
+          </md-grid-cell>
+
+          <md-grid-cell columns="3">
+            <md-text-field id="outlined-2" outlined dense>Dense</md-text-field>
+          </md-grid-cell>
+
+          <md-grid-cell columns="3">
+            <md-text-field id="outlined-3" outlined>Standard</md-text-field>
+            <md-text-field-helper-text persistent>Helper Text</md-text-field-helper-text>
+          </md-grid-cell>
+        </md-grid-inner>
       </div>
 
       <div>
-        <md-p :subtitle="1">Outlined with Leading Icon</md-p>
+        <md-p subtitle="1">Outlined with Leading Icon</md-p>
         <md-text-field id="outlined-4" outlined>
           <md-icon slot="leadingIcon">event</md-icon>
           Standard
@@ -249,7 +270,7 @@
       </div>
 
       <div>
-        <md-p :subtitle="1">Outlined with Trailing Icon</md-p>
+        <md-p subtitle="1">Outlined with Trailing Icon</md-p>
         <md-text-field id="outlined-7" outlined>
           <md-icon slot="trailingIcon">delete</md-icon>
           Standard

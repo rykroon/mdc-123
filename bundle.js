@@ -203,6 +203,7 @@ module.exports = {
   },
   mounted: function() {
     this.mdcFormField = new formField.MDCFormField(this.$el);
+    //check if there is a checkbox or radio in the formField
   },
   template: `
   <div :class="classes">
@@ -299,9 +300,9 @@ module.exports =  {
 }
 
 },{}],11:[function(require,module,exports){
-const floatingLabel = require('./floating-label.js');
-const notchedOutline = require('./notched-outline.js');
-const lineRipple = require('./line-ripple.js');
+const floatingLabel = require('../floating-label.js');
+const notchedOutline = require('../notched-outline.js');
+const lineRipple = require('../line-ripple.js');
 const textField = require('@material/textfield');
 
 module.exports = {
@@ -341,11 +342,11 @@ module.exports = {
   },
   mounted: function() {
     this.mdcTextField = new textField.MDCTextField(this.$el);
-    if (this.$slots.leadingIcon) {
-      this.$slots.leadingIcon[0].elm.classList.add('mdc-text-field__icon');
-    }
-    if (this.$slots.trailingIcon) {
-      this.$slots.trailingIcon[0].elm.classList.add('mdc-text-field__icon');
+
+    for (const entry of Object.entries(this.$slots)) {
+      if (entry[0] !== "default") {
+        entry[1][0].elm.classList.add('mdc-text-field__icon');
+      }
     }
   },
   template: `
@@ -378,7 +379,7 @@ module.exports = {
     </div>`
 }
 
-},{"./floating-label.js":5,"./line-ripple.js":7,"./notched-outline.js":8,"@material/textfield":23}],12:[function(require,module,exports){
+},{"../floating-label.js":5,"../line-ripple.js":7,"../notched-outline.js":8,"@material/textfield":23}],12:[function(require,module,exports){
 const layoutGrid = require('./layout-grid.js');
 const layoutGridInner = require('./layout-grid-inner.js');
 const layoutGridCell = require('./layout-grid-cell.js');
@@ -393,7 +394,7 @@ module.exports = {
 module.exports = {
   props: {
     columns: {
-      type: Number,
+      type: [Number, String],
       validator: (value) => value >= 1 && value <= 12
     },
     device: {
@@ -401,7 +402,7 @@ module.exports = {
       validator: (value) => ['desktop','tablet','phone'].indexOf(value) > -1
     },
     index: {
-      type: Number,
+      type: [Number, String],
       validator: (value) => value >= 1 && value <= 12
     },
     position: {
@@ -538,8 +539,8 @@ const fab = require('./components/buttons/fab.js');
 const checkbox = require('./components/inputs-and-controls/checkbox.js');
 const formField = require('./components/inputs-and-controls/form-field.js');
 const radio = require('./components/inputs-and-controls/radio.js');
-const textField = require('./components/inputs-and-controls/text-field.js');
-const textFieldHelperText = require('./components/inputs-and-controls/text-field-helper-text.js');
+const textField = require('./components/inputs-and-controls/text-field/text-field.js');
+const textFieldHelperText = require('./components/inputs-and-controls/text-field/text-field-helper-text.js');
 const layout = require('./components/layout-grid/index.js')
 const headline = require('./components/typography/headline.js');
 const paragraph = require('./components/typography/paragraph.js');
@@ -567,7 +568,7 @@ const myapp = new Vue({
   components: components
 })
 
-},{"./components/buttons/button.js":1,"./components/buttons/fab.js":2,"./components/icon.js":3,"./components/inputs-and-controls/checkbox.js":4,"./components/inputs-and-controls/form-field.js":6,"./components/inputs-and-controls/radio.js":9,"./components/inputs-and-controls/text-field-helper-text.js":10,"./components/inputs-and-controls/text-field.js":11,"./components/layout-grid/index.js":12,"./components/typography/headline.js":16,"./components/typography/paragraph.js":17}],19:[function(require,module,exports){
+},{"./components/buttons/button.js":1,"./components/buttons/fab.js":2,"./components/icon.js":3,"./components/inputs-and-controls/checkbox.js":4,"./components/inputs-and-controls/form-field.js":6,"./components/inputs-and-controls/radio.js":9,"./components/inputs-and-controls/text-field/text-field-helper-text.js":10,"./components/inputs-and-controls/text-field/text-field.js":11,"./components/layout-grid/index.js":12,"./components/typography/headline.js":16,"./components/typography/paragraph.js":17}],19:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.

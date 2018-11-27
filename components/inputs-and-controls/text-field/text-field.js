@@ -1,6 +1,6 @@
-const floatingLabel = require('./floating-label.js');
-const notchedOutline = require('./notched-outline.js');
-const lineRipple = require('./line-ripple.js');
+const floatingLabel = require('../floating-label.js');
+const notchedOutline = require('../notched-outline.js');
+const lineRipple = require('../line-ripple.js');
 const textField = require('@material/textfield');
 
 module.exports = {
@@ -40,11 +40,11 @@ module.exports = {
   },
   mounted: function() {
     this.mdcTextField = new textField.MDCTextField(this.$el);
-    if (this.$slots.leadingIcon) {
-      this.$slots.leadingIcon[0].elm.classList.add('mdc-text-field__icon');
-    }
-    if (this.$slots.trailingIcon) {
-      this.$slots.trailingIcon[0].elm.classList.add('mdc-text-field__icon');
+
+    for (const entry of Object.entries(this.$slots)) {
+      if (entry[0] !== "default") {
+        entry[1][0].elm.classList.add('mdc-text-field__icon');
+      }
     }
   },
   template: `
