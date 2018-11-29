@@ -60,7 +60,7 @@ module.exports = {
     </button>`
 }
 
-},{"@material/ripple":22}],2:[function(require,module,exports){
+},{"@material/ripple":23}],2:[function(require,module,exports){
 const ripple = require('@material/ripple')
 
 module.exports = {
@@ -115,7 +115,7 @@ module.exports = {
     </button>`
 }
 
-},{"@material/ripple":22}],3:[function(require,module,exports){
+},{"@material/ripple":23}],3:[function(require,module,exports){
 module.exports = {
   template: `
     <span class="material-icons">
@@ -175,7 +175,7 @@ module.exports = {
     </div>`
 }
 
-},{"@material/checkbox":19}],5:[function(require,module,exports){
+},{"@material/checkbox":20}],5:[function(require,module,exports){
 module.exports = {
   template: `
   <label
@@ -211,7 +211,7 @@ module.exports = {
   </div>`
 }
 
-},{"@material/form-field":20}],7:[function(require,module,exports){
+},{"@material/form-field":21}],7:[function(require,module,exports){
 module.exports = {
   template: `<div class="mdc-line-ripple"></div>`
 }
@@ -252,7 +252,7 @@ module.exports =  {
   },
   mounted: function() {
     if (this.ripple) {
-      this .mdcRadio = new radio.MDCRadio(this.$el);
+      this.mdcRadio = new radio.MDCRadio(this.$el);
     }
   },
   template: `
@@ -271,7 +271,7 @@ module.exports =  {
     </div>`
 }
 
-},{"@material/radio":21}],10:[function(require,module,exports){
+},{"@material/radio":22}],10:[function(require,module,exports){
 //const helperText = require('@material/textfield/helper-text');
 
 module.exports =  {
@@ -379,7 +379,7 @@ module.exports = {
     </div>`
 }
 
-},{"../floating-label.js":5,"../line-ripple.js":7,"../notched-outline.js":8,"@material/textfield":23}],12:[function(require,module,exports){
+},{"../floating-label.js":5,"../line-ripple.js":7,"../notched-outline.js":8,"@material/textfield":24}],12:[function(require,module,exports){
 const layoutGrid = require('./layout-grid.js');
 const layoutGridInner = require('./layout-grid-inner.js');
 const layoutGridCell = require('./layout-grid-cell.js');
@@ -465,6 +465,71 @@ module.exports = {
 }
 
 },{}],16:[function(require,module,exports){
+//const topAppBar = require('@material/top-app-bar/index');
+
+module.exports = {
+  props: {
+    fixed: Boolean,
+    prominent: Boolean,
+    dense: Boolean,
+    short: Boolean,
+    collapsed: Boolean
+  },
+  data: function() {
+    return {
+      mdcTopAppBar: undefined
+    }
+  },
+  computed: {
+    classes: function() {
+      return {
+        'mdc-top-app-bar': true,
+        'mdc-top-app-bar--short': this.short,
+        'mdc-top-app-bar--short-collapsed': this.collapsed && this.short,
+        'mdc-top-app-bar--prominent': this.prominent && !this.short,
+        'mdc-top-app-bar--dense': this.dense && !this.short,
+        'mdc-top-app-bar--fixed': this.fixed && !this.short
+      }
+    }
+  },
+  mounted: function() {
+    //this.mdcTopAppBar = new topAppBar.MDCTopAppBar(this.$el);
+    this.mdcTopAppBar = mdc.topAppBar.MDCTopAppBar.attachTo(this.$el);
+    if (this.$slots['navigation']) {
+      console.log(this.$slots['navigation'][0].elm)
+      this.$slots['navigation'][0].elm.classList.add('mdc-top-app-bar__navigation-icon');
+    }
+  },
+  template: `
+    <header :class="classes">
+      <div class="mdc-top-app-bar__row">
+
+        <section
+          v-if="$slots['navigation'] || $slots['default']"
+          class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+
+          <slot name="navigation"/>
+
+          <div
+            v-if="$slots['default']"
+            class="mdc-top-app-bar__title">
+            <slot/>
+          </div>
+        </section>
+
+        <section
+          v-if="$slots['actions']"
+          class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end"
+          role="toolbar">
+
+          <slot name="actions"/>
+        </section>
+      </div>
+    </header>
+  `
+}
+
+},{}],17:[function(require,module,exports){
 module.exports = {
   props: {
     level: {
@@ -495,7 +560,7 @@ module.exports = {
   `
 }
 
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 module.exports = {
   props: {
     subtitle: {
@@ -533,7 +598,7 @@ module.exports = {
   `
 }
 
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 const button = require('./components/buttons/button.js');
 const fab = require('./components/buttons/fab.js');
 const checkbox = require('./components/inputs-and-controls/checkbox.js');
@@ -545,6 +610,7 @@ const layout = require('./components/layout-grid/index.js')
 const headline = require('./components/typography/headline.js');
 const paragraph = require('./components/typography/paragraph.js');
 const icon = require('./components/icon.js');
+const topAppBar = require('./components/top-app-bar/top-app-bar.js')
 
 const components = {
   'md-button': button,
@@ -558,17 +624,22 @@ const components = {
   'md-grid': layout.grid,
   'md-grid-inner': layout.gridInner,
   'md-grid-cell': layout.gridCell,
+  'md-app-bar': topAppBar,
   'md-h': headline,
   'md-p': paragraph
 }
 
+const appBar = new Vue({
+  el:'#appBar',
+  components: components
+});
 
 const myapp = new Vue({
   el:'#myapp',
   components: components
 })
 
-},{"./components/buttons/button.js":1,"./components/buttons/fab.js":2,"./components/icon.js":3,"./components/inputs-and-controls/checkbox.js":4,"./components/inputs-and-controls/form-field.js":6,"./components/inputs-and-controls/radio.js":9,"./components/inputs-and-controls/text-field/text-field-helper-text.js":10,"./components/inputs-and-controls/text-field/text-field.js":11,"./components/layout-grid/index.js":12,"./components/typography/headline.js":16,"./components/typography/paragraph.js":17}],19:[function(require,module,exports){
+},{"./components/buttons/button.js":1,"./components/buttons/fab.js":2,"./components/icon.js":3,"./components/inputs-and-controls/checkbox.js":4,"./components/inputs-and-controls/form-field.js":6,"./components/inputs-and-controls/radio.js":9,"./components/inputs-and-controls/text-field/text-field-helper-text.js":10,"./components/inputs-and-controls/text-field/text-field.js":11,"./components/layout-grid/index.js":12,"./components/top-app-bar/top-app-bar.js":16,"./components/typography/headline.js":17,"./components/typography/paragraph.js":18}],20:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -3496,7 +3567,7 @@ var numbers = {
 /******/ });
 });
 
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -5812,7 +5883,7 @@ var MDCSelectionControl = function () {
 /******/ });
 });
 
-},{}],21:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -8187,7 +8258,7 @@ var MDCSelectionControl = function () {
 /******/ });
 });
 
-},{}],22:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -10029,7 +10100,7 @@ var numbers = {
 /******/ ]);
 });
 
-},{}],23:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -15939,4 +16010,4 @@ var MDCTextFieldIconAdapter = function () {
 /******/ });
 });
 
-},{}]},{},[18]);
+},{}]},{},[19]);

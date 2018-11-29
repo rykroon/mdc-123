@@ -20,7 +20,7 @@ module.exports =  {
   },
   mounted: function() {
     if (this.ripple) {
-      this .mdcRadio = new radio.MDCRadio(this.$el);
+      this.mdcRadio = new radio.MDCRadio(this.$el);
     }
   },
   template: `

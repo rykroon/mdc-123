@@ -9,6 +9,7 @@ const layout = require('./components/layout-grid/index.js')
 const headline = require('./components/typography/headline.js');
 const paragraph = require('./components/typography/paragraph.js');
 const icon = require('./components/icon.js');
+const topAppBar = require('./components/top-app-bar/top-app-bar.js')
 
 const components = {
   'md-button': button,
@@ -22,10 +23,15 @@ const components = {
   'md-grid': layout.grid,
   'md-grid-inner': layout.gridInner,
   'md-grid-cell': layout.gridCell,
+  'md-app-bar': topAppBar,
   'md-h': headline,
   'md-p': paragraph
 }
 
+const appBar = new Vue({
+  el:'#appBar',
+  components: components
+});
 
 const myapp = new Vue({
   el:'#myapp',
