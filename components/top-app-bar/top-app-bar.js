@@ -34,29 +34,7 @@ module.exports = {
   },
   template: `
     <header :class="classes">
-      <div class="mdc-top-app-bar__row">
-
-        <section
-          v-if="$slots['navigation'] || $slots['default']"
-          class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-
-          <slot name="navigation"/>
-
-          <div
-            v-if="$slots['default']"
-            class="mdc-top-app-bar__title">
-            <slot/>
-          </div>
-        </section>
-
-        <section
-          v-if="$slots['actions']"
-          class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end"
-          role="toolbar">
-
-          <slot name="actions"/>
-        </section>
-      </div>
+      <slot/>
     </header>
   `
 }

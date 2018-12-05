@@ -9,7 +9,7 @@ const layout = require('./components/layout-grid/index.js')
 const headline = require('./components/typography/headline.js');
 const paragraph = require('./components/typography/paragraph.js');
 const icon = require('./components/icon.js');
-const topAppBar = require('./components/top-app-bar/top-app-bar.js')
+const topAppBar = require('./components/top-app-bar/index.js')
 
 const components = {
   'md-button': button,
@@ -23,7 +23,10 @@ const components = {
   'md-grid': layout.grid,
   'md-grid-inner': layout.gridInner,
   'md-grid-cell': layout.gridCell,
-  'md-app-bar': topAppBar,
+  'md-top-app-bar': topAppBar.topAppBar,
+  'md-top-app-bar-row': topAppBar.row,
+  'md-top-app-bar-section': topAppBar.section,
+  'md-top-app-bar-title': topAppBar.title,
   'md-h': headline,
   'md-p': paragraph
 }
