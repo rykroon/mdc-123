@@ -1,5 +1,6 @@
 const button = require('./components/buttons/button.js');
 const fab = require('./components/buttons/fab.js');
+const drawer = require('./components/drawer/index.js');
 const checkbox = require('./components/inputs-and-controls/checkbox.js');
 const formField = require('./components/inputs-and-controls/form-field.js');
 const radio = require('./components/inputs-and-controls/radio.js');
@@ -15,6 +16,9 @@ const components = {
   'md-button': button,
   'md-icon': icon,
   'md-fab': fab,
+  'md-drawer': drawer.drawer,
+  'md-drawer-app-content': drawer.appContent,
+  'md-drawer-scrim': drawer.scrim,
   'md-form-field': formField,
   'md-checkbox': checkbox,
   'md-radio': radio,
