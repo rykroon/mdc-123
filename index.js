@@ -35,11 +35,6 @@ const components = {
   'md-p': paragraph
 }
 
-const appBar = new Vue({
-  el:'#appBar',
-  components: components
-});
-
 const myapp = new Vue({
   el:'#myapp',
   components: components

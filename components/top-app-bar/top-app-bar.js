@@ -28,9 +28,9 @@ module.exports = {
   mounted: function() {
     //this.mdcTopAppBar = new topAppBar.MDCTopAppBar(this.$el);
     this.mdcTopAppBar = mdc.topAppBar.MDCTopAppBar.attachTo(this.$el);
-    if (this.$slots['navigation']) {
-      this.$slots['navigation'][0].elm.classList.add('mdc-top-app-bar__navigation-icon');
-    }
+    // if (this.$slots['navigation']) {
+    //   this.$slots['navigation'][0].elm.classList.add('mdc-top-app-bar__navigation-icon');
+    // }
   },
   template: `
     <header :class="classes">
