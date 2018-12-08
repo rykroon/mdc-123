@@ -6,7 +6,8 @@ const formField = require('./components/inputs-and-controls/form-field.js');
 const radio = require('./components/inputs-and-controls/radio.js');
 const textField = require('./components/inputs-and-controls/text-field/text-field.js');
 const textFieldHelperText = require('./components/inputs-and-controls/text-field/text-field-helper-text.js');
-const layout = require('./components/layout-grid/index.js')
+const layout = require('./components/layout-grid/index.js');
+const list = require('./components/lists/index.js');
 const headline = require('./components/typography/headline.js');
 const paragraph = require('./components/typography/paragraph.js');
 const icon = require('./components/icon.js');
@@ -27,6 +28,10 @@ const components = {
   'md-grid': layout.grid,
   'md-grid-inner': layout.gridInner,
   'md-grid-cell': layout.gridCell,
+  'md-list': list.list,
+  'md-list-item': list.item,
+  'md-list-group': list.group,
+  'md-list-divider': list.divider,
   'md-top-app-bar': topAppBar.topAppBar,
   'md-top-app-bar-row': topAppBar.row,
   'md-top-app-bar-section': topAppBar.section,
