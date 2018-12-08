@@ -60,7 +60,7 @@ module.exports = {
     </button>`
 }
 
-},{"@material/ripple":38}],2:[function(require,module,exports){
+},{"@material/ripple":36}],2:[function(require,module,exports){
 const ripple = require('@material/ripple')
 
 module.exports = {
@@ -115,7 +115,7 @@ module.exports = {
     </button>`
 }
 
-},{"@material/ripple":38}],3:[function(require,module,exports){
+},{"@material/ripple":36}],3:[function(require,module,exports){
 module.exports = {
   template: `
     <div class="mdc-drawer-app-content">
@@ -141,12 +141,8 @@ module.exports = {
   },
   data: function() {
     return {
-      mdcDrawer: undefined
-    }
-  },
-  computed: {
-    classes: function() {
-      return {
+      mdcDrawer: undefined,
+      classes: {
         'mdc-drawer': true,
         'mdc-drawer--dismissible': this.dismissible,
         'mdc-drawer--modal': this.modal
@@ -163,11 +159,17 @@ module.exports = {
         v-if="$slots['title'] || $slots['subtitle']"
         class="mdc-drawer__header">
 
-        <h3 class="mdc-drawer__title">
+        <h3
+          v-if="$slots['title']"
+          class="mdc-drawer__title">
+
           <slot name="title"/>
         </h3>
 
-        <h6 class="mdc-drawer__subtitle">
+        <h6
+          v-if="$slots['subtitle']"
+          class="mdc-drawer__subtitle">
+
           <slot name="subtitle"/>
         </h6>
       </div>
@@ -175,12 +177,11 @@ module.exports = {
       <div class="mdc-drawer-content">
         <slot/>
       </div>
-
     </aside>
   `
 }
 
-},{"@material/drawer":34}],6:[function(require,module,exports){
+},{"@material/drawer":32}],6:[function(require,module,exports){
 const drawer = require('./drawer.js');
 const drawerAppContent = require('./drawer-app-content.js');
 const drawerScrim = require('./drawer-scrim.js');
@@ -251,7 +252,7 @@ module.exports = {
     </div>`
 }
 
-},{"@material/checkbox":33}],9:[function(require,module,exports){
+},{"@material/checkbox":31}],9:[function(require,module,exports){
 module.exports = {
   template: `
   <label
@@ -287,7 +288,7 @@ module.exports = {
   </div>`
 }
 
-},{"@material/form-field":35}],11:[function(require,module,exports){
+},{"@material/form-field":33}],11:[function(require,module,exports){
 module.exports = {
   template: `<div class="mdc-line-ripple"></div>`
 }
@@ -347,7 +348,7 @@ module.exports =  {
     </div>`
 }
 
-},{"@material/radio":37}],14:[function(require,module,exports){
+},{"@material/radio":35}],14:[function(require,module,exports){
 //const helperText = require('@material/textfield/helper-text');
 
 module.exports =  {
@@ -455,7 +456,7 @@ module.exports = {
     </div>`
 }
 
-},{"../floating-label.js":9,"../line-ripple.js":11,"../notched-outline.js":12,"@material/textfield":39}],16:[function(require,module,exports){
+},{"../floating-label.js":9,"../line-ripple.js":11,"../notched-outline.js":12,"@material/textfield":37}],16:[function(require,module,exports){
 const layoutGrid = require('./layout-grid.js');
 const layoutGridInner = require('./layout-grid-inner.js');
 const layoutGridCell = require('./layout-grid-cell.js');
@@ -544,16 +545,18 @@ module.exports = {
 const list = require('./list.js');
 const listItem = require('./list-item.js');
 const listGroup = require('./list-group.js');
+const listGroupSubheader = require('./list-group-subheader.js');
 const listDivider = require('./list-divider.js');
 
 module.exports = {
   list: list,
   item: listItem,
   group: listGroup,
+  groupSubheader: listGroupSubheader,
   divider: listDivider
 }
 
-},{"./list-divider.js":21,"./list-group.js":22,"./list-item.js":23,"./list.js":24}],21:[function(require,module,exports){
+},{"./list-divider.js":21,"./list-group-subheader.js":22,"./list-group.js":23,"./list-item.js":24,"./list.js":25}],21:[function(require,module,exports){
 module.exports = {
   props: {
     padded: {
@@ -585,13 +588,22 @@ module.exports = {
 },{}],22:[function(require,module,exports){
 module.exports = {
   template: `
+    <h3 class="mdc-list-group__subheader">
+      <slot/>
+    </h3>
+  `
+}
+
+},{}],23:[function(require,module,exports){
+module.exports = {
+  template: `
     <div class="mdc-list-group">
       <slot/>
     </div>
   `
 }
 
-},{}],23:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 module.exports = {
   props: {
     disabled: {
@@ -649,7 +661,7 @@ module.exports = {
   `
 }
 
-},{}],24:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 const list = require('@material/list');
 const ripple = require('@material/ripple');
 
@@ -702,62 +714,14 @@ module.exports = {
   `
 }
 
-},{"@material/list":36,"@material/ripple":38}],25:[function(require,module,exports){
+},{"@material/list":34,"@material/ripple":36}],26:[function(require,module,exports){
 const topAppBar = require('./top-app-bar.js');
-const topAppBarRow = require('./top-app-bar-row.js');
-const topAppBarSection = require('./top-app-bar-section.js');
-const topAppBarTitle = require('./top-app-bar-title.js');
 
 module.exports = {
-  topAppBar: topAppBar,
-  row: topAppBarRow,
-  section: topAppBarSection,
-  title: topAppBarTitle
+  topAppBar: topAppBar
 }
 
-},{"./top-app-bar-row.js":26,"./top-app-bar-section.js":27,"./top-app-bar-title.js":28,"./top-app-bar.js":29}],26:[function(require,module,exports){
-module.exports = {
-  template: `
-    <div class="mdc-top-app-bar__row">
-      <slot/>
-    </div>
-  `
-}
-
-},{}],27:[function(require,module,exports){
-module.exports = {
-  props: {
-    align: {
-      type: String,
-      validator: (value) => ['start','end'].indexOf(value) > -1,
-      default: "start"
-    }
-  },
-  computed: {
-    classes: function() {
-      return {
-        'mdc-top-app-bar__section': true,
-        'mdc-top-app-bar__section--align-${this.align}': true
-      }
-    }
-  },
-  template: `
-    <section :class="classes">
-      <slot/>
-    </section>
-  `
-}
-
-},{}],28:[function(require,module,exports){
-module.exports = {
-  template: `
-    <div class="mdc-top-app-bar__title">
-      <slot/>
-    </div>
-  `
-}
-
-},{}],29:[function(require,module,exports){
+},{"./top-app-bar.js":27}],27:[function(require,module,exports){
 //const topAppBar = require('@material/top-app-bar/index');
 
 module.exports = {
@@ -788,18 +752,43 @@ module.exports = {
   mounted: function() {
     //this.mdcTopAppBar = new topAppBar.MDCTopAppBar(this.$el);
     this.mdcTopAppBar = mdc.topAppBar.MDCTopAppBar.attachTo(this.$el);
-    // if (this.$slots['navigation']) {
-    //   this.$slots['navigation'][0].elm.classList.add('mdc-top-app-bar__navigation-icon');
-    // }
+
+    if (this.$slots['navigation-icon']) {
+      this.$slots['navigation-icon'][0].elm.classList.add('mdc-top-app-bar__navigation-icon');
+    }
+
+    if (this.$slots['action-items']) {
+      this.$slots['action-items'][0].elm.classList.add('mdc-top-app-bar__action-item');
+    }
   },
   template: `
     <header :class="classes">
-      <slot/>
+      <div class='mdc-top-app-bar__row'>
+
+        <section
+          v-if="$slots['navigation-icon'] || $slots['default']"
+          class="mdc-top-app-bar__section--align-start">
+
+          <slot name="navigation-icon"/>
+
+          <span class="mdc-top-app-bar__title">
+            <slot/>
+          </span>
+        </section>
+
+        <section
+          v-if="$slots['action-items']"
+          class="mdc-top-app-bar__section--align-end"
+          role="toolbar">
+
+          <slot name="action-items"/>
+        </section>
+      </div>
     </header>
   `
 }
 
-},{}],30:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 module.exports = {
   props: {
     level: {
@@ -830,7 +819,7 @@ module.exports = {
   `
 }
 
-},{}],31:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 module.exports = {
   props: {
     subtitle: {
@@ -868,7 +857,7 @@ module.exports = {
   `
 }
 
-},{}],32:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 const button = require('./components/buttons/button.js');
 const fab = require('./components/buttons/fab.js');
 const drawer = require('./components/drawer/index.js');
@@ -904,9 +893,6 @@ const components = {
   'md-list-group': list.group,
   'md-list-divider': list.divider,
   'md-top-app-bar': topAppBar.topAppBar,
-  'md-top-app-bar-row': topAppBar.row,
-  'md-top-app-bar-section': topAppBar.section,
-  'md-top-app-bar-title': topAppBar.title,
   'md-h': headline,
   'md-p': paragraph
 }
@@ -916,7 +902,7 @@ const myapp = new Vue({
   components: components
 })
 
-},{"./components/buttons/button.js":1,"./components/buttons/fab.js":2,"./components/drawer/index.js":6,"./components/icon.js":7,"./components/inputs-and-controls/checkbox.js":8,"./components/inputs-and-controls/form-field.js":10,"./components/inputs-and-controls/radio.js":13,"./components/inputs-and-controls/text-field/text-field-helper-text.js":14,"./components/inputs-and-controls/text-field/text-field.js":15,"./components/layout-grid/index.js":16,"./components/lists/index.js":20,"./components/top-app-bar/index.js":25,"./components/typography/headline.js":30,"./components/typography/paragraph.js":31}],33:[function(require,module,exports){
+},{"./components/buttons/button.js":1,"./components/buttons/fab.js":2,"./components/drawer/index.js":6,"./components/icon.js":7,"./components/inputs-and-controls/checkbox.js":8,"./components/inputs-and-controls/form-field.js":10,"./components/inputs-and-controls/radio.js":13,"./components/inputs-and-controls/text-field/text-field-helper-text.js":14,"./components/inputs-and-controls/text-field/text-field.js":15,"./components/layout-grid/index.js":16,"./components/lists/index.js":20,"./components/top-app-bar/index.js":26,"./components/typography/headline.js":28,"./components/typography/paragraph.js":29}],31:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -3844,7 +3830,7 @@ var numbers = {
 /******/ });
 });
 
-},{}],34:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -6678,7 +6664,7 @@ module.exports = focusTrap;
 /******/ });
 });
 
-},{}],35:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -8994,7 +8980,7 @@ var MDCSelectionControl = function () {
 /******/ });
 });
 
-},{}],36:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -10369,7 +10355,7 @@ var MDCList = function (_MDCComponent) {
 /******/ });
 });
 
-},{}],37:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -12744,7 +12730,7 @@ var MDCSelectionControl = function () {
 /******/ });
 });
 
-},{}],38:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -14586,7 +14572,7 @@ var numbers = {
 /******/ ]);
 });
 
-},{}],39:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -20496,4 +20482,4 @@ var MDCTextFieldIconAdapter = function () {
 /******/ });
 });
 
-},{}]},{},[32]);
+},{}]},{},[30]);

@@ -33,9 +33,6 @@ const components = {
   'md-list-group': list.group,
   'md-list-divider': list.divider,
   'md-top-app-bar': topAppBar.topAppBar,
-  'md-top-app-bar-row': topAppBar.row,
-  'md-top-app-bar-section': topAppBar.section,
-  'md-top-app-bar-title': topAppBar.title,
   'md-h': headline,
   'md-p': paragraph
 }
