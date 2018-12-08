@@ -1,7 +1,7 @@
 module.exports = {
   template: `
-    <div class="mdc-top-app-bar__row">
+    <h3 class="mdc-list-group__subheader">
       <slot/>
-    </div>
+    </h3>
   `
 }

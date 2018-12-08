@@ -28,13 +28,38 @@ module.exports = {
   mounted: function() {
     //this.mdcTopAppBar = new topAppBar.MDCTopAppBar(this.$el);
     this.mdcTopAppBar = mdc.topAppBar.MDCTopAppBar.attachTo(this.$el);
-    // if (this.$slots['navigation']) {
-    //   this.$slots['navigation'][0].elm.classList.add('mdc-top-app-bar__navigation-icon');
-    // }
+
+    if (this.$slots['navigation-icon']) {
+      this.$slots['navigation-icon'][0].elm.classList.add('mdc-top-app-bar__navigation-icon');
+    }
+
+    if (this.$slots['action-items']) {
+      this.$slots['action-items'][0].elm.classList.add('mdc-top-app-bar__action-item');
+    }
   },
   template: `
     <header :class="classes">
-      <slot/>
+      <div class='mdc-top-app-bar__row'>
+
+        <section
+          v-if="$slots['navigation-icon'] || $slots['default']"
+          class="mdc-top-app-bar__section--align-start">
+
+          <slot name="navigation-icon"/>
+
+          <span class="mdc-top-app-bar__title">
+            <slot/>
+          </span>
+        </section>
+
+        <section
+          v-if="$slots['action-items']"
+          class="mdc-top-app-bar__section--align-end"
+          role="toolbar">
+
+          <slot name="action-items"/>
+        </section>
+      </div>
     </header>
   `
 }
