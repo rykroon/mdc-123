@@ -60,7 +60,7 @@ module.exports = {
     </button>`
 }
 
-},{"@material/ripple":36}],2:[function(require,module,exports){
+},{"@material/ripple":37}],2:[function(require,module,exports){
 const ripple = require('@material/ripple')
 
 module.exports = {
@@ -115,7 +115,7 @@ module.exports = {
     </button>`
 }
 
-},{"@material/ripple":36}],3:[function(require,module,exports){
+},{"@material/ripple":37}],3:[function(require,module,exports){
 module.exports = {
   template: `
     <div class="mdc-drawer-app-content">
@@ -181,7 +181,7 @@ module.exports = {
   `
 }
 
-},{"@material/drawer":32}],6:[function(require,module,exports){
+},{"@material/drawer":33}],6:[function(require,module,exports){
 const drawer = require('./drawer.js');
 const drawerAppContent = require('./drawer-app-content.js');
 const drawerScrim = require('./drawer-scrim.js');
@@ -252,7 +252,7 @@ module.exports = {
     </div>`
 }
 
-},{"@material/checkbox":31}],9:[function(require,module,exports){
+},{"@material/checkbox":32}],9:[function(require,module,exports){
 module.exports = {
   template: `
   <label
@@ -288,7 +288,7 @@ module.exports = {
   </div>`
 }
 
-},{"@material/form-field":33}],11:[function(require,module,exports){
+},{"@material/form-field":34}],11:[function(require,module,exports){
 module.exports = {
   template: `<div class="mdc-line-ripple"></div>`
 }
@@ -348,7 +348,7 @@ module.exports =  {
     </div>`
 }
 
-},{"@material/radio":35}],14:[function(require,module,exports){
+},{"@material/radio":36}],14:[function(require,module,exports){
 //const helperText = require('@material/textfield/helper-text');
 
 module.exports =  {
@@ -456,7 +456,7 @@ module.exports = {
     </div>`
 }
 
-},{"../floating-label.js":9,"../line-ripple.js":11,"../notched-outline.js":12,"@material/textfield":37}],16:[function(require,module,exports){
+},{"../floating-label.js":9,"../line-ripple.js":11,"../notched-outline.js":12,"@material/textfield":38}],16:[function(require,module,exports){
 const layoutGrid = require('./layout-grid.js');
 const layoutGridInner = require('./layout-grid-inner.js');
 const layoutGridCell = require('./layout-grid-cell.js');
@@ -714,14 +714,50 @@ module.exports = {
   `
 }
 
-},{"@material/list":34,"@material/ripple":36}],26:[function(require,module,exports){
+},{"@material/list":35,"@material/ripple":37}],26:[function(require,module,exports){
 const topAppBar = require('./top-app-bar.js');
+const fixedAdjust = require('./top-app-bar-fixed-adjust.js');
 
 module.exports = {
-  topAppBar: topAppBar
+  topAppBar: topAppBar,
+  fixedAdjust: fixedAdjust
 }
 
-},{"./top-app-bar.js":27}],27:[function(require,module,exports){
+},{"./top-app-bar-fixed-adjust.js":27,"./top-app-bar.js":28}],27:[function(require,module,exports){
+module.exports = {
+  props: {
+    prominent: {
+      type: Boolean,
+      default: false
+    },
+    dense: {
+      type: Boolean,
+      default: false
+    },
+    short: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data: function() {
+    return {
+      classes: {
+        'mdc-top-app-bar--fixed-adjust': true,
+        'mdc-top-app-bar--prominent-fixed-adjust': this.prominent && !this.dense,
+        'mdc-top-app-bar--dense-fixed-adjust': this.dense && !this.prominent,
+        'mdc-top-app-bar--dense-prominent-fixed-adjust': this.dense && this.prominent,
+        'mdc-top-app-bar--short-fixed-adjust': this.short
+      }
+    }
+  },
+  template: `
+    <div :class="classes">
+      <slot/>
+    </div>
+  `
+}
+
+},{}],28:[function(require,module,exports){
 //const topAppBar = require('@material/top-app-bar/index');
 
 module.exports = {
@@ -788,7 +824,7 @@ module.exports = {
   `
 }
 
-},{}],28:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 module.exports = {
   props: {
     level: {
@@ -819,7 +855,7 @@ module.exports = {
   `
 }
 
-},{}],29:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 module.exports = {
   props: {
     subtitle: {
@@ -857,7 +893,7 @@ module.exports = {
   `
 }
 
-},{}],30:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 const button = require('./components/buttons/button.js');
 const fab = require('./components/buttons/fab.js');
 const drawer = require('./components/drawer/index.js');
@@ -893,6 +929,7 @@ const components = {
   'md-list-group': list.group,
   'md-list-divider': list.divider,
   'md-top-app-bar': topAppBar.topAppBar,
+  'md-fixed-adjust': topAppBar.fixedAdjust,
   'md-h': headline,
   'md-p': paragraph
 }
@@ -902,7 +939,7 @@ const myapp = new Vue({
   components: components
 })
 
-},{"./components/buttons/button.js":1,"./components/buttons/fab.js":2,"./components/drawer/index.js":6,"./components/icon.js":7,"./components/inputs-and-controls/checkbox.js":8,"./components/inputs-and-controls/form-field.js":10,"./components/inputs-and-controls/radio.js":13,"./components/inputs-and-controls/text-field/text-field-helper-text.js":14,"./components/inputs-and-controls/text-field/text-field.js":15,"./components/layout-grid/index.js":16,"./components/lists/index.js":20,"./components/top-app-bar/index.js":26,"./components/typography/headline.js":28,"./components/typography/paragraph.js":29}],31:[function(require,module,exports){
+},{"./components/buttons/button.js":1,"./components/buttons/fab.js":2,"./components/drawer/index.js":6,"./components/icon.js":7,"./components/inputs-and-controls/checkbox.js":8,"./components/inputs-and-controls/form-field.js":10,"./components/inputs-and-controls/radio.js":13,"./components/inputs-and-controls/text-field/text-field-helper-text.js":14,"./components/inputs-and-controls/text-field/text-field.js":15,"./components/layout-grid/index.js":16,"./components/lists/index.js":20,"./components/top-app-bar/index.js":26,"./components/typography/headline.js":29,"./components/typography/paragraph.js":30}],32:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -3830,7 +3867,7 @@ var numbers = {
 /******/ });
 });
 
-},{}],32:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -6664,7 +6701,7 @@ module.exports = focusTrap;
 /******/ });
 });
 
-},{}],33:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -8980,7 +9017,7 @@ var MDCSelectionControl = function () {
 /******/ });
 });
 
-},{}],34:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -10355,7 +10392,7 @@ var MDCList = function (_MDCComponent) {
 /******/ });
 });
 
-},{}],35:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -12730,7 +12767,7 @@ var MDCSelectionControl = function () {
 /******/ });
 });
 
-},{}],36:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -14572,7 +14609,7 @@ var numbers = {
 /******/ ]);
 });
 
-},{}],37:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 /*!
  Material Components for the Web
  Copyright (c) 2018 Google Inc.
@@ -20482,4 +20519,4 @@ var MDCTextFieldIconAdapter = function () {
 /******/ });
 });
 
-},{}]},{},[30]);
+},{}]},{},[31]);
