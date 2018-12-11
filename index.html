@@ -5,348 +5,362 @@
     <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="./index.css">
   </head>
 
   <body>
     <div id="myapp">
 
-      <md-drawer dismissible>
-        <template slot="title"></template>
-        Drawer
-      </md-drawer>
-
-      <md-drawer-app-content>
-
-        <md-top-app-bar>
+      <div class="app-bar">
+        <md-top-app-bar :drawer="true">
+          <template slot="navigation-icon">
+            <md-icon>menu</md-icon>
+          </template>
           Hello
         </md-top-app-bar>
+      </div>
 
-        <div>
-          <md-p :subtitle="1">Text Buttons</md-p>
+      <md-top-app-bar-fixed-adjust>
+        <md-drawer dismissible>
+          <template slot="title">Drawer</template>
+          <md-list>
+            <md-list-item>item 1</md-list-item>
+            <md-list-item>item 2</md-list-item>
+            <md-list-item>item 2</md-list-item>
+          </md-list>
 
-          <md-button>default</md-button>
-          <md-button dense>dense</md-button>
-          <md-button>
-            icon
-            <md-icon slot="icon">favorite<md-icon/>
-          </md-button>
-        </div>
+        </md-drawer>
+      </md-top-app-bar-fixed-adjust>
 
-        <div>
-          <md-p :subtitle="1">Raised Buttons</md-p>
+      <md-drawer-app-content>
+        <md-top-app-bar-fixed-adjust>
 
-          <md-button raised>default</md-button>
-          <md-button raised dense>dense</md-button>
-          <md-button raised>
-            icon
-            <md-icon slot="icon">favorite<md-icon/>
-          </md-button>
-        </div>
+          <div class="main-content">
+            <md-p :subtitle="1">Text Buttons</md-p>
 
-        <div>
-          <md-p :subtitle="1">Unelevated Buttons</md-p>
-
-          <md-button unelevated>default</md-button>
-          <md-button unelevated dense>dense</md-button>
-          <md-button unelevated>
-            icon
-            <md-icon slot="icon">favorite<md-icon/>
-          </md-button>
-        </div>
-
-        <div>
-          <md-p :subtitle="1">Outlined Buttons</md-p>
-
-          <md-button outlined>default</md-button>
-          <md-button outlined dense>dense</md-button>
-          <md-button outlined>
-            icon
-            <md-icon slot="icon">favorite<md-icon/>
-          </md-button>
-        </div>
-
-        <div>
-          <md-p :subtitle="1">Standard Floating Action Button</md-p>
-
-          <md-fab>
-            <md-icon slot="icon">favorite</md-icon>
-          </md-fab>
-        </div>
-
-        <div>
-          <md-p :subtitle="1">Mini Floating Action Button</md-p>
-
-          <md-fab mini>
-            <md-icon slot="icon">favorite</md-icon>
-          </md-fab>
-        </div>
-
-        <div>
-          <md-p :subtitle="1">Extended FAB</md-p>
-
-          <md-fab extended>
-            <md-icon slot="leadingIcon">add</md-icon>
-            Extended
-          </md-fab>
-        </div>
-
-        <div>
-          <md-p :subtitle="1">Extended FAB (Text label followed by icon)</md-p>
-
-          <md-fab extended>
-            <md-icon slot="trailingIcon">add</md-icon>
-            Extended
-          </md-fab>
-        </div>
-
-        <div>
-          <md-p :subtitle="1">Extended FAB (without Icon)</md-p>
-          <md-fab extended>
-            Extended
-          </md-fab>
-        </div>
-
-        <div>
-          <md-p :subtitle="1">Checkbox</md-p>
-
-          <div>
-            <md-form-field>
-              <md-checkbox id='check-1'></md-checkbox>
-              <label for="check-1">Option 1</label>
-            </md-form-field>
-
-            <md-form-field>
-              <md-checkbox id='check-2'></md-checkbox>
-              <label for="check-2">Option 2</label>
-            </md-form-field>
+            <md-button>default</md-button>
+            <md-button dense>dense</md-button>
+            <md-button>
+              icon
+              <md-icon slot="icon">favorite<md-icon/>
+            </md-button>
           </div>
 
           <div>
-            <md-form-field align-end>
-              <md-checkbox id="check-3" :checked="true"></md-checkbox>
-              <label for="check-3">Option 3</label>
-            </md-form-field>
+            <md-p :subtitle="1">Raised Buttons</md-p>
 
-            <md-form-field align-end>
-              <md-checkbox id='check-4' disabled></md-checkbox>
-              <label for="check-4">Option 4</label>
-            </md-form-field>
-          </div>
-        </div>
-
-
-        <div>
-          <md-p :subtitle="1">Radios</md-p>
-
-          <div>
-            <md-form-field>
-              <md-radio id='radio-1' name='group-1'></md-radio>
-              <label for="radio-1">Option 1</label>
-            </md-form-field>
-
-            <md-form-field>
-              <md-radio id='radio-2' name='group-1'></md-radio>
-              <label for="radio-2">Option 2</label>
-            </md-form-field>
+            <md-button raised>default</md-button>
+            <md-button raised dense>dense</md-button>
+            <md-button raised>
+              icon
+              <md-icon slot="icon">favorite<md-icon/>
+            </md-button>
           </div>
 
           <div>
-            <md-form-field align-end>
-              <md-radio id="radio-3" :checked="true" name='group-2'></md-radio>
-              <label for="radio-3">Option 3</label>
-            </md-form-field>
+            <md-p :subtitle="1">Unelevated Buttons</md-p>
 
-            <md-form-field align-end>
-              <md-radio id='radio-4' disabled name='group-2'></md-radio>
-              <label for="radio-4">Option 4</label>
-            </md-form-field>
+            <md-button unelevated>default</md-button>
+            <md-button unelevated dense>dense</md-button>
+            <md-button unelevated>
+              icon
+              <md-icon slot="icon">favorite<md-icon/>
+            </md-button>
           </div>
-        </div>
 
-        <div>
-          <md-p :subtitle="1">Filled</md-p>
+          <div>
+            <md-p :subtitle="1">Outlined Buttons</md-p>
 
-          <md-grid-inner>
-            <md-grid-cell columns="3">
-              <md-text-field id="filled-1">Standard</md-text-field>
-            </md-grid-cell>
+            <md-button outlined>default</md-button>
+            <md-button outlined dense>dense</md-button>
+            <md-button outlined>
+              icon
+              <md-icon slot="icon">favorite<md-icon/>
+            </md-button>
+          </div>
 
-            <md-grid-cell columns="3">
-              <md-text-field id="filled-2" dense>Dense</md-text-field>
-            </md-grid-cell>
+          <div>
+            <md-p :subtitle="1">Standard Floating Action Button</md-p>
 
-            <md-grid-cell columns="3">
-              <md-text-field id="filled-3">Standard</md-text-field>
-              <md-text-field-helper-text persistent>Helper Text</md-text-field-helper-text>
-            </md-grid-cell>
-          </md-grid-inner>
-        </div>
+            <md-fab>
+              <md-icon slot="icon">favorite</md-icon>
+            </md-fab>
+          </div>
 
-        <div>
-          <md-p :subtitle="1">Filled with Leading Icon</md-p>
+          <div>
+            <md-p :subtitle="1">Mini Floating Action Button</md-p>
 
-          <md-grid-inner>
-            <md-grid-cell columns="3">
-              <md-text-field id="filled-4">
-                <md-icon slot="leadingIcon">event</md-icon>
-                Standard
-              </md-text-field>
-            </md-grid-cell>
+            <md-fab mini>
+              <md-icon slot="icon">favorite</md-icon>
+            </md-fab>
+          </div>
 
-            <md-grid-cell columns="3">
-              <div class="mdc-layout-grid__cell--span-2">
-                <md-text-field id="filled-5" dense>
+          <div>
+            <md-p :subtitle="1">Extended FAB</md-p>
+
+            <md-fab extended>
+              <md-icon slot="leadingIcon">add</md-icon>
+              Extended
+            </md-fab>
+          </div>
+
+          <div>
+            <md-p :subtitle="1">Extended FAB (Text label followed by icon)</md-p>
+
+            <md-fab extended>
+              <md-icon slot="trailingIcon">add</md-icon>
+              Extended
+            </md-fab>
+          </div>
+
+          <div>
+            <md-p :subtitle="1">Extended FAB (without Icon)</md-p>
+            <md-fab extended>
+              Extended
+            </md-fab>
+          </div>
+
+          <div>
+            <md-p :subtitle="1">Checkbox</md-p>
+
+            <div>
+              <md-form-field>
+                <md-checkbox id='check-1'></md-checkbox>
+                <label for="check-1">Option 1</label>
+              </md-form-field>
+
+              <md-form-field>
+                <md-checkbox id='check-2'></md-checkbox>
+                <label for="check-2">Option 2</label>
+              </md-form-field>
+            </div>
+
+            <div>
+              <md-form-field align-end>
+                <md-checkbox id="check-3" :checked="true"></md-checkbox>
+                <label for="check-3">Option 3</label>
+              </md-form-field>
+
+              <md-form-field align-end>
+                <md-checkbox id='check-4' disabled></md-checkbox>
+                <label for="check-4">Option 4</label>
+              </md-form-field>
+            </div>
+          </div>
+
+
+          <div>
+            <md-p :subtitle="1">Radios</md-p>
+
+            <div>
+              <md-form-field>
+                <md-radio id='radio-1' name='group-1'></md-radio>
+                <label for="radio-1">Option 1</label>
+              </md-form-field>
+
+              <md-form-field>
+                <md-radio id='radio-2' name='group-1'></md-radio>
+                <label for="radio-2">Option 2</label>
+              </md-form-field>
+            </div>
+
+            <div>
+              <md-form-field align-end>
+                <md-radio id="radio-3" :checked="true" name='group-2'></md-radio>
+                <label for="radio-3">Option 3</label>
+              </md-form-field>
+
+              <md-form-field align-end>
+                <md-radio id='radio-4' disabled name='group-2'></md-radio>
+                <label for="radio-4">Option 4</label>
+              </md-form-field>
+            </div>
+          </div>
+
+          <div>
+            <md-p :subtitle="1">Filled</md-p>
+
+            <md-grid-inner>
+              <md-grid-cell columns="3">
+                <md-text-field id="filled-1">Standard</md-text-field>
+              </md-grid-cell>
+
+              <md-grid-cell columns="3">
+                <md-text-field id="filled-2" dense>Dense</md-text-field>
+              </md-grid-cell>
+
+              <md-grid-cell columns="3">
+                <md-text-field id="filled-3">Standard</md-text-field>
+                <md-text-field-helper-text persistent>Helper Text</md-text-field-helper-text>
+              </md-grid-cell>
+            </md-grid-inner>
+          </div>
+
+          <div>
+            <md-p :subtitle="1">Filled with Leading Icon</md-p>
+
+            <md-grid-inner>
+              <md-grid-cell columns="3">
+                <md-text-field id="filled-4">
                   <md-icon slot="leadingIcon">event</md-icon>
+                  Standard
+                </md-text-field>
+              </md-grid-cell>
+
+              <md-grid-cell columns="3">
+                <div class="mdc-layout-grid__cell--span-2">
+                  <md-text-field id="filled-5" dense>
+                    <md-icon slot="leadingIcon">event</md-icon>
+                    Dense
+                  </md-text-field>
+                </div>
+              </md-grid-cell>
+
+              <md-grid-cell columns="3">
+                <md-text-field id="filled-6">
+                  <md-icon slot="leadingIcon">event</md-icon>
+                  Standard
+                </md-text-field>
+                <md-text-field-helper-text persistent>Helper Text</md-text-field-helper-text>
+              </md-grid-cell>
+            </md-grid-inner>
+          </div>
+
+          <div>
+            <md-p :subtitle="1">Filled with Trailing Icon</md-p>
+
+            <md-grid-inner>
+              <md-grid-cell columns="3">
+                <md-text-field id="filled-7">
+                  <md-icon slot="trailingIcon">delete</md-icon>
+                  Standard
+                </md-text-field>
+              </md-grid-cell>
+
+              <md-grid-cell columns="3">
+                <md-text-field id="filled-8" dense>
+                  <md-icon slot="trailingIcon">delete</md-icon>
                   Dense
                 </md-text-field>
-              </div>
-            </md-grid-cell>
+              </md-grid-cell>
 
-            <md-grid-cell columns="3">
-              <md-text-field id="filled-6">
-                <md-icon slot="leadingIcon">event</md-icon>
-                Standard
-              </md-text-field>
-              <md-text-field-helper-text persistent>Helper Text</md-text-field-helper-text>
-            </md-grid-cell>
-          </md-grid-inner>
-        </div>
-
-        <div>
-          <md-p :subtitle="1">Filled with Trailing Icon</md-p>
-
-          <md-grid-inner>
-            <md-grid-cell columns="3">
-              <md-text-field id="filled-7">
-                <md-icon slot="trailingIcon">delete</md-icon>
-                Standard
-              </md-text-field>
-            </md-grid-cell>
-
-            <md-grid-cell columns="3">
-              <md-text-field id="filled-8" dense>
-                <md-icon slot="trailingIcon">delete</md-icon>
-                Dense
-              </md-text-field>
-            </md-grid-cell>
-
-            <md-grid-cell columns="3">
-              <md-text-field id="filled-9">
-                <md-icon slot="trailingIcon">delete</md-icon>
-                Standard
-              </md-text-field>
-              <md-text-field-helper-text persistent>Helper Text</md-text-field-helper-text>
-            </md-grid-cell>
-          </md-grid-inner>
-        </div>
+              <md-grid-cell columns="3">
+                <md-text-field id="filled-9">
+                  <md-icon slot="trailingIcon">delete</md-icon>
+                  Standard
+                </md-text-field>
+                <md-text-field-helper-text persistent>Helper Text</md-text-field-helper-text>
+              </md-grid-cell>
+            </md-grid-inner>
+          </div>
 
 
 
-        <div>
-          <md-p subtitle="1">Outlined</md-p>
+          <div>
+            <md-p subtitle="1">Outlined</md-p>
 
-          <md-grid-inner>
-            <md-grid-cell columns="3">
-              <md-text-field id="outlined-1" outlined>Standard</md-text-field>
-            </md-grid-cell>
+            <md-grid-inner>
+              <md-grid-cell columns="3">
+                <md-text-field id="outlined-1" outlined>Standard</md-text-field>
+              </md-grid-cell>
 
-            <md-grid-cell columns="3">
-              <md-text-field id="outlined-2" outlined dense>Dense</md-text-field>
-            </md-grid-cell>
+              <md-grid-cell columns="3">
+                <md-text-field id="outlined-2" outlined dense>Dense</md-text-field>
+              </md-grid-cell>
 
-            <md-grid-cell columns="3">
-              <md-text-field id="outlined-3" outlined>Standard</md-text-field>
-              <md-text-field-helper-text persistent>Helper Text</md-text-field-helper-text>
-            </md-grid-cell>
-          </md-grid-inner>
-        </div>
+              <md-grid-cell columns="3">
+                <md-text-field id="outlined-3" outlined>Standard</md-text-field>
+                <md-text-field-helper-text persistent>Helper Text</md-text-field-helper-text>
+              </md-grid-cell>
+            </md-grid-inner>
+          </div>
 
-        <div>
-          <md-p subtitle="1">Outlined with Leading Icon</md-p>
-          <md-text-field id="outlined-4" outlined>
-            <md-icon slot="leadingIcon">event</md-icon>
-            Standard
-          </md-text-field>
+          <div>
+            <md-p subtitle="1">Outlined with Leading Icon</md-p>
+            <md-text-field id="outlined-4" outlined>
+              <md-icon slot="leadingIcon">event</md-icon>
+              Standard
+            </md-text-field>
 
-          <md-text-field id="outlined-5" outlined dense>
-            <md-icon slot="leadingIcon">event</md-icon>
-            Dense
-          </md-text-field>
+            <md-text-field id="outlined-5" outlined dense>
+              <md-icon slot="leadingIcon">event</md-icon>
+              Dense
+            </md-text-field>
 
-          <md-text-field id="outlined-6" outlined>
-            <md-icon slot="leadingIcon">event</md-icon>
-            Standard
-          </md-text-field>
-          <md-text-field-helper-text persistent>Helper Text</md-text-field-helper-text>
-        </div>
+            <md-text-field id="outlined-6" outlined>
+              <md-icon slot="leadingIcon">event</md-icon>
+              Standard
+            </md-text-field>
+            <md-text-field-helper-text persistent>Helper Text</md-text-field-helper-text>
+          </div>
 
-        <div>
-          <md-p subtitle="1">Outlined with Trailing Icon</md-p>
-          <md-text-field id="outlined-7" outlined>
-            <md-icon slot="trailingIcon">delete</md-icon>
-            Standard
-          </md-text-field>
+          <div>
+            <md-p subtitle="1">Outlined with Trailing Icon</md-p>
+            <md-text-field id="outlined-7" outlined>
+              <md-icon slot="trailingIcon">delete</md-icon>
+              Standard
+            </md-text-field>
 
-          <md-text-field id="outlined-8" outlined dense>
-            <md-icon slot="trailingIcon">delete</md-icon>
-            Dense
-          </md-text-field>
+            <md-text-field id="outlined-8" outlined dense>
+              <md-icon slot="trailingIcon">delete</md-icon>
+              Dense
+            </md-text-field>
 
-          <md-text-field id="outlined-9" outlined>
-            <md-icon slot="trailingIcon">delete</md-icon>
-            Standard
-          </md-text-field>
-          <md-text-field-helper-text persistent>Helper Text</md-text-field-helper-text>
-        </div>
+            <md-text-field id="outlined-9" outlined>
+              <md-icon slot="trailingIcon">delete</md-icon>
+              Standard
+            </md-text-field>
+            <md-text-field-helper-text persistent>Helper Text</md-text-field-helper-text>
+          </div>
 
-        <md-grid>
-          <md-grid-inner>
-            <md-grid-cell :columns="6">
-              <div class="mdc-theme--primary-bg mdc-theme--on-primary">6 columns</div>
-            </md-grid-cell>
-            <md-grid-cell :columns="3">
-              <div class="mdc-theme--primary-bg mdc-theme--on-primary">3 columns</div>
-            </md-grid-cell>
-            <md-grid-cell :columns="2">
-              <div class="mdc-theme--primary-bg mdc-theme--on-primary">2 columns</div>
-            </md-grid-cell>
-            <md-grid-cell :columns="1">
-              <div class="mdc-theme--primary-bg mdc-theme--on-primary">1 col</div>
-            </md-grid-cell>
-          <!-- </md-grid-inner>
+          <md-grid>
+            <md-grid-inner>
+              <md-grid-cell :columns="6">
+                <div class="mdc-theme--primary-bg mdc-theme--on-primary">6 columns</div>
+              </md-grid-cell>
+              <md-grid-cell :columns="3">
+                <div class="mdc-theme--primary-bg mdc-theme--on-primary">3 columns</div>
+              </md-grid-cell>
+              <md-grid-cell :columns="2">
+                <div class="mdc-theme--primary-bg mdc-theme--on-primary">2 columns</div>
+              </md-grid-cell>
+              <md-grid-cell :columns="1">
+                <div class="mdc-theme--primary-bg mdc-theme--on-primary">1 col</div>
+              </md-grid-cell>
+            <!-- </md-grid-inner>
 
-          <md-grid-inner> -->
-            <md-grid-cell :columns="3">
-              <div class="mdc-theme--secondary-bg mdc-theme--on-secondary">3 columns</div>
-            </md-grid-cell>
-            <md-grid-cell :columns="1">
-              <div class="mdc-theme--secondary-bg mdc-theme--on-secondary">1 column</div>
-            </md-grid-cell>
-            <md-grid-cell :columns="8">
-              <div class="mdc-theme--secondary-bg mdc-theme--on-secondary">8 columns</div>
-            </md-grid-cell>
-          </md-grid-inner>
-        </md-grid>
-
-
-        <div>
-          <md-h :level="1">Headline 1</md-h>
-          <md-h :level="2">Headline 2</md-h>
-          <md-h :level="3">Headline 3</md-h>
-          <md-h level="4">Headline 4</md-h>
-          <md-h level="5">Headline 5</md-h>
-          <md-h level="6">Headline 6</md-h>
-          <md-p :subtitle="1">Subtitle 1</md-p>
-          <md-p :subtitle="2">Subtitle 2</md-p>
-          <md-p :body="1">
-            Body 1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
-          </md-p>
-          <md-p :body="2">
-            Body 2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate aliquid ad quas sunt voluptatum officia dolorum cumque, possimus nihil molestias sapiente necessitatibus dolor saepe inventore, soluta id accusantium voluptas beatae.
-          </md-p>
-        </div>
+            <md-grid-inner> -->
+              <md-grid-cell :columns="3">
+                <div class="mdc-theme--secondary-bg mdc-theme--on-secondary">3 columns</div>
+              </md-grid-cell>
+              <md-grid-cell :columns="1">
+                <div class="mdc-theme--secondary-bg mdc-theme--on-secondary">1 column</div>
+              </md-grid-cell>
+              <md-grid-cell :columns="8">
+                <div class="mdc-theme--secondary-bg mdc-theme--on-secondary">8 columns</div>
+              </md-grid-cell>
+            </md-grid-inner>
+          </md-grid>
 
 
+          <div>
+            <md-h :level="1">Headline 1</md-h>
+            <md-h :level="2">Headline 2</md-h>
+            <md-h :level="3">Headline 3</md-h>
+            <md-h level="4">Headline 4</md-h>
+            <md-h level="5">Headline 5</md-h>
+            <md-h level="6">Headline 6</md-h>
+            <md-p :subtitle="1">Subtitle 1</md-p>
+            <md-p :subtitle="2">Subtitle 2</md-p>
+            <md-p :body="1">
+              Body 1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
+            </md-p>
+            <md-p :body="2">
+              Body 2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate aliquid ad quas sunt voluptatum officia dolorum cumque, possimus nihil molestias sapiente necessitatibus dolor saepe inventore, soluta id accusantium voluptas beatae.
+            </md-p>
+          </div>
+
+        </md-top-app-bar-fixed-adjust>
       </md-drawer-app-content>
     </div>
 

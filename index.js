@@ -33,7 +33,7 @@ const components = {
   'md-list-group': list.group,
   'md-list-divider': list.divider,
   'md-top-app-bar': topAppBar.topAppBar,
-  'md-fixed-adjust': topAppBar.fixedAdjust,
+  'md-top-app-bar-fixed-adjust': topAppBar.fixedAdjust,
   'md-h': headline,
   'md-p': paragraph
 }

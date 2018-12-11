@@ -3,7 +3,7 @@ const drawer = require('@material/drawer');
 module.exports = {
   props: {
     dismissible: Boolean,
-    model: Boolean
+    modal: Boolean
   },
   data: function() {
     return {

@@ -137,7 +137,7 @@ const drawer = require('@material/drawer');
 module.exports = {
   props: {
     dismissible: Boolean,
-    model: Boolean
+    modal: Boolean
   },
   data: function() {
     return {
@@ -759,18 +759,36 @@ module.exports = {
 
 },{}],28:[function(require,module,exports){
 //const topAppBar = require('@material/top-app-bar/index');
+const drawer = require('@material/drawer');
 
 module.exports = {
   props: {
-    fixed: Boolean,
-    prominent: Boolean,
-    dense: Boolean,
-    short: Boolean,
-    collapsed: Boolean
+    fixed: {
+      type: Boolean,
+      default: false
+    },
+    prominent: {
+      type: Boolean,
+      default: false
+    },
+    dense: {
+      type: Boolean,
+      default: false
+    },
+    short: {
+      type: Boolean,
+      default: false
+    },
+    collapsed: {
+      type: Boolean,
+      default: false
+    },
+    drawer: Boolean
   },
   data: function() {
     return {
-      mdcTopAppBar: undefined
+      mdcTopAppBar: undefined,
+      mdcDrawer: undefined
     }
   },
   computed: {
@@ -788,6 +806,17 @@ module.exports = {
   mounted: function() {
     //this.mdcTopAppBar = new topAppBar.MDCTopAppBar(this.$el);
     this.mdcTopAppBar = mdc.topAppBar.MDCTopAppBar.attachTo(this.$el);
+
+    if (this.drawer) {
+      this.mdcDrawer = new drawer.MDCDrawer(document.querySelector('.mdc-drawer'));
+      this.mdcTopAppBar.listen('MDCTopAppBar:nav', () => {
+        this.mdcDrawer.open = !this.mdcDrawer.open;
+      });
+    }
+
+    this.mdcDrawer.open = true;
+    console.log(this.mdcTopAppBar);
+    console.log(this.mdcDrawer);
 
     if (this.$slots['navigation-icon']) {
       this.$slots['navigation-icon'][0].elm.classList.add('mdc-top-app-bar__navigation-icon');
@@ -824,7 +853,7 @@ module.exports = {
   `
 }
 
-},{}],29:[function(require,module,exports){
+},{"@material/drawer":33}],29:[function(require,module,exports){
 module.exports = {
   props: {
     level: {
@@ -929,7 +958,7 @@ const components = {
   'md-list-group': list.group,
   'md-list-divider': list.divider,
   'md-top-app-bar': topAppBar.topAppBar,
-  'md-fixed-adjust': topAppBar.fixedAdjust,
+  'md-top-app-bar-fixed-adjust': topAppBar.fixedAdjust,
   'md-h': headline,
   'md-p': paragraph
 }
