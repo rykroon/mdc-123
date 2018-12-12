@@ -40,5 +40,9 @@ const components = {
 
 const myapp = new Vue({
   el:'#myapp',
-  components: components
+  components: components,
+  data: {
+    isChecked: true,
+    checkboxStatus: true
+  }
 })

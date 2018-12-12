@@ -33,11 +33,13 @@ module.exports = {
       }
     }
   },
-  watch: {
-    
-  },
   mounted: function() {
     this.mdcCheckbox = new checkbox.MDCCheckbox(this.$el);
+
+    // this.mdcCheckbox.disabled = this.disabled;
+    // this.mdcCheckbox.indeterminate = this.indeterminate
+    // this.mdcCheckbox.checked = this.checked
+    // this.mdcCheckbox.value = this.value
   },
   template: `
     <div :class="classes">
@@ -46,7 +48,6 @@ module.exports = {
         type="checkbox"
         class="mdc-checkbox__native-control"
         v-bind="$attrs"
-        v-on:change="$emit('change', $event.target.checked)"
         :disabled="disabled"/>
 
       <div class="mdc-checkbox__background">

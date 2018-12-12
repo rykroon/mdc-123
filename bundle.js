@@ -236,11 +236,13 @@ module.exports = {
       }
     }
   },
-  watch: {
-    
-  },
   mounted: function() {
     this.mdcCheckbox = new checkbox.MDCCheckbox(this.$el);
+
+    // this.mdcCheckbox.disabled = this.disabled;
+    // this.mdcCheckbox.indeterminate = this.indeterminate
+    // this.mdcCheckbox.checked = this.checked
+    // this.mdcCheckbox.value = this.value
   },
   template: `
     <div :class="classes">
@@ -249,7 +251,6 @@ module.exports = {
         type="checkbox"
         class="mdc-checkbox__native-control"
         v-bind="$attrs"
-        v-on:change="$emit('change', $event.target.checked)"
         :disabled="disabled"/>
 
       <div class="mdc-checkbox__background">
@@ -776,7 +777,6 @@ module.exports = {
 
 },{}],28:[function(require,module,exports){
 //const topAppBar = require('@material/top-app-bar/index');
-const drawer = require('@material/drawer');
 
 module.exports = {
   props: {
@@ -799,13 +799,11 @@ module.exports = {
     collapsed: {
       type: Boolean,
       default: false
-    },
-    drawer: Boolean
+    }
   },
   data: function() {
     return {
-      mdcTopAppBar: undefined,
-      mdcDrawer: undefined
+      mdcTopAppBar: undefined
     }
   },
   computed: {
@@ -823,17 +821,6 @@ module.exports = {
   mounted: function() {
     //this.mdcTopAppBar = new topAppBar.MDCTopAppBar(this.$el);
     this.mdcTopAppBar = mdc.topAppBar.MDCTopAppBar.attachTo(this.$el);
-
-    if (this.drawer) {
-      this.mdcDrawer = new drawer.MDCDrawer(document.querySelector('.mdc-drawer'));
-      this.mdcTopAppBar.listen('MDCTopAppBar:nav', () => {
-        this.mdcDrawer.open = !this.mdcDrawer.open;
-      });
-    }
-
-    this.mdcDrawer.open = true;
-    console.log(this.mdcTopAppBar);
-    console.log(this.mdcDrawer);
 
     if (this.$slots['navigation-icon']) {
       this.$slots['navigation-icon'][0].elm.classList.add('mdc-top-app-bar__navigation-icon');
@@ -870,7 +857,7 @@ module.exports = {
   `
 }
 
-},{"@material/drawer":33}],29:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 module.exports = {
   props: {
     level: {
@@ -982,7 +969,11 @@ const components = {
 
 const myapp = new Vue({
   el:'#myapp',
-  components: components
+  components: components,
+  data: {
+    isChecked: true,
+    checkboxStatus: true
+  }
 })
 
 },{"./components/buttons/button.js":1,"./components/buttons/fab.js":2,"./components/drawer/index.js":6,"./components/icon.js":7,"./components/inputs-and-controls/checkbox.js":8,"./components/inputs-and-controls/form-field.js":10,"./components/inputs-and-controls/radio.js":13,"./components/inputs-and-controls/text-field/text-field-helper-text.js":14,"./components/inputs-and-controls/text-field/text-field.js":15,"./components/layout-grid/index.js":16,"./components/lists/index.js":20,"./components/top-app-bar/index.js":26,"./components/typography/headline.js":29,"./components/typography/paragraph.js":30}],32:[function(require,module,exports){

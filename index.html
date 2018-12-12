@@ -125,12 +125,12 @@
 
             <div>
               <md-form-field>
-                <md-checkbox id='check-1'></md-checkbox>
+                <md-checkbox id='check-1' :checked="isChecked" v-model="checkboxStatus"></md-checkbox>
                 <label for="check-1">Option 1</label>
               </md-form-field>
 
               <md-form-field>
-                <md-checkbox id='check-2'></md-checkbox>
+                <md-checkbox id='check-2' indeterminate></md-checkbox>
                 <label for="check-2">Option 2</label>
               </md-form-field>
             </div>

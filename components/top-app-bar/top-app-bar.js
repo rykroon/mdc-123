@@ -1,5 +1,4 @@
 //const topAppBar = require('@material/top-app-bar/index');
-const drawer = require('@material/drawer');
 
 module.exports = {
   props: {
@@ -22,13 +21,11 @@ module.exports = {
     collapsed: {
       type: Boolean,
       default: false
-    },
-    drawer: Boolean
+    }
   },
   data: function() {
     return {
-      mdcTopAppBar: undefined,
-      mdcDrawer: undefined
+      mdcTopAppBar: undefined
     }
   },
   computed: {
@@ -46,17 +43,6 @@ module.exports = {
   mounted: function() {
     //this.mdcTopAppBar = new topAppBar.MDCTopAppBar(this.$el);
     this.mdcTopAppBar = mdc.topAppBar.MDCTopAppBar.attachTo(this.$el);
-
-    if (this.drawer) {
-      this.mdcDrawer = new drawer.MDCDrawer(document.querySelector('.mdc-drawer'));
-      this.mdcTopAppBar.listen('MDCTopAppBar:nav', () => {
-        this.mdcDrawer.open = !this.mdcDrawer.open;
-      });
-    }
-
-    this.mdcDrawer.open = true;
-    console.log(this.mdcTopAppBar);
-    console.log(this.mdcDrawer);
 
     if (this.$slots['navigation-icon']) {
       this.$slots['navigation-icon'][0].elm.classList.add('mdc-top-app-bar__navigation-icon');
