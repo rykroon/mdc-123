@@ -1,12 +1,27 @@
 const checkbox = require('@material/checkbox')
 
 module.exports = {
+  model: {
+    prop: 'checked',
+    event: 'change'
+  },
   props: {
-    ripple: {
+    checked: {
       type: Boolean,
-      default: true
+      default: false
     },
-    disabled: Boolean
+    indeterminate: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    value: {
+      type: String,
+      default: ''
+    }
   },
   inheritAttrs: false,
   data: function() {
@@ -18,10 +33,11 @@ module.exports = {
       }
     }
   },
+  watch: {
+    
+  },
   mounted: function() {
-    if (this.ripple) {
-      this.mdcCheckbox = new checkbox.MDCCheckbox(this.$el);
-    }
+    this.mdcCheckbox = new checkbox.MDCCheckbox(this.$el);
   },
   template: `
     <div :class="classes">
@@ -30,6 +46,7 @@ module.exports = {
         type="checkbox"
         class="mdc-checkbox__native-control"
         v-bind="$attrs"
+        v-on:change="$emit('change', $event.target.checked)"
         :disabled="disabled"/>
 
       <div class="mdc-checkbox__background">
