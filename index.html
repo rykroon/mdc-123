@@ -137,8 +137,8 @@
 
             <div>
               <md-form-field align-end>
-                <md-checkbox id="check-3" v-model="checkboxStatus"></md-checkbox>
-                <label for="check-3">{{checkboxStatus}}</label>
+                <md-checkbox id="check-3" v-model="vModel"></md-checkbox>
+                <label for="check-3">{{vModel}}</label>
               </md-form-field>
 
               <md-form-field align-end>
@@ -154,24 +154,24 @@
 
             <div>
               <md-form-field>
-                <md-radio id='radio-1' name='group-1'></md-radio>
+                <md-radio id='radio-1' name='group-1' :checked="isChecked"></md-radio>
                 <label for="radio-1">Option 1</label>
               </md-form-field>
 
               <md-form-field>
-                <md-radio id='radio-2' name='group-1'></md-radio>
+                <md-radio id='radio-2' name='group-1' :disabled="isDisabled"></md-radio>
                 <label for="radio-2">Option 2</label>
               </md-form-field>
             </div>
 
             <div>
               <md-form-field align-end>
-                <md-radio id="radio-3" :checked="true" name='group-2'></md-radio>
-                <label for="radio-3">Option 3</label>
+                <md-radio id="radio-3" name='group-2' v-model="vModel"></md-radio>
+                <label for="radio-3">{{vModel}}</label>
               </md-form-field>
 
               <md-form-field align-end>
-                <md-radio id='radio-4' disabled name='group-2'></md-radio>
+                <md-radio id='radio-4' name='group-2'></md-radio>
                 <label for="radio-4">Option 4</label>
               </md-form-field>
             </div>
