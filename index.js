@@ -43,6 +43,8 @@ const myapp = new Vue({
   components: components,
   data: {
     isChecked: true,
-    checkboxStatus: true
+    checkboxStatus: true,
+    isIndeterminate: true,
+    isDisabled: true
   }
 })

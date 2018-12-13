@@ -229,29 +229,38 @@ module.exports = {
   inheritAttrs: false,
   data: function() {
     return {
-      mdcCheckbox: undefined,
-      classes: {
-          'mdc-checkbox': true,
-          'mdc-checkbox--disabled': this.disabled
+      mdcCheckbox: undefined
+    }
+  },
+  watch: {
+    checked: function(value) {
+      this.mdcCheckbox.checked = value;
+
+      if (value) {
+        this.mdcCheckbox.indeterminate = false;
       }
+    },
+    indeterminate: function(value) {
+      this.mdcCheckbox.indeterminate =  value
+    },
+    disabled: function(value) {
+      this.mdcCheckbox.disabled= value
     }
   },
   mounted: function() {
     this.mdcCheckbox = new checkbox.MDCCheckbox(this.$el);
-
-    // this.mdcCheckbox.disabled = this.disabled;
-    // this.mdcCheckbox.indeterminate = this.indeterminate
-    // this.mdcCheckbox.checked = this.checked
-    // this.mdcCheckbox.value = this.value
+    this.mdcCheckbox.checked = this.checked;
+    this.mdcCheckbox.indeterminate = this.indeterminate;
+    this.mdcCheckbox.disabled = this.disabled;
   },
   template: `
-    <div :class="classes">
+    <div class="mdc-checkbox">
 
       <input
         type="checkbox"
         class="mdc-checkbox__native-control"
         v-bind="$attrs"
-        :disabled="disabled"/>
+        v-on:change="$emit('change', $event.target.checked)"/>
 
       <div class="mdc-checkbox__background">
 
@@ -972,7 +981,9 @@ const myapp = new Vue({
   components: components,
   data: {
     isChecked: true,
-    checkboxStatus: true
+    checkboxStatus: true,
+    isIndeterminate: true,
+    isDisabled: true
   }
 })
 
