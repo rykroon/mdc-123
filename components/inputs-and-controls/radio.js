@@ -1,6 +1,11 @@
 const radio = require('@material/radio');
 
 module.exports =  {
+  inheritAttrs: false,
+  model: {
+    prop: 'value',
+    event: 'change'
+  },
   props: {
     checked: {
       type: Boolean,
@@ -11,32 +16,35 @@ module.exports =  {
       default: false
     }
   },
-  inheritAttrs: false,
   data: function() {
     return {
       mdcRadio: undefined
     }
   },
-  watch: {
-    checked: function(value) {
-      this.mdcRadio.checked = value;
-    },
-    disabled: function(value) {
-      this.mdcRadio.disabled = value
+  computed: {
+    classes: function() {
+      return {
+        'mdc-radio': true,
+        'mdc-radio--disabled': this.disabled
+      }
     }
   },
   mounted: function() {
     this.mdcRadio = new radio.MDCRadio(this.$el);
-    this.mdcRadio.checked = this.checked;
-    this.mdcRadio.disabled = this.disabled;
+  },
+  beforeDestroy: function() {
+    this.mdcRadio.destroy();
   },
   template: `
-    <div class="mdc-radio">
+    <div :class="classes">
 
       <input
         class="mdc-radio__native-control"
         type="radio"
-        v-bind="$attrs">
+        v-bind="$attrs"
+        :checked="checked"
+        :disabled="disabled"
+        v-on:change="$emit('change', $event.target.value)">
 
       <div class="mdc-radio__background">
         <div class="mdc-radio__outer-circle"></div>

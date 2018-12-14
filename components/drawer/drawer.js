@@ -18,6 +18,9 @@ module.exports = {
   mounted: function() {
     this.mdcDrawer = new drawer.MDCDrawer(this.$el);
   },
+  beforeDestroy: function() {
+    this.mdcDrawer.destroy();
+  },
   template: `
     <aside :class="classes">
 

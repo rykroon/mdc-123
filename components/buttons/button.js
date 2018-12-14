@@ -34,12 +34,16 @@ module.exports = {
       this.$slots.icon[0].elm.classList.add('mdc-button__icon')
     }
   },
+  beforeDestroy: function() {
+    if (this.mdcRipple) {
+      this.mdcRipple.destroy();
+    }
+  },
   template: `
     <a
       v-if="href"
       :class="classes"
       :href="href"
-      v-bind="$attrs"
       v-on="$listeners">
 
       <slot name="icon"/>
@@ -50,7 +54,6 @@ module.exports = {
     <button
       v-else
       :class="classes"
-      v-bind="$attrs"
       v-on="$listeners">
 
       <slot name="icon"/>

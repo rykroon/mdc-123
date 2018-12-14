@@ -43,8 +43,16 @@ const myapp = new Vue({
   components: components,
   data: {
     isChecked: true,
-    vModel: true,
+    checkModel: true,
     isIndeterminate: true,
     isDisabled: true
   }
 })
+
+const checkboxes = new Vue({
+  el:"#checkboxes",
+  components: {
+    'md-checkbox': checkbox
+  },
+
+});

@@ -1,6 +1,7 @@
 const checkbox = require('@material/checkbox')
 
 module.exports = {
+  inheritAttrs: false,
   model: {
     prop: 'checked',
     event: 'change'
@@ -17,41 +18,48 @@ module.exports = {
     disabled: {
       type: Boolean,
       default: false
-    },
-    value: {
-      type: String,
-      default: ''
     }
   },
-  inheritAttrs: false,
   data: function() {
     return {
       mdcCheckbox: undefined
     }
   },
+  computed: {
+    classes: function() {
+      return {
+        'mdc-checkbox': true,
+        'mdc-checkbox--disabled': this.disabled
+      }
+    }
+    // model: {
+    //   get() {
+    //     return this.checked;
+    //   },
+    //   set(value) {
+    //     this.$emit('change', value);
+    //   }
+    // }
+  },
   watch: {
     checked: function(value) {
-      this.mdcCheckbox.checked = value;
-
       if (value) {
         this.mdcCheckbox.indeterminate = false;
       }
     },
     indeterminate: function(value) {
-      this.mdcCheckbox.indeterminate =  value
-    },
-    disabled: function(value) {
-      this.mdcCheckbox.disabled= value
+      this.mdcCheckbox.indeterminate = value;
     }
   },
   mounted: function() {
     this.mdcCheckbox = new checkbox.MDCCheckbox(this.$el);
-    this.mdcCheckbox.checked = this.checked;
     this.mdcCheckbox.indeterminate = this.indeterminate;
-    this.mdcCheckbox.disabled = this.disabled;
+  },
+  beforeDestroy: function() {
+    this.mdcCheckbox.destroy();
   },
   template: `
-    <div class="mdc-checkbox">
+    <div :class="classes">
 
       <input
         type="checkbox"

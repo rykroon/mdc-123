@@ -4,6 +4,12 @@ const lineRipple = require('../line-ripple.js');
 const textField = require('@material/textfield');
 
 module.exports = {
+  components: {
+    'md-floating-label': floatingLabel,
+    'md-notched-outline': notchedOutline,
+    'md-line-ripple': lineRipple
+  },
+  inheritAttrs: false,
   props: {
     fullWidth: Boolean,
     textArea: Boolean,
@@ -11,7 +17,6 @@ module.exports = {
     dense: Boolean,
     disabled: Boolean
   },
-  inheritAttrs: false,
   data: function() {
     return {
       mdcTextField: undefined,
@@ -33,11 +38,6 @@ module.exports = {
       return !this.fullWidth && !this.outlined && !this.textArea
     }
   },
-  components: {
-    'md-floating-label': floatingLabel,
-    'md-notched-outline': notchedOutline,
-    'md-line-ripple': lineRipple
-  },
   mounted: function() {
     this.mdcTextField = new textField.MDCTextField(this.$el);
 
@@ -46,6 +46,9 @@ module.exports = {
         entry[1][0].elm.classList.add('mdc-text-field__icon');
       }
     }
+  },
+  beforeDestroy: function() {
+    this.mdcTextField.destroy();
   },
   template: `
     <div :class="classes">

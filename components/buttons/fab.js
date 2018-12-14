@@ -32,10 +32,14 @@ module.exports = {
       }
     }
   },
+  beforeDestroy: function() {
+    if (this.mdcRipple) {
+      this.mdcRipple.destroy();
+    }
+  },
   template: `
     <button
       :class="classes"
-      v-bind="$attrs"
       v-on="$listeners">
 
       <template v-if="extended">

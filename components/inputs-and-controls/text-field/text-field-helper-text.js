@@ -19,6 +19,9 @@ module.exports =  {
     this.mdcHelperText = mdc.textField.MDCTextFieldHelperText.attachTo(this.$el);
     //this.mdcHelperText = new helperText.MDCTextFieldHelperText(this.$el);
   },
+  beforeDestroy: function() {
+    this.mdcHelperText.destroy();
+  },
   template: `
     <p :class="classes">
       <slot/>

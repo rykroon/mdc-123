@@ -35,12 +35,16 @@ module.exports = {
       this.$slots.icon[0].elm.classList.add('mdc-button__icon')
     }
   },
+  beforeDestroy: function() {
+    if (this.mdcRipple) {
+      this.mdcRipple.destroy();
+    }
+  },
   template: `
     <a
       v-if="href"
       :class="classes"
       :href="href"
-      v-bind="$attrs"
       v-on="$listeners">
 
       <slot name="icon"/>
@@ -51,7 +55,6 @@ module.exports = {
     <button
       v-else
       :class="classes"
-      v-bind="$attrs"
       v-on="$listeners">
 
       <slot name="icon"/>
@@ -95,10 +98,14 @@ module.exports = {
       }
     }
   },
+  beforeDestroy: function() {
+    if (this.mdcRipple) {
+      this.mdcRipple.destroy();
+    }
+  },
   template: `
     <button
       :class="classes"
-      v-bind="$attrs"
       v-on="$listeners">
 
       <template v-if="extended">
@@ -152,6 +159,9 @@ module.exports = {
   mounted: function() {
     this.mdcDrawer = new drawer.MDCDrawer(this.$el);
   },
+  beforeDestroy: function() {
+    this.mdcDrawer.destroy();
+  },
   template: `
     <aside :class="classes">
 
@@ -204,6 +214,7 @@ module.exports = {
 const checkbox = require('@material/checkbox')
 
 module.exports = {
+  inheritAttrs: false,
   model: {
     prop: 'checked',
     event: 'change'
@@ -220,46 +231,55 @@ module.exports = {
     disabled: {
       type: Boolean,
       default: false
-    },
-    value: {
-      type: String,
-      default: ''
     }
   },
-  inheritAttrs: false,
   data: function() {
     return {
       mdcCheckbox: undefined
     }
   },
+  computed: {
+    classes: function() {
+      return {
+        'mdc-checkbox': true,
+        'mdc-checkbox--disabled': this.disabled
+      }
+    }
+    // model: {
+    //   get() {
+    //     return this.checked;
+    //   },
+    //   set(value) {
+    //     this.$emit('change', value);
+    //   }
+    // }
+  },
   watch: {
     checked: function(value) {
-      this.mdcCheckbox.checked = value;
-
       if (value) {
         this.mdcCheckbox.indeterminate = false;
       }
     },
     indeterminate: function(value) {
-      this.mdcCheckbox.indeterminate =  value
-    },
-    disabled: function(value) {
-      this.mdcCheckbox.disabled= value
+      this.mdcCheckbox.indeterminate = value;
     }
   },
   mounted: function() {
     this.mdcCheckbox = new checkbox.MDCCheckbox(this.$el);
-    this.mdcCheckbox.checked = this.checked;
     this.mdcCheckbox.indeterminate = this.indeterminate;
-    this.mdcCheckbox.disabled = this.disabled;
+  },
+  beforeDestroy: function() {
+    this.mdcCheckbox.destroy();
   },
   template: `
-    <div class="mdc-checkbox">
+    <div :class="classes">
 
       <input
         type="checkbox"
         class="mdc-checkbox__native-control"
         v-bind="$attrs"
+        :checked="checked"
+        :disabled="disabled"
         v-on:change="$emit('change', $event.target.checked)"/>
 
       <div class="mdc-checkbox__background">
@@ -337,6 +357,11 @@ module.exports =  {
 const radio = require('@material/radio');
 
 module.exports =  {
+  inheritAttrs: false,
+  model: {
+    prop: 'value',
+    event: 'change'
+  },
   props: {
     checked: {
       type: Boolean,
@@ -347,32 +372,35 @@ module.exports =  {
       default: false
     }
   },
-  inheritAttrs: false,
   data: function() {
     return {
       mdcRadio: undefined
     }
   },
-  watch: {
-    checked: function(value) {
-      this.mdcRadio.checked = value;
-    },
-    disabled: function(value) {
-      this.mdcRadio.disabled = value
+  computed: {
+    classes: function() {
+      return {
+        'mdc-radio': true,
+        'mdc-radio--disabled': this.disabled
+      }
     }
   },
   mounted: function() {
     this.mdcRadio = new radio.MDCRadio(this.$el);
-    this.mdcRadio.checked = this.checked;
-    this.mdcRadio.disabled = this.disabled;
+  },
+  beforeDestroy: function() {
+    this.mdcRadio.destroy();
   },
   template: `
-    <div class="mdc-radio">
+    <div :class="classes">
 
       <input
         class="mdc-radio__native-control"
         type="radio"
-        v-bind="$attrs">
+        v-bind="$attrs"
+        :checked="checked"
+        :disabled="disabled"
+        v-on:change="$emit('change', $event.target.value)">
 
       <div class="mdc-radio__background">
         <div class="mdc-radio__outer-circle"></div>
@@ -403,6 +431,9 @@ module.exports =  {
     this.mdcHelperText = mdc.textField.MDCTextFieldHelperText.attachTo(this.$el);
     //this.mdcHelperText = new helperText.MDCTextFieldHelperText(this.$el);
   },
+  beforeDestroy: function() {
+    this.mdcHelperText.destroy();
+  },
   template: `
     <p :class="classes">
       <slot/>
@@ -416,6 +447,12 @@ const lineRipple = require('../line-ripple.js');
 const textField = require('@material/textfield');
 
 module.exports = {
+  components: {
+    'md-floating-label': floatingLabel,
+    'md-notched-outline': notchedOutline,
+    'md-line-ripple': lineRipple
+  },
+  inheritAttrs: false,
   props: {
     fullWidth: Boolean,
     textArea: Boolean,
@@ -423,7 +460,6 @@ module.exports = {
     dense: Boolean,
     disabled: Boolean
   },
-  inheritAttrs: false,
   data: function() {
     return {
       mdcTextField: undefined,
@@ -445,11 +481,6 @@ module.exports = {
       return !this.fullWidth && !this.outlined && !this.textArea
     }
   },
-  components: {
-    'md-floating-label': floatingLabel,
-    'md-notched-outline': notchedOutline,
-    'md-line-ripple': lineRipple
-  },
   mounted: function() {
     this.mdcTextField = new textField.MDCTextField(this.$el);
 
@@ -458,6 +489,9 @@ module.exports = {
         entry[1][0].elm.classList.add('mdc-text-field__icon');
       }
     }
+  },
+  beforeDestroy: function() {
+    this.mdcTextField.destroy();
   },
   template: `
     <div :class="classes">
@@ -987,11 +1021,19 @@ const myapp = new Vue({
   components: components,
   data: {
     isChecked: true,
-    vModel: true,
+    checkModel: true,
     isIndeterminate: true,
     isDisabled: true
   }
 })
+
+const checkboxes = new Vue({
+  el:"#checkboxes",
+  components: {
+    'md-checkbox': checkbox
+  },
+
+});
 
 },{"./components/buttons/button.js":1,"./components/buttons/fab.js":2,"./components/drawer/index.js":6,"./components/icon.js":7,"./components/inputs-and-controls/checkbox.js":8,"./components/inputs-and-controls/form-field.js":10,"./components/inputs-and-controls/radio.js":13,"./components/inputs-and-controls/text-field/text-field-helper-text.js":14,"./components/inputs-and-controls/text-field/text-field.js":15,"./components/layout-grid/index.js":16,"./components/lists/index.js":20,"./components/top-app-bar/index.js":26,"./components/typography/headline.js":29,"./components/typography/paragraph.js":30}],32:[function(require,module,exports){
 /*!

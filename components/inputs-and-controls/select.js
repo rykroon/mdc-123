@@ -4,29 +4,47 @@ const lineRipple = require('./line-ripple.js');
 const select = require('@material/select');
 
 module.exports = {
-  props: {
-    outlined: Boolean,
-    options: Array,
-    disabled: Boolean
-  },
-  inheritAttrs: false,
-  data: function() {
-    return {
-      mdcSelect: undefined,
-      classes: {
-        'mdc-select': true,
-        'mdc-select--outlined': this.outlined,
-        'mdc-select--disabled': this.disabled
-      }
-    }
-  },
   components: {
     'md-floating-label': floatingLabel,
     'md-line-ripple': lineRipple,
     'md-notched-outline': notchedOutline
   },
+  inheritAttrs: false,
+  model: {
+    prop: 'value',
+    event: 'change'
+  },
+  props: {
+    outlined: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    value: {
+      type: String,
+      default: ''
+    }
+  },
+  data: function() {
+    return {
+      mdcSelect: undefined,
+    }
+  },
+  computed: {
+    classes: {
+      'mdc-select': true,
+      'mdc-select--outlined': this.outlined,
+      'mdc-select--disabled': this.disabled
+    }
+  },
   mounted: function() {
     this.mdcSelect = new select.MDCSelect(this.$el);
+  },
+  beforeDestroy: function() {
+    this.mdcSelect.destroy();
   },
   template:`
   <div :class="classes">
@@ -35,19 +53,15 @@ module.exports = {
     <select
       v-bind="$attrs"
       class="mdc-select__native-control"
+      :value="value"
+      v-on:change="$emit('change', $event.target.value)"
       :disabled="disabled">
 
-      <option
-        v-for="option in options"
-        :value="option.value"
-        :disabled="option.disabled"
-        :selected="option.selected">
-        {{option.text}}
-      </option>
+      <slot/>
     </select>
 
     <md-floating-label>
-      <slot/>
+      <slot name="label"/>
     </md-floating-label>
 
     <md-line-ripple v-if="!outlined"/>

@@ -123,9 +123,9 @@
           <div>
             <md-p :subtitle="1">Checkbox</md-p>
 
-            <div>
+            <div id="checkboxes">
               <md-form-field>
-                <md-checkbox id='check-1' :checked="isChecked"></md-checkbox>
+                <md-checkbox id='check-1' ></md-checkbox>
                 <label for="check-1">Option 1</label>
               </md-form-field>
 
@@ -137,12 +137,12 @@
 
             <div>
               <md-form-field align-end>
-                <md-checkbox id="check-3" v-model="vModel"></md-checkbox>
-                <label for="check-3">{{vModel}}</label>
+                <md-checkbox id="check-3" v-model="checkModel"></md-checkbox>
+                <label for="check-3">{{checkModel}}</label>
               </md-form-field>
 
               <md-form-field align-end>
-                <md-checkbox id='check-4' :disabled="isDisabled"></md-checkbox>
+                <md-checkbox id='check-4' disabled></md-checkbox>
                 <label for="check-4">Option 4</label>
               </md-form-field>
             </div>
@@ -154,7 +154,7 @@
 
             <div>
               <md-form-field>
-                <md-radio id='radio-1' name='group-1' :checked="isChecked"></md-radio>
+                <md-radio id='radio-1' name='group-1'></md-radio>
                 <label for="radio-1">Option 1</label>
               </md-form-field>
 
@@ -166,8 +166,8 @@
 
             <div>
               <md-form-field align-end>
-                <md-radio id="radio-3" name='group-2' v-model="vModel"></md-radio>
-                <label for="radio-3">{{vModel}}</label>
+                <md-radio id="radio-3" name='group-2' ></md-radio>
+                <label for="radio-3">Option 3</label>
               </md-form-field>
 
               <md-form-field align-end>
