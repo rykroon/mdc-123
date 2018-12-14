@@ -278,8 +278,6 @@ module.exports = {
         type="checkbox"
         class="mdc-checkbox__native-control"
         v-bind="$attrs"
-        :checked="checked"
-        :disabled="disabled"
         v-on:change="$emit('change', $event.target.checked)"/>
 
       <div class="mdc-checkbox__background">
@@ -774,6 +772,9 @@ module.exports = {
       this.listItemRipples = this.mdcList.listElements.map((listItemEl) => new ripple.MDCRipple(listItemEl));
     }
   },
+  beforeDestroy: function() {
+    this.mdcList.destroy();
+  },
   template: `
     <ul :class=classes>
       <slot/>
@@ -878,6 +879,9 @@ module.exports = {
     if (this.$slots['action-items']) {
       this.$slots['action-items'][0].elm.classList.add('mdc-top-app-bar__action-item');
     }
+  },
+  beforeDestroy: function() {
+    this.mdcTopAppBar.destroy();
   },
   template: `
     <header :class="classes">

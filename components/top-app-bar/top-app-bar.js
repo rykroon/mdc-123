@@ -52,6 +52,9 @@ module.exports = {
       this.$slots['action-items'][0].elm.classList.add('mdc-top-app-bar__action-item');
     }
   },
+  beforeDestroy: function() {
+    this.mdcTopAppBar.destroy();
+  },
   template: `
     <header :class="classes">
       <div class='mdc-top-app-bar__row'>

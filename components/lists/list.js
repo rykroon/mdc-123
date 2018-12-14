@@ -43,6 +43,9 @@ module.exports = {
       this.listItemRipples = this.mdcList.listElements.map((listItemEl) => new ripple.MDCRipple(listItemEl));
     }
   },
+  beforeDestroy: function() {
+    this.mdcList.destroy();
+  },
   template: `
     <ul :class=classes>
       <slot/>
